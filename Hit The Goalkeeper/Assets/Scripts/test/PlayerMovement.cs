@@ -11,12 +11,13 @@ public class PlayerMovement : MonoBehaviour
     public bool direction=false;
     private bool speed=false, final=false;
 
+[SerializeField]
   public Animator cameraAnim;
 
 public float a;
     void Start()
     {
-        cameraAnim = gameObject.GetComponent<Animator>();
+       
         rb = GetComponent<Rigidbody>();
       a=Random.Range(0,3);
     }
