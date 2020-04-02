@@ -7,21 +7,21 @@ namespace NonObjectScripts
     public static class DoTweenController
     {
         //Moving an object in 3 dimensional space.
-        internal static void DoMove3D(Transform thisTransform, Vector3 endValue, float duration)
+        internal static void DoMove3D(Transform thisTransform, Vector2 endValue, float duration, Ease ease, int setLoops, LoopType loop)
         {
-            thisTransform.DOMove(endValue, duration);
+            thisTransform.DOMove(endValue, duration).SetEase(ease).SetLoops(-1,loop);
         }
 
         //Moving an objects local position in 3 dimensional space.
-        internal static void DoLocalMove3D(Transform thisTransform, Vector3 endValue, float duration)
+        internal static void DoLocalMove3D(Transform thisTransform, Vector2 endValue, float duration, Ease ease, int setLoops, LoopType loop)
         {
-            thisTransform.DOLocalMove(endValue, duration);
+            thisTransform.DOLocalMove(endValue, duration).SetEase(ease).SetLoops(-1,loop);
         }
 
         //Moving an object in 2 dimensional space.
-        internal static void DoMove2D(Transform thisTransform, Vector2 endValue, float duration)
+        internal static void DoMove2D(Transform thisTransform, Vector2 endValue, float duration, Ease ease, int setLoops, LoopType loop)
         {
-            thisTransform.DOMove(endValue, duration);
+            thisTransform.DOMove(endValue, duration).SetEase(ease).SetLoops(-1,loop);
         }
 
         //Moving and rotating an object in 3 dimensional space.

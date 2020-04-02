@@ -29,13 +29,14 @@ public class GameManager : MonoBehaviour
     
     public Animator ballAnimStartTrigger; //This trigger is enabling blendTrees trigger controller for next anim.
 
-    public Animator goalKeeper; //This is the goalkeepers animator, we will change animations accessing from this parameter.
-    
     public bool firstTouch; //This the first calculation bool, it controls the bars function.
 
     public Transform[] goalKeeperShootPositions; //The transforms of the keepers should start from the worst scenario,
 
-    public bool ballMoveStart; //This is the controller for ball movement.
+    public bool shootTheBall; //This will be the trigger for balls movement;
+
+    public bool camStopFollow; //This is the condition for offrecords movement. Because we do not want to follow the ball from there.
+    
     
     //to best scenario (0 - legs, 1 - spine, etc.)
     public int calculationID; //This id is for changing the value for calculation in shooting mechanics. 

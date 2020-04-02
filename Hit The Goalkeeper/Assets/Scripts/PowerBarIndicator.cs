@@ -17,8 +17,9 @@ namespace GUI
         private void Start()
         {
             //Moving the indicator from corner to another corner.
-            DoTweenController.AnchoredPosMove(GetComponent<RectTransform>(),
-                new Vector2(180, GetComponent<RectTransform>().anchoredPosition.y), 1,
+            var transform1 = transform;
+            DoTweenController.DoLocalMove3D(transform1,
+                new Vector3(1,0, 0), 2,
                 Ease.Linear, -1,
                 LoopType.Yoyo);
         }
@@ -31,31 +32,37 @@ namespace GUI
         {
             if (!Input.GetMouseButtonDown(0) || GameManager.main.firstTouch) return; //Detecting for the input.
             GameManager.main.firstTouch = false;
-            var shootValue = (int) Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
+            var shootValue = (float) Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
             CalculateShotValue(shootValue, GameManager.main.calculationID);
             transform.DORestart(); //Restarting anim for the second time because of power value assignment
         }
 
         
-        private void CalculateShotValue(int shootValue, int id)
+        private void CalculateShotValue(float shootValue, int id)
         {
             //Calculating value of the power 
             //Id is representing the current state(transform bar, power bar).
             //when we finalize the result we kill the animation.
             switch (id)
             {
-                case 0 when shootValue >= 110 && shootValue <= 180:
+                case 0 when shootValue >= .8f && shootValue <= 1:
                     DisplayMessage.main.ShowPowerBarText(Random.Range(0,2)); //Text that will display on the screen.
                     GameManager.main.calculationID = 1; //Moving to next step which is shoot power.
                     GameManager.main.transformPositionToShoot =  GameManager.main.goalKeeperShootPositions[0];
+                    GameManager.main.camStopFollow = true;
                     break;
-                case 0 when shootValue >= 40 && shootValue < 110:
+                case 0 when shootValue >= .6f && shootValue < .8f:
+                    DisplayMessage.main.ShowPowerBarText(Random.Range(0,2)); //Text that will display on the screen.
+                    GameManager.main.calculationID = 1; //Moving to next step which is shoot power.
+                    GameManager.main.transformPositionToShoot =  GameManager.main.goalKeeperShootPositions[1];
+                    break;
+                case 0 when shootValue >= .4f && shootValue < .7f:
                     DisplayMessage.main.ShowPowerBarText(Random.Range(2,4));
                     GameManager.main.calculationID = 1;
                     GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[1];
                     break;
-                case 0 when shootValue < 40:        
-                    DisplayMessage.main.ShowPowerBarText(Random.Range(4,7));
+                case 0 when shootValue < .4f:        
+                    DisplayMessage.main.ShowPowerBarText(Random.Range(4,6));
                     GameManager.main.calculationID = 1;
                     GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[2];
                     break;
@@ -63,9 +70,10 @@ namespace GUI
                     transform.DORestart();
                     break;
                 case 1:
-                    DisplayMessage.main.ShowPowerBarText(Random.Range(0,7));                    
+                    DisplayMessage.main.ShowPowerBarText(Random.Range(0,6));                    
                     GameManager.main.ballAnimStartTrigger.SetBool(Shoot,true);
-                    GameManager.main.ballShootPowerValue =  (180 / shootValue);
+                    GameManager.main.ballShootPowerValue =  (1 / shootValue) * 2;
+                    if (GameManager.main.ballShootPowerValue <= 10) GameManager.main.ballShootPowerValue = 10f;
                     transform.DOKill();
                     break;
             }

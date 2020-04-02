@@ -20,8 +20,8 @@ public class MakeChanges : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        GameManager.main.shootTheBall = true;
         GameManager.main.ballAnimStartTrigger.SetBool(Shoot,false);
-        GameManager.main.ballMoveStart = true;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

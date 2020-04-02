@@ -1,22 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    #region Singleton
     
-    public GameObject player;        //Public variable to store a reference to the player game object
-    private Vector3 offset; 
-    // Start is called before the first frame update
-    void Start()
+    public static CameraFollow main;
+
+    private void Awake()
     {
-            offset = transform.position - player.transform.position;
+        if (main != null && main != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        main = this;
     }
+    #endregion
 
-    // Update is called once per frame
-    void Update()
+    public bool isNotFollow; //This will be the trigger for following;
+    
+    [SerializeField] private Transform target;
+
+    [SerializeField] private float smoothSpeed = .125f;
+    [SerializeField] private Vector3 offset;
+
+    private void FixedUpdate()
     {
-
-        transform.position = player.transform.position + offset;
+        if (isNotFollow) return;
+        var desiredPosition = target.position + offset;
+        var smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        transform.position = smoothedPosition;
+        
+        transform.LookAt(target);
     }
 }
