@@ -608,6 +608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3b8ec5b5e26485d985c0f144c60cf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motion: 0
   ballShootPowerValue: 0
   transformPositionToShoot: {fileID: 0}
   ballAnimStartTrigger: {fileID: 97585412}
@@ -617,6 +618,7 @@ MonoBehaviour:
   - {fileID: 1906045982}
   - {fileID: 1906045983}
   - {fileID: 1906045984}
+  ballMoveStart: 0
   calculationID: 0
 --- !u!4 &1577940864
 Transform:
@@ -867,14 +869,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e3b3c8608ec4fdb9a5273c022cef0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  comerValue: 20
   rise: 20
   goalkeeper: {fileID: 1642141000}
   rb: {fileID: 1750627553}
   direction: 0
   shootPower: 0
   cameraAnim: {fileID: 1878550275}
-  a: 0
 --- !u!54 &1750627553
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1227,7 +1227,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1878550279}
   - component: {fileID: 1878550278}
-  - component: {fileID: 1878550277}
   - component: {fileID: 1878550276}
   - component: {fileID: 1878550275}
   m_Layer: 0
@@ -1236,7 +1235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1878550275
 Animator:
   serializedVersion: 3
@@ -1269,14 +1268,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1750627551}
---- !u!81 &1878550277
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878550274}
-  m_Enabled: 1
 --- !u!20 &1878550278
 Camera:
   m_ObjectHideFlags: 0

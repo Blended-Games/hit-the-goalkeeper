@@ -11,11 +11,13 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     public bool direction = false;
     private bool speed = false, final = false;
-    [SerializeField] private int shootPower; //Lerp için time değişkeni inputtan gelen değer.
+    [SerializeField] private float shootPower; //Lerp için time değişkeni inputtan gelen değer.
 
     [SerializeField] public Animator cameraAnim;
    Vector3 position;
-    private void Start()
+   private static readonly int Shoot = Animator.StringToHash("Shoot");
+
+   private void Start()
     {
         rb = GetComponent<Rigidbody>();
         //a = Random.Range(0, 3);
@@ -24,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (!GameManager.main.ballAnimStartTrigger) return;
+        if (!GameManager.main.ballMoveStart) return;
         //If ball is kicked by the player, then we will the ball to corresponding position.
         shootPower = GameManager.main.ballShootPowerValue;
        

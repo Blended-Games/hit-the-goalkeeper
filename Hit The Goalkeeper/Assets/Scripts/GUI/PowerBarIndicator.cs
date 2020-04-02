@@ -9,7 +9,7 @@ namespace GUI
 {
     public class PowerBarIndicator : MonoBehaviour
     {
-        private static readonly int KickTheBall = Animator.StringToHash("Shoot"); //This is temporary its just reaching the value inside animator.
+        private static readonly int Shoot = Animator.StringToHash("Shoot"); //This is temporary its just reaching the value inside animator.
         
 
         #region RectAnim
@@ -45,17 +45,17 @@ namespace GUI
             switch (id)
             {
                 case 0 when shootValue >= 110 && shootValue <= 180:
-                    DisplayMessage.main.ShowPowerBarText(Random.Range(0,3)); //Text that will display on the screen.
+                    DisplayMessage.main.ShowPowerBarText(Random.Range(0,2)); //Text that will display on the screen.
                     GameManager.main.calculationID = 1; //Moving to next step which is shoot power.
                     GameManager.main.transformPositionToShoot =  GameManager.main.goalKeeperShootPositions[0];
                     break;
                 case 0 when shootValue >= 40 && shootValue < 110:
-                    DisplayMessage.main.ShowPowerBarText(Random.Range(3,6));
+                    DisplayMessage.main.ShowPowerBarText(Random.Range(2,4));
                     GameManager.main.calculationID = 1;
                     GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[1];
                     break;
                 case 0 when shootValue < 40:        
-                    DisplayMessage.main.ShowPowerBarText(Random.Range(6,9));
+                    DisplayMessage.main.ShowPowerBarText(Random.Range(4,7));
                     GameManager.main.calculationID = 1;
                     GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[2];
                     break;
@@ -63,9 +63,9 @@ namespace GUI
                     transform.DORestart();
                     break;
                 case 1:
-                    DisplayMessage.main.ShowPowerBarText(Random.Range(5,8));
-                    GameManager.main.ballAnimStartTrigger.SetTrigger(KickTheBall);
-                    GameManager.main.ballShootPowerValue = shootValue * 2;
+                    DisplayMessage.main.ShowPowerBarText(Random.Range(0,7));                    
+                    GameManager.main.ballAnimStartTrigger.SetBool(Shoot,true);
+                    GameManager.main.ballShootPowerValue =  (180 / shootValue);
                     transform.DOKill();
                     break;
             }
