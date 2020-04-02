@@ -56,7 +56,8 @@
      <Compile Include="Assets\Scripts\GUI\DisplayMessage.cs" />
      <Compile Include="Assets\Scripts\GUI\PowerBarIndicator.cs" />
      <Compile Include="Assets\Scripts\NonObjectScripts\DoTweenController.cs" />
-     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\test\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\test\PlayerMovement.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

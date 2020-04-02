@@ -11,9 +11,12 @@ public class PlayerMovement : MonoBehaviour
     public bool direction=false;
     private bool speed=false, final=false;
 
+  public Animator cameraAnim;
+
 public float a;
     void Start()
     {
+        cameraAnim = gameObject.GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
       a=Random.Range(0,3);
     }
@@ -48,6 +51,8 @@ public float a;
     { 
        if(other.CompareTag("goalkeeper"))
          {
+           cameraAnim.SetBool("goalKeeperTouch", true);
+         
           final=true;
           direction=false;
           speed=false;
