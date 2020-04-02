@@ -9,7 +9,7 @@ namespace GUI
 {
     public class PowerBarIndicator : MonoBehaviour
     {
-        private static readonly int KickTheBall = Animator.StringToHash("KickTheBall"); //This is temporary its just reaching the value inside animator.
+        private static readonly int KickTheBall = Animator.StringToHash("Shoot"); //This is temporary its just reaching the value inside animator.
         
 
         #region RectAnim
@@ -37,7 +37,7 @@ namespace GUI
         }
 
         
-        private Transform CalculateShotValue(int shootValue, int id)
+        private void CalculateShotValue(int shootValue, int id)
         {
             //Calculating value of the power 
             //Id is representing the current state(transform bar, power bar).
@@ -45,17 +45,20 @@ namespace GUI
             switch (id)
             {
                 case 0 when shootValue >= 110 && shootValue <= 180:
-                    DisplayMessage.main.ShowPowerBarText(Random.Range(0,3));
-                    GameManager.main.calculationID = 1;
-                    return GameManager.main.goalKeeperShootPositions[0];
+                    DisplayMessage.main.ShowPowerBarText(Random.Range(0,3)); //Text that will display on the screen.
+                    GameManager.main.calculationID = 1; //Moving to next step which is shoot power.
+                    GameManager.main.transformPositionToShoot =  GameManager.main.goalKeeperShootPositions[0];
+                    break;
                 case 0 when shootValue >= 40 && shootValue < 110:
                     DisplayMessage.main.ShowPowerBarText(Random.Range(3,6));
                     GameManager.main.calculationID = 1;
-                    return GameManager.main.goalKeeperShootPositions[1];
+                    GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[1];
+                    break;
                 case 0 when shootValue < 40:        
                     DisplayMessage.main.ShowPowerBarText(Random.Range(6,9));
                     GameManager.main.calculationID = 1;
-                    return GameManager.main.goalKeeperShootPositions[2];
+                    GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[2];
+                    break;
                 case 0:
                     transform.DORestart();
                     break;
@@ -67,7 +70,6 @@ namespace GUI
                     break;
             }
 
-            return null;
         }
 
         #endregion

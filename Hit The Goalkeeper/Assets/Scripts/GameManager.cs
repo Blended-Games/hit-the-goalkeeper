@@ -23,8 +23,12 @@ public class GameManager : MonoBehaviour
 
     [Header("Global Dependencies")] public int ballShootPowerValue; //Balls power value
 
+    public Transform transformPositionToShoot; //This will be the position that we are shooting.
+    
     public Animator ballAnimStartTrigger; //This trigger is enabling blendTrees trigger controller for next anim.
 
+    public Animator goalKeeper; //This is the goalkeepers animator, we will change animations accessing from this parameter.
+    
     public bool firstTouch; //This the first calculation bool, it controls the bars function.
 
     public Transform[] goalKeeperShootPositions; //The transforms of the keepers should start from the worst scenario,
