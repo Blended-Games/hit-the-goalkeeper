@@ -5,6 +5,7 @@ public class BallMove : MonoBehaviour
 {
     public static BallMove main;
     private Rigidbody rb;
+    public PlayerState state;
 
     private void Awake()
     {
@@ -39,6 +40,9 @@ public class BallMove : MonoBehaviour
         {
             rb.AddForce((gameManagerPos - position).normalized
                         * GameManager.main.ballShootPowerValue, ForceMode.Impulse);
+                        Unit.instance.currentHP=5;
+      ShootSystem.instance.PlayerAttack();
+                      
         }
     
     if ((transform.position - gameManagerPos).sqrMagnitude< .06f)
@@ -46,11 +50,14 @@ public class BallMove : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         GameManager.main.ballMoveStop = true;
-    }
+        
+         }
 
     if (!((transform.position - gameManagerPos).sqrMagnitude > 5f) || !GameManager.main.camStopFollow) return;
     CameraFollow.main.isNotFollow = true;
     rb.AddForce(Vector3.forward);
+      
+
 }
 
 }

@@ -59,9 +59,12 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GUI\DisplayMessage.cs" />
      <Compile Include="Assets\Scripts\HealthBar.cs" />
+     <Compile Include="Assets\Scripts\HUDScript.cs" />
      <Compile Include="Assets\Scripts\PowerBarIndicator.cs" />
+     <Compile Include="Assets\Scripts\ShootSystem.cs" />
      <Compile Include="Assets\Scripts\test\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\test\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\Unit.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
@@ -103,17 +106,17 @@
  <Reference Include="Unity.Rider.Editor">
  <HintPath>/Users/aslidogan/Documents/GitHub/hit-the-goalkeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.2D.Sprite.Editor">
+ <HintPath>/Users/aslidogan/Documents/GitHub/hit-the-goalkeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.2D.Tilemap.Editor">
+ <HintPath>/Users/aslidogan/Documents/GitHub/hit-the-goalkeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>/Users/aslidogan/Documents/GitHub/hit-the-goalkeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>/Users/aslidogan/Documents/GitHub/hit-the-goalkeeper/Hit The Goalkeeper/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Tilemap.Editor">
- <HintPath>/Users/aslidogan/Documents/GitHub/hit-the-goalkeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Sprite.Editor">
- <HintPath>/Users/aslidogan/Documents/GitHub/hit-the-goalkeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
