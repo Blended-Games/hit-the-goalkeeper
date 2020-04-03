@@ -5,7 +5,6 @@ public class BallMove : MonoBehaviour
 {
     public static BallMove main;
     private Rigidbody rb;
-    public PlayerState state;
 
     private void Awake()
     {
@@ -40,24 +39,27 @@ public class BallMove : MonoBehaviour
         {
             rb.AddForce((gameManagerPos - position).normalized
                         * GameManager.main.ballShootPowerValue, ForceMode.Impulse);
-                        Unit.instance.currentHP=5;
-      ShootSystem.instance.PlayerAttack();
-                      
         }
-    
-    if ((transform.position - gameManagerPos).sqrMagnitude< .06f)
-    {
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        GameManager.main.ballMoveStop = true;
+
+        if ((transform.position-gameManagerPos).sqrMagnitude < 2)
+        {
+            
+            CameraFollow.main.offset = new Vector3(.65f, -.16f,-.93f);
+            CameraFollow.main.target = GameManager.main.transformPositionToShoot;           
+            GameManager.main.ballMoveStop = true;
+        }
         
-         }
+        if ((transform.position - gameManagerPos).sqrMagnitude< .06f)
+        {
+            //rb.velocity = Vector3.zero;
+            //rb.angularVelocity = Vector3.zero;
+            CameraFollow.main.isNotFollow = true;
+            GameManager.main.ballMoveStop = true;
+        }
 
-    if (!((transform.position - gameManagerPos).sqrMagnitude > 5f) || !GameManager.main.camStopFollow) return;
-    CameraFollow.main.isNotFollow = true;
-    rb.AddForce(Vector3.forward);
-      
-
+        if (!((transform.position - gameManagerPos).sqrMagnitude > 5f) || !GameManager.main.camStopFollow) return;
+        CameraFollow.main.isNotFollow = true;
+        rb.AddForce(Vector3.forward);
 }
 
 }

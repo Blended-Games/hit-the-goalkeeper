@@ -30,6 +30,7 @@
           </e>
           <e p="Animation Scripts" t="Include">
             <e p="MakeChanges.cs" t="Include" />
+            <e p="SetTheGameState.cs" t="Include" />
           </e>
           <e p="BallMove.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
@@ -37,11 +38,14 @@
             <e p="DisplayMessage.cs" t="Include" />
           </e>
           <e p="HealthBar.cs" t="Include" />
+          <e p="HUDScript.cs" t="Include" />
           <e p="PowerBarIndicator.cs" t="Include" />
+          <e p="ShootSystem.cs" t="Include" />
           <e p="test" t="Include">
             <e p="CameraFollow.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
           </e>
+          <e p="Unit.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">

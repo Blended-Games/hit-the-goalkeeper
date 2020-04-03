@@ -22,6 +22,7 @@ public class MakeChanges : StateMachineBehaviour
     {
         GameManager.main.shootTheBall = true;
         GameManager.main.ballAnimStartTrigger.SetBool(Shoot,false);
+        CameraFollow.main.isNotFollow = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

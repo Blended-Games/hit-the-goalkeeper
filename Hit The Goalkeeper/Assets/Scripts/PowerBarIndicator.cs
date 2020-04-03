@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using DG.Tweening;
+﻿using DG.Tweening;
 using NonObjectScripts;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace GUI
 {
@@ -30,9 +27,9 @@ namespace GUI
 
         private void Update()
         {
-            if (!Input.GetMouseButtonDown(0) || GameManager.main.firstTouch) return; //Detecting for the input.
-            GameManager.main.firstTouch = false;
-            var shootValue = (float) Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
+            if (!Input.GetMouseButtonDown(0) || !GameManager.main.firstTouch) return; //Detecting for the input.
+            //GameManager.main.firstTouch = false;
+            var shootValue = Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
             CalculateShotValue(shootValue, GameManager.main.calculationID);
             transform.DORestart(); //Restarting anim for the second time because of power value assignment
         }
@@ -59,12 +56,12 @@ namespace GUI
                 case 0 when shootValue >= .3f && shootValue < .7f:
                     DisplayMessage.main.ShowPowerBarText(Random.Range(2,4));
                     GameManager.main.calculationID = 1;
-                    GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[1];
+                    GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[2];
                     break;
                 case 0 when shootValue < .2f:        
                     DisplayMessage.main.ShowPowerBarText(Random.Range(4,6));
                     GameManager.main.calculationID = 1;
-                    GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[2];
+                    GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[3];
                     break;
                 case 0:
                     transform.DORestart();
@@ -72,9 +69,10 @@ namespace GUI
                 case 1:
                     DisplayMessage.main.ShowPowerBarText(Random.Range(0,6));                    
                     GameManager.main.ballAnimStartTrigger.SetBool(Shoot,true);
-                    GameManager.main.ballShootPowerValue =  (1 / shootValue) * 2;
+                    GameManager.main.ballShootPowerValue =  (1 / shootValue) % 10;
                     if (GameManager.main.ballShootPowerValue <= 10) GameManager.main.ballShootPowerValue = 10f;
                     transform.DOKill();
+                    GameManager.main.firstTouch = false; 
                     break;
             }
 
