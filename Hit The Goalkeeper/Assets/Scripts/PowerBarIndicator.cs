@@ -56,12 +56,12 @@ namespace GUI
                     GameManager.main.calculationID = 1; //Moving to next step which is shoot power.
                     GameManager.main.transformPositionToShoot =  GameManager.main.goalKeeperShootPositions[1];
                     break;
-                case 0 when shootValue >= .4f && shootValue < .7f:
+                case 0 when shootValue >= .3f && shootValue < .7f:
                     DisplayMessage.main.ShowPowerBarText(Random.Range(2,4));
                     GameManager.main.calculationID = 1;
                     GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[1];
                     break;
-                case 0 when shootValue < .4f:        
+                case 0 when shootValue < .2f:        
                     DisplayMessage.main.ShowPowerBarText(Random.Range(4,6));
                     GameManager.main.calculationID = 1;
                     GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[2];

@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     public Transform[] goalKeeperShootPositions; //The transforms of the keepers should start from the worst scenario,
 
     public bool shootTheBall; //This will be the trigger for balls movement;
+    
+    public bool ballMoveStop; //This will stop rigidbody force and make 
 
     public bool camStopFollow; //This is the condition for offrecords movement. Because we do not want to follow the ball from there.
     
