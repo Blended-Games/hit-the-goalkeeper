@@ -66,7 +66,6 @@
      <Compile Include="Assets\Downloads\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
      <Compile Include="Assets\Downloads\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
      <Compile Include="Assets\Scripts\Accessables\DoTweenController.cs" />
-     <Compile Include="Assets\Scripts\Animator States\MainCameraAnimationState.cs" />
      <Compile Include="Assets\Scripts\Animator States\MakeChanges.cs" />
      <Compile Include="Assets\Scripts\Animator States\SetTheGameState.cs" />
      <Compile Include="Assets\Scripts\BallMove.cs" />
@@ -138,12 +137,6 @@
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="Cinemachine">
- <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
- </Reference>
- <Reference Include="com.unity.cinemachine.editor">
- <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
