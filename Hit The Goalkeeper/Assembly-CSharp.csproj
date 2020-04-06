@@ -78,6 +78,7 @@
      <Compile Include="Assets\Scripts\GUI\PowerBarIndicator.cs" />
      <Compile Include="Assets\Scripts\GUI\Unit.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Managers\TimeManager.cs" />
      <Compile Include="Assets\Scripts\ShootSystem.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />

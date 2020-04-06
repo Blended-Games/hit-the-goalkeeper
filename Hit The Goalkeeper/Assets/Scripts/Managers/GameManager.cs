@@ -39,8 +39,11 @@ namespace Managers
         public bool ballMoveStop; //This will stop rigidbody force and make 
 
         public bool camStopFollow; //This is the condition for offrecords movement. Because we do not want to follow the ball from there.
-    
-    
+
+        public int goalkeepersPositionArrayValue; //We will take the amount for animation trigger.
+       
+        public Animator goalKeeperAnim; //This will be animator for goalkeeper's animation triggers.
+        
         public bool ballGoesToHead; //This is the state for headshot situations.
         
         //to best scenario (0 - legs, 1 - spine, etc.)

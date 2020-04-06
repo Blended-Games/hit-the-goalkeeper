@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-     #region Singleton
+     /*#region Singleton
     public static Unit instance;
     private void Awake()
     {
@@ -16,7 +16,7 @@ public class Unit : MonoBehaviour
         instance = this;
     }
 
-    #endregion
+    #endregion*/
    public string UnitName;
    public int point;
    public int damage;

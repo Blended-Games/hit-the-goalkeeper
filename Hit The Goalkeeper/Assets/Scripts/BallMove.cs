@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using Cinemachine;
+using Managers;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
@@ -7,6 +8,7 @@ public class BallMove : MonoBehaviour
     #region Singleton
 
     public static BallMove main;
+    private CinemachineBrain mainCamBrain;
 
     private void Awake()
     {
@@ -26,6 +28,7 @@ public class BallMove : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>(); //We reach our rigidbody at start method.
+        mainCamBrain = FindObjectOfType<CinemachineBrain>();
     }
 
     private void FixedUpdate()
@@ -54,15 +57,25 @@ public class BallMove : MonoBehaviour
            
         }
 
-        if ((transform.position - gameManagerPos).sqrMagnitude < 3 && GameManager.main.ballGoesToHead) //This is for slow motion situations.
+        if ((transform.position - gameManagerPos).sqrMagnitude < 7 && GameManager.main.ballGoesToHead) //This is for slow motion situations.
                                                                                                        //If player makes perfect hit. Ball will slow down and hit to the head.
         {
             TimeManager.main.SlowMotion();
-            //CameraFollow.main.offset = new Vector3(.65f, -.16f, -.93f);
-            //CameraFollow.main.target = GameManager.main.transformPositionToShoot;
             GameManager.main.ballMoveStop = true;
             transform.localScale = new Vector3(.25f, .25f, .25f);
-               
+            GameManager.main.cineMachines[1].SetActive(false);
+            mainCamBrain.m_DefaultBlend.m_Time = 0.05f;
+            GameManager.main.goalKeeperAnim.SetBool("HeadHit",true);
+        }
+        else if ((transform.position - gameManagerPos).sqrMagnitude < 7 &&
+                 GameManager.main.goalkeepersPositionArrayValue == 2)
+        {
+            GameManager.main.goalKeeperAnim.SetBool("MidHit",true);
+        }
+        else if ((transform.position - gameManagerPos).sqrMagnitude < 7 &&
+                 GameManager.main.goalkeepersPositionArrayValue == 1)
+        {
+            GameManager.main.goalKeeperAnim.SetBool("LegHit",true);
         }
 
         if ((transform.position - gameManagerPos).sqrMagnitude < .1f) //This is for camera follow stop and slow motion stop.
@@ -70,7 +83,7 @@ public class BallMove : MonoBehaviour
             //Bu kısımda can scriptini tetikleyebilirsin
             if(GameManager.main.ballGoesToHead) TimeManager.main._timeFix = true;
             
-            CameraFollow.main.CinemacHineClose();
+            //CameraFollow.main
             GameManager.main.ballMoveStop = true;
         }
 
