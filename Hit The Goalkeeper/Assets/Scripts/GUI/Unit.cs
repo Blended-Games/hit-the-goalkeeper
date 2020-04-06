@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-     /*#region Singleton
-    public static Unit instance;
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        instance = this;
-    }
+    //  #region Singleton
+    // public static Unit instance;
+    // private void Awake()
+    // {
+    //     if (instance != null && instance != this)
+    //     {
+    //         Destroy(gameObject);
+    //         return;
+    //     }
+    //     instance = this;
+    // }
 
-    #endregion*/
+  //  #endregion
    public string UnitName;
    public int point;
    public int damage;

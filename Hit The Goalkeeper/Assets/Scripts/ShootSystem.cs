@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using GUI;
+using Managers;
 using UnityEngine;
 
 
@@ -21,8 +22,8 @@ public class ShootSystem : MonoBehaviour
 
     #endregion
     public PlayerState state;
-     Unit unitPlayer;
-     //Unit unitGoalKeeper;
+   public  Unit unitPlayer;
+   public  Unit unitGoalKeeper;
     public HUDScript playerHUD;
     public HUDScript goalKeeperHUD;
     
@@ -30,7 +31,7 @@ public class ShootSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state=PlayerState.PlayerTurn;
+      state= PlayerState.PlayerTurn;
     }
     public void SetupShoot()
     {
@@ -40,37 +41,39 @@ public class ShootSystem : MonoBehaviour
   
     }
   public  IEnumerator PlayerAttack(){
-    //bool isDead=  unitGoalKeeper.TakeDamage(unitPlayer.damage);
+    bool isDead=  unitGoalKeeper.TakeDamage(unitPlayer.damage);
+      Debug.Log(unitPlayer.currentHP);
+       goalKeeperHUD.SetHp(unitPlayer.currentHP);
 
-    yield return new WaitForSeconds(0.02f);
+    yield return new WaitForSeconds(0.2f);
 
-    
-    // if(isDead)
-    // {
-    //     state=PlayerState.Won;
-    //     EndShoot();
-    // }
-    // else{
-    //     state=PlayerState.GoalKeeperTurn;
-    //     StartCoroutine(GoalKeeperTurn());
-    // }
+    if(isDead)
+    {
+        state=PlayerState.Won;
+        EndShoot();
+    }
+    else{
+        state=PlayerState.GoalKeeperTurn;
+        StartCoroutine(GoalKeeperTurn());
+    }
     }
    
-//   public IEnumerator GoalKeeperTurn(){ 
-//        bool isDead= unitPlayer.TakeDamage(unitGoalKeeper.damage);
-//        playerHUD.SetHp(unitGoalKeeper.currentHP);
-//        yield return new WaitForSeconds(5f);
-//         if(isDead)
-//            {
-//              state=PlayerState.Lost;
-//              EndShoot();
-//          }
-//         else{
-//               state=PlayerState.PlayerTurn;
+  public IEnumerator GoalKeeperTurn(){ 
+       bool isDead= unitPlayer.TakeDamage(unitGoalKeeper.damage);
+      unitGoalKeeper.currentHP=(int)Random.Range(5f,25f);
+       playerHUD.SetHp(unitGoalKeeper.currentHP);
+       yield return new WaitForSeconds(.2f);
+        if(isDead)
+           {
+             state=PlayerState.Lost;
+             EndShoot();
+         }
+        else{
+              state=PlayerState.PlayerTurn;
 
-//         }
+        }
      
-//      }
+     }
 
        void EndShoot(){
             if(state==PlayerState.Won) Debug.Log( "you won");
