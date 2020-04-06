@@ -26,9 +26,12 @@ namespace GUI
 
         #endregion
 
+        #region Variables.
+
         List<string> textList;
         TextAsset textFile;
         [SerializeField] private TextMeshProUGUI powerBarText;
+        #endregion
 
         private void Start()
         {

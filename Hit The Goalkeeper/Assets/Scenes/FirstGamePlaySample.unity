@@ -132,6 +132,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1906045981}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &202906842 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2098354331583316225, guid: 11b4ca362151248d19fd4460ba9c3180,
+    type: 3}
+  m_PrefabInstance: {fileID: 1906045981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &202906843
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -154,6 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 203951146}
+  - component: {fileID: 203951147}
   m_Layer: 0
   m_Name: TimeManager
   m_TagString: Untagged
@@ -175,6 +182,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &203951147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203951145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf93466db7935487faab1f4f0c0c39a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowdownFactor: 0.05
+  slowdownLength: 2
 --- !u!1 &302745824
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,12 +416,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546740480}
   m_CullTransparentMesh: 0
---- !u!4 &556299018 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2098354331583316225, guid: 11b4ca362151248d19fd4460ba9c3180,
-    type: 3}
-  m_PrefabInstance: {fileID: 1906045981}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &681072234
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,12 +1006,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1488096693 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -1961527489118600092, guid: 11b4ca362151248d19fd4460ba9c3180,
-    type: 3}
-  m_PrefabInstance: {fileID: 1906045981}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1503575191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,6 +1124,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1906045981}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1572307584 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1961527489118600092, guid: 11b4ca362151248d19fd4460ba9c3180,
+    type: 3}
+  m_PrefabInstance: {fileID: 1906045981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &1572307585
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1166,8 +1181,8 @@ MonoBehaviour:
   firstTouch: 0
   goalKeeperShootPositions:
   - {fileID: 1729638785}
-  - {fileID: 556299018}
-  - {fileID: 1488096693}
+  - {fileID: 202906842}
+  - {fileID: 1572307584}
   - {fileID: 404399387}
   shootTheBall: 0
   ballMoveStop: 0
@@ -2424,6 +2439,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: goalkeeper
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 11b4ca362151248d19fd4460ba9c3180,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2098354331583316225, guid: 11b4ca362151248d19fd4460ba9c3180,
         type: 3}

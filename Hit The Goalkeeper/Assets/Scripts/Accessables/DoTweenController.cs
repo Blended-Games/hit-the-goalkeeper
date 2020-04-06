@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace NonObjectScripts
+namespace Accessables
 {
     public static class DoTweenController
     {

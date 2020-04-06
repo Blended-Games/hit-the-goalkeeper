@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GUI;
 using UnityEngine;
 
 
@@ -22,8 +23,8 @@ public class ShootSystem : MonoBehaviour
     public PlayerState state;
      Unit unitPlayer;
      Unit unitGoalKeeper;
-    public HUDScript playerHUD;
-    public HUDScript goalKeeperHUD;
+    public HudScript playerHUD;
+    public HudScript goalKeeperHUD;
     
 
     // Start is called before the first frame update
@@ -33,15 +34,15 @@ public class ShootSystem : MonoBehaviour
     }
     public void SetupShoot()
     {
-     playerHUD.SetHUD(unitPlayer);
-     goalKeeperHUD.SetHUD(unitGoalKeeper);
+     playerHUD.SetHud(unitPlayer);
+     goalKeeperHUD.SetHud(unitGoalKeeper);
 
   
     }
   public  IEnumerator PlayerAttack(){
     bool isDead=  unitGoalKeeper.TakeDamage(unitPlayer.damage);
 
-    goalKeeperHUD.SetHP(unitGoalKeeper.currentHP);
+    goalKeeperHUD.SetHp(unitGoalKeeper.currentHP);
     yield return new WaitForSeconds(5f);
     
     if(isDead)
@@ -57,7 +58,7 @@ public class ShootSystem : MonoBehaviour
    
   public IEnumerator GoalKeeperTurn(){ 
        bool isDead= unitPlayer.TakeDamage(unitGoalKeeper.damage);
-       playerHUD.SetHP(unitPlayer.currentHP);
+       playerHUD.SetHp(unitPlayer.currentHP);
        yield return new WaitForSeconds(5f);
         if(isDead)
            {

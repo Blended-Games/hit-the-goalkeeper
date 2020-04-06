@@ -58,7 +58,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Bar.cs" />
      <Compile Include="Assets\Downloads\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
      <Compile Include="Assets\Downloads\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
      <Compile Include="Assets\Downloads\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
@@ -67,18 +66,19 @@
      <Compile Include="Assets\Downloads\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
      <Compile Include="Assets\Downloads\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
      <Compile Include="Assets\Scripts\Accessables\DoTweenController.cs" />
-     <Compile Include="Assets\Scripts\Animation Scripts\MakeChanges.cs" />
-     <Compile Include="Assets\Scripts\Animation Scripts\SetTheGameState.cs" />
+     <Compile Include="Assets\Scripts\Animator States\MakeChanges.cs" />
+     <Compile Include="Assets\Scripts\Animator States\SetTheGameState.cs" />
      <Compile Include="Assets\Scripts\BallMove.cs" />
-     <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\GUI\Bar.cs" />
      <Compile Include="Assets\Scripts\GUI\DisplayMessage.cs" />
-     <Compile Include="Assets\Scripts\HealthBar.cs" />
-     <Compile Include="Assets\Scripts\HUDScript.cs" />
-     <Compile Include="Assets\Scripts\PowerBarIndicator.cs" />
+     <Compile Include="Assets\Scripts\GUI\HealthBar.cs" />
+     <Compile Include="Assets\Scripts\GUI\HUDScript.cs" />
+     <Compile Include="Assets\Scripts\GUI\PowerBarIndicator.cs" />
+     <Compile Include="Assets\Scripts\GUI\Unit.cs" />
+     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\TimeManager.cs" />
      <Compile Include="Assets\Scripts\ShootSystem.cs" />
-     <Compile Include="Assets\Scripts\test\CameraFollow.cs" />
-     <Compile Include="Assets\Scripts\test\PlayerMovement.cs" />
-     <Compile Include="Assets\Scripts\Unit.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
@@ -105,8 +105,14 @@
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.Recorder.Editor">
+ <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Recorder">
+ <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
@@ -131,12 +137,6 @@
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Recorder.Editor">
- <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Recorder">
- <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

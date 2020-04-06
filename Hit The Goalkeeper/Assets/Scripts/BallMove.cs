@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using Managers;
+using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
 public class BallMove : MonoBehaviour
 {
+    #region Singleton
+
     public static BallMove main;
-    private Rigidbody rb;
 
     private void Awake()
     {
@@ -17,49 +19,55 @@ public class BallMove : MonoBehaviour
         main = this;
     }
 
+    #endregion
+
+    private Rigidbody rb;
+
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>(); //We reach our rigidbody at start method.
     }
 
     private void FixedUpdate()
     {
-        if (!GameManager.main.shootTheBall) return;
+        if (!GameManager.main.shootTheBall) return; //If player enters the inputs, global manager will set the trigger for movement.
         Movement();
     }
 
+    //This is the script for ball movement, Ball will move to goalkeepers selected positions.
     private void Movement()
     {
-        var gameManagerPos = GameManager.main.transformPositionToShoot.position;
+        var gameManagerPos = GameManager.main.transformPositionToShoot.position; //The position for the ball to reach, it was taken via players input.
 
-        var position = transform.position;
-        //rb.velocity = (gameManagerPos - position).normalized * GameManager.main.ballShootPowerValue;
+        var position = transform.position; //This is for performance clearity.
 
-        if (!GameManager.main.ballMoveStop)
+        if (!GameManager.main.ballMoveStop) //If this trigger is not set by game manager, ball gets a force to reach the position.
         {
-            rb.AddForce((gameManagerPos - position).normalized
-                        * GameManager.main.ballShootPowerValue, ForceMode.Impulse);
+            rb.AddForce((gameManagerPos - position).normalized *
+                        (GameManager.main.ballShootPowerValue * Time.fixedDeltaTime * 50)
+                , ForceMode.Impulse); //We set rigidbody force, because without physics we have lag.
         }
 
-        if ((transform.position-gameManagerPos).sqrMagnitude < 2)
+        if ((transform.position - gameManagerPos).sqrMagnitude < 3 && GameManager.main.ballGoesToHead) //This is for slow motion situations.
+                                                                                                       //If player makes perfect hit. Ball will slow down and hit to the head.
         {
-            
-            CameraFollow.main.offset = new Vector3(.65f, -.16f,-.93f);
-            CameraFollow.main.target = GameManager.main.transformPositionToShoot;           
+            TimeManager.main.SlowMotion();
+            CameraFollow.main.offset = new Vector3(.65f, -.16f, -.93f);
+            CameraFollow.main.target = GameManager.main.transformPositionToShoot;
             GameManager.main.ballMoveStop = true;
+            transform.localScale = new Vector3(.25f, .25f, .25f);
         }
-        
-        if ((transform.position - gameManagerPos).sqrMagnitude< .06f)
+
+        if ((transform.position - gameManagerPos).sqrMagnitude < 1f) //This is for camera follow stop and slow motion stop.
         {
-            //rb.velocity = Vector3.zero;
-            //rb.angularVelocity = Vector3.zero;
+            if(GameManager.main.ballGoesToHead) TimeManager.main._timeFix = true;
+            
             CameraFollow.main.isNotFollow = true;
             GameManager.main.ballMoveStop = true;
         }
 
-        if (!((transform.position - gameManagerPos).sqrMagnitude > 5f) || !GameManager.main.camStopFollow) return;
+        if (!((transform.position - gameManagerPos).sqrMagnitude > 5f) || !GameManager.main.camStopFollow) return; //This is the condition for camera follow.
         CameraFollow.main.isNotFollow = true;
-        rb.AddForce(Vector3.forward);
-}
-
+        //rb.AddForce(Vector3.forward);
+    }
 }
