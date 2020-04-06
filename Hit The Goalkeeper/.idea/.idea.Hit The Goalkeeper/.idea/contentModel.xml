@@ -28,6 +28,7 @@
             <e p="DoTweenController.cs" t="Include" />
           </e>
           <e p="Animator States" t="Include">
+            <e p="MainCameraAnimationState.cs" t="Include" />
             <e p="MakeChanges.cs" t="Include" />
             <e p="SetTheGameState.cs" t="Include" />
           </e>
