@@ -45,7 +45,7 @@ public class ShootSystem : MonoBehaviour
       Debug.Log(unitPlayer.currentHP);
        goalKeeperHUD.SetHp(unitPlayer.currentHP);
 
-    yield return new WaitForSeconds(0.02f);
+    yield return new WaitForSeconds(0.2f);
 
     if(isDead)
     {
@@ -60,9 +60,9 @@ public class ShootSystem : MonoBehaviour
    
   public IEnumerator GoalKeeperTurn(){ 
        bool isDead= unitPlayer.TakeDamage(unitGoalKeeper.damage);
-      
+      unitGoalKeeper.currentHP=(int)Random.Range(5f,25f);
        playerHUD.SetHp(unitGoalKeeper.currentHP);
-       yield return new WaitForSeconds(5f);
+       yield return new WaitForSeconds(.2f);
         if(isDead)
            {
              state=PlayerState.Lost;

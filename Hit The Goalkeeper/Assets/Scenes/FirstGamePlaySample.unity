@@ -373,7 +373,7 @@ RectTransform:
   m_LocalScale: {x: 5, y: 0.32320848, z: 0.71339}
   m_Children: []
   m_Father: {fileID: 1674397884}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -387,13 +387,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546740480}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.9716981, b: 0.21211971, a: 1}
+  m_Color: {r: 0.0058739726, g: 0.03773582, b: 0.012811634, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1862,7 +1862,7 @@ MonoBehaviour:
   UnitName: 
   point: 3
   damage: 1
-  currentHP: 0
+  currentHP: 10
   maxHP: 100
 --- !u!65 &1642141003
 BoxCollider:
@@ -2007,8 +2007,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2053612596}
   - {fileID: 546740481}
+  - {fileID: 2053612596}
   - {fileID: 681072235}
   - {fileID: 1885770311}
   m_Father: {fileID: 338479465}
@@ -2308,7 +2308,7 @@ MonoBehaviour:
   UnitName: 
   point: 0
   damage: 1
-  currentHP: 0
+  currentHP: 10
   maxHP: 100
 --- !u!23 &1750627555
 MeshRenderer:
@@ -3279,7 +3279,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1674397884}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

@@ -51,7 +51,7 @@ public class BallMove : MonoBehaviour
             rb.AddForce((gameManagerPos - position).normalized *
                         (GameManager.main.ballShootPowerValue * Time.fixedDeltaTime * 50)
                 , ForceMode.Impulse); //We set rigidbody force, because without physics we have lag
-           
+                AttackCompleted();
         }
 
         if ((transform.position - gameManagerPos).sqrMagnitude < 3 && GameManager.main.ballGoesToHead) //This is for slow motion situations.
@@ -62,7 +62,7 @@ public class BallMove : MonoBehaviour
             //CameraFollow.main.target = GameManager.main.transformPositionToShoot;
             GameManager.main.ballMoveStop = true;
             transform.localScale = new Vector3(.25f, .25f, .25f);
-               
+                    AttackCompleted();
         }
 
         if ((transform.position - gameManagerPos).sqrMagnitude < .1f) //This is for camera follow stop and slow motion stop.
@@ -76,6 +76,7 @@ public class BallMove : MonoBehaviour
         }
 
         if (!((transform.position - gameManagerPos).sqrMagnitude > 5f) || !GameManager.main.camStopFollow) {
+                 AttackCompleted();
         }
         
         //rb.AddForce(Vector3.forward);
