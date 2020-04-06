@@ -64,7 +64,7 @@ public class BallMove : MonoBehaviour
             GameManager.main.ballMoveStop = true;
             transform.localScale = new Vector3(.25f, .25f, .25f);
             GameManager.main.cineMachines[1].SetActive(false);
-            mainCamBrain.m_DefaultBlend.m_Time = 0.05f;
+            mainCamBrain.m_DefaultBlend.m_Time = .05f;
             GameManager.main.goalKeeperAnim.SetBool("HeadHit",true);
         }
         else if ((transform.position - gameManagerPos).sqrMagnitude < 7 &&
