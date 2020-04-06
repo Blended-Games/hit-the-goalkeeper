@@ -68,19 +68,25 @@ public class BallMove : MonoBehaviour
         if ((transform.position - gameManagerPos).sqrMagnitude < .1f) //This is for camera follow stop and slow motion stop.
         {
             //Bu kısımda can scriptini tetikleyebilirsin
+          
             if(GameManager.main.ballGoesToHead) TimeManager.main._timeFix = true;
-            
             CameraFollow.main.CinemacHineClose();
             GameManager.main.ballMoveStop = true;
+             AttackCompleted();
         }
 
-        if (!((transform.position - gameManagerPos).sqrMagnitude > 5f) || !GameManager.main.camStopFollow) 
-        {
-             ShootSystem.instance.goalKeeperHUD.SetHp(50);
-                //Debug.Log(ShootSystem.instance.goalKeeperHUD);
-                StartCoroutine(ShootSystem.instance.PlayerAttack());
+        if (!((transform.position - gameManagerPos).sqrMagnitude > 5f) || !GameManager.main.camStopFollow) {
         }
-
+        
         //rb.AddForce(Vector3.forward);
     }
+
+       public void AttackCompleted(){
+           
+     ShootSystem.instance.unitPlayer.currentHP=(int) GameManager.main.ballShootPowerValue;
+          StartCoroutine(ShootSystem.instance.PlayerAttack());
+          GameManager.main.shootTheBall=false;
+       
+    }
+
 }

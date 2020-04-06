@@ -17,6 +17,7 @@ using System.Collections.Generic;
             hpSlider.value = unit.currentHP;
 
         }
+        
         public void SetHp(int hp)
         {
       

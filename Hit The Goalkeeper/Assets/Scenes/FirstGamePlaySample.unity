@@ -1698,6 +1698,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  unitPlayer: {fileID: 1750627554}
+  unitGoalKeeper: {fileID: 1642141001}
   playerHUD: {fileID: 1954837800}
   goalKeeperHUD: {fileID: 1674397885}
 --- !u!1 &1596049835
@@ -1859,8 +1861,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitName: 
   point: 3
-  damage: 10
-  currentHP: 10
+  damage: 1
+  currentHP: 0
   maxHP: 100
 --- !u!65 &1642141003
 BoxCollider:
@@ -2254,6 +2256,7 @@ GameObject:
   - component: {fileID: 1750627553}
   - component: {fileID: 1750627558}
   - component: {fileID: 1750627552}
+  - component: {fileID: 1750627554}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -2290,6 +2293,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &1750627554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750627551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a52beb3a83f49d994dc7814d86090d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: 
+  point: 0
+  damage: 1
+  currentHP: 0
+  maxHP: 100
 --- !u!23 &1750627555
 MeshRenderer:
   m_ObjectHideFlags: 0
