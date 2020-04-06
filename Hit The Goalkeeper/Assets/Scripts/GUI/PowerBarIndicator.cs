@@ -49,9 +49,14 @@ namespace GUI
                     GameManager.main.calculationID = 1; //Moving to next step which is shoot power.
                     GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[0];
                     GameManager.main.camStopFollow = true;
+
+ShootSystem.instance.goalKeeperHUD.SetHp((int)GameManager.main.ballShootPowerValue);
+           ShootSystem.instance.PlayerAttack();
+           
                     break;
                 case 0 when shootValue >= .6f && shootValue < .8f:
                     DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2)); //Text that will display on the screen.
+                  
                     GameManager.main.calculationID = 1; //Moving to next step which is shoot power.
                     GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[1];
                     break;
@@ -62,6 +67,7 @@ namespace GUI
                     break;
                 case 0 when shootValue < .2f:
                     DisplayMessage.main.ShowPowerBarText(Random.Range(4, 6));
+                  
                     GameManager.main.calculationID = 1;
                     GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[3];
                     GameManager.main.ballGoesToHead = true;
@@ -73,13 +79,15 @@ namespace GUI
                     DisplayMessage.main.ShowPowerBarText(Random.Range(0, 6));
                     GameManager.main.ballAnimStartTrigger.SetBool(Shoot, true);
                     GameManager.main.ballShootPowerValue = (1 / shootValue); //Setting the balls shooting value.
-                    if (GameManager.main.ballShootPowerValue <= 10) GameManager.main.ballShootPowerValue = 10f; //Setting the balls min shooting value.
-                    if (GameManager.main.ballShootPowerValue >= 35) GameManager.main.ballShootPowerValue = 35f; //Setting the balls max shooting value.
+                    if (GameManager.main.ballShootPowerValue <= 10) {GameManager.main.ballShootPowerValue = 10f; }
+                    if (GameManager.main.ballShootPowerValue >= 35) {GameManager.main.ballShootPowerValue = 35f; 
+                    }
+  //Setting the balls max shooting value.
                     transform.DOKill(); //Killing the power bar indicator animation.
                     GameManager.main.firstTouch = false;
                     break;
-            }
-        }
+                      }
+           }
 
         #endregion
     }

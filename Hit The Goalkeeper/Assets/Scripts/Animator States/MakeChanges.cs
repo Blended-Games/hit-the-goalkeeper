@@ -23,7 +23,7 @@ namespace Animator_States
         {
             GameManager.main.shootTheBall = true; //This is the trigger for ball shooting mechanic.
             GameManager.main.ballAnimStartTrigger.SetBool(Shoot,false); //This is the animation trigger for ball shooting mechanic
-            CameraFollow.main.isNotFollow = false; //This is the trigger for camera following mechanic.
+            CameraFollow.main.isNotFollow = false; //This is the trigger for camera following mechanic.GameManager.main.shootTheBall
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()

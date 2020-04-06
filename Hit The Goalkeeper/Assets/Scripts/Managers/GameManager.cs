@@ -49,6 +49,8 @@ namespace Managers
         #endregion
 
         #region TargetFrameRate
+
+    public GameObject firstPlayer;
         private void Start()
         {
             Application.targetFrameRate = 30; //Setting the target frame rate for unexpected frame drop rates.
