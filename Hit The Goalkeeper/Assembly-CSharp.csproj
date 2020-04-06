@@ -54,6 +54,10 @@
      <Compile Include="Assets\Downloads\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
      <Compile Include="Assets\Scripts\Accessables\DoTweenController.cs" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+     <Compile Include="Assets\Scripts\Animator States\MainCameraAnimationState.cs" />
+>>>>>>> Stashed changes
 =======
      <Compile Include="Assets\Scripts\Animator States\MainCameraAnimationState.cs" />
 >>>>>>> Stashed changes
@@ -130,13 +134,19 @@
  <HintPath>/Users/aslidogan/Documents/GitHub/hit-the-goalkeeper/Hit The Goalkeeper/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
  <Reference Include="Cinemachine">
  <HintPath>/Users/aslidogan/Documents/GitHub/hit-the-goalkeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
  </Reference>
  <Reference Include="com.unity.cinemachine.editor">
  <HintPath>/Users/aslidogan/Documents/GitHub/hit-the-goalkeeper/Hit The Goalkeeper/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
  </Reference>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
  <Reference Include="UnityEngine">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>

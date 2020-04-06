@@ -88,6 +88,9 @@ public class BallMove : MonoBehaviour
     
 =======
         {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         }
     }
