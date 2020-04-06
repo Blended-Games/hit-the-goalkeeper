@@ -42,19 +42,12 @@ public class ShootSystem : MonoBehaviour
   
     }
   public  IEnumerator PlayerAttack(){
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     //bool isDead=  unitGoalKeeper.TakeDamage(unitPlayer.damage);
-=======
+
 //    bool isDead=  unitGoalKeeper.TakeDamage(unitPlayer.damage);
         Debug.Log(unitPlayer.currentHP);
        goalKeeperHUD.SetHp(unitPlayer.currentHP);
->>>>>>> Stashed changes
-=======
-//    bool isDead=  unitGoalKeeper.TakeDamage(unitPlayer.damage);
-        Debug.Log(unitPlayer.currentHP);
-       goalKeeperHUD.SetHp(unitPlayer.currentHP);
->>>>>>> Stashed changes
+
     yield return new WaitForSeconds(0.02f);
 
     // if(isDead)
