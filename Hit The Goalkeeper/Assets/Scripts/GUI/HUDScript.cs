@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace GUI
-{
-    public class HudScript : MonoBehaviour
+
+    public class HUDScript : MonoBehaviour
     {
         public Text pointText;
         public Slider hpSlider;
@@ -19,8 +20,7 @@ namespace GUI
         public void SetHp(int hp)
         {
       
-            hpSlider.value = hp;
+            hpSlider.value -= hp;
 
         }
     }
-}

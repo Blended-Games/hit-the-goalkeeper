@@ -40,12 +40,14 @@ public class BallMove : MonoBehaviour
         var gameManagerPos = GameManager.main.transformPositionToShoot.position; //The position for the ball to reach, it was taken via players input.
 
         var position = transform.position; //This is for performance clearity.
+        
 
         if (!GameManager.main.ballMoveStop) //If this trigger is not set by game manager, ball gets a force to reach the position.
         {
             rb.AddForce((gameManagerPos - position).normalized *
                         (GameManager.main.ballShootPowerValue * Time.fixedDeltaTime * 50)
-                , ForceMode.Impulse); //We set rigidbody force, because without physics we have lag.
+                , ForceMode.Impulse); //We set rigidbody force, because without physics we have lag
+           
         }
 
         if ((transform.position - gameManagerPos).sqrMagnitude < 3 && GameManager.main.ballGoesToHead) //This is for slow motion situations.
@@ -56,6 +58,7 @@ public class BallMove : MonoBehaviour
             CameraFollow.main.target = GameManager.main.transformPositionToShoot;
             GameManager.main.ballMoveStop = true;
             transform.localScale = new Vector3(.25f, .25f, .25f);
+               
         }
 
         if ((transform.position - gameManagerPos).sqrMagnitude < 1f) //This is for camera follow stop and slow motion stop.
@@ -66,8 +69,15 @@ public class BallMove : MonoBehaviour
             GameManager.main.ballMoveStop = true;
         }
 
-        if (!((transform.position - gameManagerPos).sqrMagnitude > 5f) || !GameManager.main.camStopFollow) return; //This is the condition for camera follow.
+        if (!((transform.position - gameManagerPos).sqrMagnitude > 5f) || !GameManager.main.camStopFollow) 
+        {
+             ShootSystem.instance.goalKeeperHUD.SetHp(50);
+                Debug.Log(ShootSystem.instance.goalKeeperHUD);
+                StartCoroutine(ShootSystem.instance.PlayerAttack());
+            return; //This is the condition for camera follow.
+        }
         CameraFollow.main.isNotFollow = true;
+
         //rb.AddForce(Vector3.forward);
     }
 }

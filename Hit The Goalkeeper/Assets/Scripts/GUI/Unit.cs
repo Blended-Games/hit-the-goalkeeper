@@ -23,9 +23,6 @@ public class Unit : MonoBehaviour
    // değiştirilen değer
    public int currentHP;
    public int maxHP;
-   public GameObject player;
-   public GameObject goalKeeper;
-
    public bool TakeDamage(int dmg){
      
       currentHP-=dmg;
