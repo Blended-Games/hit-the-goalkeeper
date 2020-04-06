@@ -30,8 +30,12 @@ public class BallMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!GameManager.main.shootTheBall) return; //If player enters the inputs, global manager will set the trigger for movement.
-        Movement();
+        if (Time.frameCount % 3 == 0)
+        {
+            if (!GameManager.main.shootTheBall)
+                return; //If player enters the inputs, global manager will set the trigger for movement.
+            Movement();
+        }
     }
 
     //This is the script for ball movement, Ball will move to goalkeepers selected positions.
@@ -54,29 +58,28 @@ public class BallMove : MonoBehaviour
                                                                                                        //If player makes perfect hit. Ball will slow down and hit to the head.
         {
             TimeManager.main.SlowMotion();
-            CameraFollow.main.offset = new Vector3(.65f, -.16f, -.93f);
-            CameraFollow.main.target = GameManager.main.transformPositionToShoot;
+            //CameraFollow.main.offset = new Vector3(.65f, -.16f, -.93f);
+            //CameraFollow.main.target = GameManager.main.transformPositionToShoot;
             GameManager.main.ballMoveStop = true;
             transform.localScale = new Vector3(.25f, .25f, .25f);
                
         }
 
-        if ((transform.position - gameManagerPos).sqrMagnitude < 1f) //This is for camera follow stop and slow motion stop.
+        if ((transform.position - gameManagerPos).sqrMagnitude < .1f) //This is for camera follow stop and slow motion stop.
         {
+            //Bu kısımda can scriptini tetikleyebilirsin
             if(GameManager.main.ballGoesToHead) TimeManager.main._timeFix = true;
             
-            CameraFollow.main.isNotFollow = true;
+            CameraFollow.main.CinemacHineClose();
             GameManager.main.ballMoveStop = true;
         }
 
         if (!((transform.position - gameManagerPos).sqrMagnitude > 5f) || !GameManager.main.camStopFollow) 
         {
              ShootSystem.instance.goalKeeperHUD.SetHp(50);
-                Debug.Log(ShootSystem.instance.goalKeeperHUD);
+                //Debug.Log(ShootSystem.instance.goalKeeperHUD);
                 StartCoroutine(ShootSystem.instance.PlayerAttack());
-            return; //This is the condition for camera follow.
         }
-        CameraFollow.main.isNotFollow = true;
 
         //rb.AddForce(Vector3.forward);
     }

@@ -31,7 +31,9 @@ namespace GUI
         {
             if (!Input.GetMouseButtonDown(0) || !GameManager.main.firstTouch) return; //Detecting for the input.
             //GameManager.main.firstTouch = false;
-            var shootValue = Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
+
+            var shootValue =
+                Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
             CalculateShotValue(shootValue, GameManager.main.calculationID);
             transform.DORestart(); //Restarting anim for the second time because of power value assignment
         }
@@ -73,10 +75,14 @@ namespace GUI
                     DisplayMessage.main.ShowPowerBarText(Random.Range(0, 6));
                     GameManager.main.ballAnimStartTrigger.SetBool(Shoot, true);
                     GameManager.main.ballShootPowerValue = (1 / shootValue); //Setting the balls shooting value.
-                    if (GameManager.main.ballShootPowerValue <= 10) GameManager.main.ballShootPowerValue = 10f; //Setting the balls min shooting value.
-                    if (GameManager.main.ballShootPowerValue >= 35) GameManager.main.ballShootPowerValue = 35f; //Setting the balls max shooting value.
+                    if (GameManager.main.ballShootPowerValue <= 10)
+                        GameManager.main.ballShootPowerValue = 10f; //Setting the balls min shooting value.
+                    if (GameManager.main.ballShootPowerValue >= 35)
+                        GameManager.main.ballShootPowerValue = 35f; //Setting the balls max shooting value.
                     transform.DOKill(); //Killing the power bar indicator animation.
                     GameManager.main.firstTouch = false;
+                    GameManager.main.cineMachines[0].gameObject.SetActive(false);
+
                     break;
             }
         }

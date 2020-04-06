@@ -45,6 +45,8 @@ namespace Managers
         
         //to best scenario (0 - legs, 1 - spine, etc.)
         public int calculationID; //This id is for changing the value for calculation in shooting mechanics. 
+        
+        public GameObject[] cineMachines; //These are the cinemachines that we use to make smooth following.
 
         #endregion
 
