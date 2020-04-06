@@ -1665,13 +1665,11 @@ MonoBehaviour:
   shootTheBall: 0
   ballMoveStop: 0
   camStopFollow: 0
-  goalkeepersPositionArrayValue: 0
-  goalKeeperAnim: {fileID: 0}
   ballGoesToHead: 0
   calculationID: 0
   cineMachines:
   - {fileID: 1248270184}
-  - {fileID: 753131607}
+  - {fileID: 0}
   - {fileID: 2059182660}
 --- !u!4 &1577940864
 Transform:
