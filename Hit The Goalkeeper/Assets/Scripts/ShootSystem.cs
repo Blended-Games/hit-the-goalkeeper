@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using GUI;
+using Managers;
 using UnityEngine;
 
 
@@ -21,7 +22,8 @@ public class ShootSystem : MonoBehaviour
 
     #endregion
     public PlayerState state;
-     Unit unitPlayer;
+   public  Unit unitPlayer;
+   public  Unit unitGoalKeeper;
      //Unit unitGoalKeeper;
     public HUDScript playerHUD;
     public HUDScript goalKeeperHUD;
@@ -30,7 +32,7 @@ public class ShootSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state=PlayerState.PlayerTurn;
+      state= PlayerState.PlayerTurn;
     }
     public void SetupShoot()
     {
@@ -40,10 +42,15 @@ public class ShootSystem : MonoBehaviour
   
     }
   public  IEnumerator PlayerAttack(){
+<<<<<<< Updated upstream
     //bool isDead=  unitGoalKeeper.TakeDamage(unitPlayer.damage);
+=======
+//    bool isDead=  unitGoalKeeper.TakeDamage(unitPlayer.damage);
+        Debug.Log(unitPlayer.currentHP);
+       goalKeeperHUD.SetHp(unitPlayer.currentHP);
+>>>>>>> Stashed changes
     yield return new WaitForSeconds(0.02f);
 
-    
     // if(isDead)
     // {
     //     state=PlayerState.Won;
@@ -55,21 +62,22 @@ public class ShootSystem : MonoBehaviour
     // }
     }
    
-//   public IEnumerator GoalKeeperTurn(){ 
-//        bool isDead= unitPlayer.TakeDamage(unitGoalKeeper.damage);
-//        playerHUD.SetHp(unitGoalKeeper.currentHP);
-//        yield return new WaitForSeconds(5f);
-//         if(isDead)
-//            {
-//              state=PlayerState.Lost;
-//              EndShoot();
-//          }
-//         else{
-//               state=PlayerState.PlayerTurn;
+  public IEnumerator GoalKeeperTurn(){ 
+       bool isDead= unitPlayer.TakeDamage(unitGoalKeeper.damage);
+       // unitGoalKeeper.currentHP=(int) GameManager.main.ballShootPowerValue;
+       playerHUD.SetHp(unitGoalKeeper.currentHP);
+       yield return new WaitForSeconds(5f);
+        if(isDead)
+           {
+             state=PlayerState.Lost;
+             EndShoot();
+         }
+        else{
+              state=PlayerState.PlayerTurn;
 
-//         }
+        }
      
-//      }
+     }
 
        void EndShoot(){
             if(state==PlayerState.Won) Debug.Log( "you won");

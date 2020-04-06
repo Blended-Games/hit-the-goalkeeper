@@ -60,14 +60,25 @@ public class BallMove : MonoBehaviour
 
         if ((transform.position - gameManagerPos).sqrMagnitude < 1f) //This is for camera follow stop and slow motion stop.
         {
+<<<<<<< Updated upstream
             AttackCompleted();
             if(GameManager.main.ballGoesToHead) TimeManager.main._timeFix = true;           
             CameraFollow.main.isNotFollow = true;
+=======
+            //Bu kısımda can scriptini tetikleyebilirsin
+
+                //Debug.Log(ShootSystem.instance.goalKeeperHUD);
+                StartCoroutine(ShootSystem.instance.PlayerAttack());
+            if(GameManager.main.ballGoesToHead) TimeManager.main._timeFix = true;
+            AttackCompleted();
+            CameraFollow.main.CinemacHineClose();
+>>>>>>> Stashed changes
             GameManager.main.ballMoveStop = true;
      
         }
 
         if (!((transform.position - gameManagerPos).sqrMagnitude > 5f) || !GameManager.main.camStopFollow) 
+<<<<<<< Updated upstream
         { 
             return; //This is the condition for camera follow.
         }
@@ -75,6 +86,9 @@ public class BallMove : MonoBehaviour
            CameraFollow.main.isNotFollow = true;
    
     
+=======
+        {
+>>>>>>> Stashed changes
         }
     }
 
@@ -83,4 +97,11 @@ public class BallMove : MonoBehaviour
          GameManager.main.shootTheBall=false;
       //   StartCoroutine (ShootSystem.instance.PlayerAttack());
     }
+       public void AttackCompleted(){
+           
+      ShootSystem.instance.unitPlayer.currentHP=(int) GameManager.main.ballShootPowerValue;
+     StartCoroutine( ShootSystem.instance.PlayerAttack());
+        GameManager.main.shootTheBall=false;
+    }
+
 }
