@@ -85,7 +85,7 @@ public class BallMove : MonoBehaviour
 
         if ((transform.position - gameManagerPos).sqrMagnitude < .1f)
         {
-            Debug.Log("Veya Bu");
+//            Debug.Log("Veya Bu");
             switch (GameManager.main.ballsHitRoad)
             {
                 case TransformPosition.Head:
@@ -122,24 +122,33 @@ public class BallMove : MonoBehaviour
 
     #region Attack
 
-    private void AttackCompleted()
+ private void AttackCompleted()
     {
-        if (ShootSystem.instance.state == PlayerState.PlayerTurn)
-        {
-            ShootSystem.instance.unitPlayer.currentHP = (int)GameManager.main.ballAttackValue;
-            StartCoroutine(ShootSystem.instance.PlayerAttack());
-        }
-        else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
-        {
-            {
-                ShootSystem.instance.unitGoalKeeper.currentHP = (int)GameManager.main.ballShootPowerValue;
-                StartCoroutine(ShootSystem.instance.GoalKeeperAttack());
-            }
-            GameManager.main.shootTheBall = false;
-        }
-
-        #endregion
-
-
+        if(ShootSystem.instance.state==PlayerState.PlayerTurn){
+            ShootSystem.instance.unitPlayer.currentHP = (int) GameManager.main.ballAttackValue;
+             StartCoroutine(ShootSystem.instance.PlayerAttack());
+             }
+        else  if(ShootSystem.instance.state==PlayerState.GoalKeeperTurn){
+        { 
+          ShootSystem.instance.unitGoalKeeper.currentHP = (int) GameManager.main.ballShootPowerValue;
+          StartCoroutine(ShootSystem.instance.GoalKeeperAttack());
+             }
+        GameManager.main.shootTheBall = false;
     }
+    }
+    #endregion
+
+   public IEnumerator ChangeKeeper()
+        {
+          GameManager.main.ballShootPowerValue = Random.Range(5,20);
+         Debug.Log(   GameManager.main.ballShootPowerValue);
+        GameManager.main.calculationID=0;
+           yield return new WaitForSeconds(.01f); 
+           GameManager.main.calculationID=1;
+         
+         AttackCompleted();
+       
+
+      }
 }
+   

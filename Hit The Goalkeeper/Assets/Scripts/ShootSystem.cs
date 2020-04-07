@@ -69,10 +69,9 @@ public class ShootSystem : MonoBehaviour
             state = PlayerState.GoalKeeperTurn;
 
               GameManager.main.firstTouch =false;
-         //  StartCoroutine(BallMove.main.ChangeKeeper());
+           StartCoroutine(BallMove.main.ChangeKeeper());
          }
     }
-
     public IEnumerator GoalKeeperAttack()
     {
         bool isDead = unitPlayer.TakeDamage(unitGoalKeeper.damage);
