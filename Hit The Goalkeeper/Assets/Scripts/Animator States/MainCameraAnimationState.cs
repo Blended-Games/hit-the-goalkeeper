@@ -1,5 +1,4 @@
-﻿using Cinemachine;
-using UnityEngine;
+﻿using UnityEngine;
 using Debug = System.Diagnostics.Debug;
 
 public class MainCameraAnimationState : StateMachineBehaviour
@@ -20,9 +19,8 @@ public class MainCameraAnimationState : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Debug.Assert(Camera.main != null, "Camera.main != null");
-        Camera.main.GetComponent<CinemachineBrain>().enabled = true;
-        Camera.main.GetComponent<Animator>().SetBool("CamAnimStop",true);
-
+        Camera.main.GetComponent<Animator>().SetBool("CamAnimStop", true);
+        Camera.main.GetComponent<Animator>().enabled = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

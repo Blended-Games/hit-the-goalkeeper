@@ -1,8 +1,8 @@
-﻿using System.IO;
+﻿using System;
 using DG.Tweening;
 using Managers;
 using UnityEngine;
-using Path = DG.Tweening.Plugins.Core.PathCore.Path;
+using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 using System.Collections;
@@ -29,12 +29,23 @@ public class BallMove : MonoBehaviour
 
     #region Variables
 
+    private Rigidbody rb;
     private Vector3[] path = new Vector3[3];
     private PathType pathType = PathType.CatmullRom;
-
+    private bool close;
+    
+    private static readonly int LegHit = Animator.StringToHash("LegHit");
+    private static readonly int MidHit = Animator.StringToHash("MidHit");
+    private static readonly int HeadHit = Animator.StringToHash("HeadHit");
+    
     #endregion
 
     #region Movement
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void FixedUpdate()
     {
@@ -50,56 +61,67 @@ public class BallMove : MonoBehaviour
     private void Movement()
     {
         var gameManagerPos =
-            GameManager.main.transformPositionToShoot; //The position for the ball to reach, it was taken via players input.
+            GameManager.main
+                .transformPositionToShoot; //The position for the ball to reach, it was taken via players input.
 
         var position = transform.position; //This is for performance clearity.
 
 
-        if (!GameManager.main.ballMoveStop
+        if (!GameManager.main.ballMoveStop && !close
         ) //If this trigger is not set by game manager, ball gets a force to reach the position.
         {
-            // rb.AddForce((gameManagerPos - position).normalized *
-            //             (GameManager.main.ballShootPowerValue * Time.fixedDeltaTime * 50)
-            //     , ForceMode.Impulse); //We set rigidbody force, because without physics we have lag
+            //rb.AddForce((gameManagerPos - position).normalized *
+            //         (GameManager.main.ballShootPowerValue * Time.fixedDeltaTime * 50)
+            //   , ForceMode.Impulse); //We set rigidbody force, because without physics we have lag
             //BallShoot.main.Launch(gameManagerPos, Random.Range(5,10),-18);
-           
-            BallParabollaMove(gameManagerPos, randomPos: new Vector3(Random.Range(-1f,1f),Random.Range(.35f,1.26f),-5));
-            CameraFollow.main.StartFieldOfViewChange(); //Triggering camera zoom function.
+
+
+            CameraControls.main.StartFieldOfViewChangeMainCam();
+
+            BallParabollaMove(gameManagerPos,
+                randomPos: new Vector3(Random.Range(-.45f, .45f), Random.Range(.35f, 1.26f), -5));
+            close = true;
         }
 
-        if ((transform.position - gameManagerPos).sqrMagnitude < 3 && GameManager.main.ballGoesToHead
-            ) //This is for slow motion situations.
-            //If player makes perfect hit. Ball will slow down and hit to the head.
-        {   AttackCompleted();
-            GameManager.main.ballMoveStop = true;
-            transform.localScale = new Vector3(.25f, .25f, .25f);
-         
-        }
-
-        if ((transform.position - gameManagerPos).sqrMagnitude < .1f
-        ) //This is for camera follow stop and slow motion stop.
-        {   AttackCompleted();
-            //Bu kısımda can scriptini tetikleyebilirsin
-            CameraFollow.main.CinemacHineClose();
+        if ((transform.position - gameManagerPos).sqrMagnitude < .1f)
+        {
+            Debug.Log("Veya Bu");
+            switch (GameManager.main.ballsHitRoad)
+            {
+                case TransformPosition.Head:
+                    GameManager.main.goalKeeperAnim.SetBool(HeadHit, true);
+                    break;
+                case TransformPosition.Spine:
+                    GameManager.main.goalKeeperAnim.SetBool(MidHit, true);
+                    break;
+                case TransformPosition.Leg:
+                    GameManager.main.goalKeeperAnim.SetBool(LegHit, true);
+                    break;
+            }
             GameManager.main.ballMoveStop = true; //This is the trigger for balls force stop.
-         
+            AttackCompleted();
         }
     }
 
     private void BallParabollaMove(Vector3 endValue, Vector3 randomPos)
     {
-        //var seq =  DOTween.Sequence();
-        //seq.Append(transform.DOLocalMove(endValue, 2, false)).Join(transform.DOLocalMove(randomPos, 1, false));
         path[0] = transform.position;
         path[1] = randomPos;
         path[2] = endValue;
-        transform.DOPath(path, .75f, pathType).SetEase(Ease.Linear);
+        transform.DOLocalPath(path, .75f, pathType, PathMode.Full3D).SetEase(Ease.Linear).OnComplete(AddForce);
+    }
+
+    private void AddForce()
+    {
+        transform.DOKill();
+        //Camera.main.transform.DOKill();
+        //rb.AddForce(Vector3.forward * 1000, ForceMode.Impulse);
     }
 
     #endregion
 
     #region Attack
-    
+
     private void AttackCompleted()
     {
         if(ShootSystem.instance.state==PlayerState.PlayerTurn){
@@ -113,19 +135,8 @@ public class BallMove : MonoBehaviour
              }
         GameManager.main.shootTheBall = false;
     }
-    }
+
     #endregion
 
-   public IEnumerator ChangeKeeper()
-        {
-          GameManager.main.ballShootPowerValue = Random.Range(5,20);
-         // GameManager.main.transformPositionToShoot = GameManager.main.playerShootPositions[Random.Range(0,GameManager.main.playerShootPositions.Length)].position;
-       // GameManager.main.transformPositionToShoot = GameManager.main.playerShootPositions[Random.Range(1,3)].transform.position;
-         GameManager.main.calculationID=0;
-           yield return new WaitForSeconds(.01f); 
-         
-         AttackCompleted();
-       
-
-      }
+    
 }
