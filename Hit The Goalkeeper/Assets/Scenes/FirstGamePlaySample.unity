@@ -1809,8 +1809,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitName: GoalKeeper
   point: 3
-  damage: 1
-  currentHP: 10
+  damage: 10
+  currentHP: 1
   maxHP: 100
 --- !u!65 &1642141003
 BoxCollider:
@@ -2256,7 +2256,7 @@ MonoBehaviour:
   UnitName: 
   point: 10
   damage: 1
-  currentHP: 0
+  currentHP: 1
   maxHP: 100
 --- !u!23 &1750627555
 MeshRenderer:

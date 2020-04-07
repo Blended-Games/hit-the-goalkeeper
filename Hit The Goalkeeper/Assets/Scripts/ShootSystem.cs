@@ -47,14 +47,14 @@ public class ShootSystem : MonoBehaviour
 
     public void SetupShoot()
     {
-        // playerHUD.SetHud(unitPlayer);
-        goalKeeperHUD.SetHud(unitPlayer);
+        playerHUD.SetHud(unitPlayer);
+        goalKeeperHUD.SetHud(unitGoalKeeper);
     }
 
     public IEnumerator PlayerAttack()
     {
         bool isDead = unitGoalKeeper.TakeDamage(unitPlayer.damage);
-        Debug.Log(unitPlayer.currentHP);
+      
         goalKeeperHUD.SetHp(unitPlayer.currentHP);
 
         yield return new WaitForSeconds(0.2f);
@@ -67,14 +67,16 @@ public class ShootSystem : MonoBehaviour
         else
         {
             state = PlayerState.GoalKeeperTurn;
-            StartCoroutine(GoalKeeperTurn());
-        }
+
+              GameManager.main.firstTouch =false;
+           StartCoroutine(BallMove.main.ChangeKeeper());
+         }
     }
 
-    public IEnumerator GoalKeeperTurn()
+    public IEnumerator GoalKeeperAttack()
     {
         bool isDead = unitPlayer.TakeDamage(unitGoalKeeper.damage);
-        unitGoalKeeper.currentHP = (int) Random.Range(5f, 25f);
+       
         playerHUD.SetHp(unitGoalKeeper.currentHP);
         yield return new WaitForSeconds(.2f);
         if (isDead)
@@ -84,7 +86,8 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
-            state = PlayerState.PlayerTurn;
+              GameManager.main.firstTouch =true;
+              state=PlayerState.PlayerTurn;
         }
     }
 

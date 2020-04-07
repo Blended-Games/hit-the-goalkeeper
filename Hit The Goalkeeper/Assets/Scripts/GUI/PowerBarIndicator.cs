@@ -3,6 +3,8 @@ using DG.Tweening;
 using Managers;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace GUI
 {
@@ -35,6 +37,7 @@ namespace GUI
             if (!Input.GetMouseButtonDown(0) || !GameManager.main.firstTouch) return; //Detecting for the input.
             //GameManager.main.firstTouch = false;
 
+//kordinat duzlemndeki degeri
             var shootValue =
                 Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
             CalculateShotValue(shootValue, GameManager.main.calculationID);
@@ -42,7 +45,7 @@ namespace GUI
         }
 
 
-        private void CalculateShotValue(float shootValue, int id)
+        public void CalculateShotValue(float shootValue, int id)
         {
             //Calculating value of the power
             //Id is representing the current state(transform bar, power bar).
@@ -59,8 +62,8 @@ namespace GUI
                         GameManager.main.goalKeeperShootPositions[3].transform.position.z + Random.Range(1,3));
                     GameManager.main.camStopFollow = true;
 
-ShootSystem.instance.goalKeeperHUD.SetHp((int)GameManager.main.ballShootPowerValue);
-           ShootSystem.instance.PlayerAttack();
+                    ShootSystem.instance.goalKeeperHUD.SetHp((int)GameManager.main.ballShootPowerValue);
+                     ShootSystem.instance.PlayerAttack();
            
                     break;
                 case 0 when shootValue >= .45f && shootValue < .7f:
@@ -114,5 +117,5 @@ ShootSystem.instance.goalKeeperHUD.SetHp((int)GameManager.main.ballShootPowerVal
            }
 
         #endregion
-    }
+           }
 }

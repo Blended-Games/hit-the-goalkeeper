@@ -5,6 +5,8 @@ using UnityEngine;
 using Path = DG.Tweening.Plugins.Core.PathCore.Path;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
+using System.Collections;
+using System.Collections.Generic;
 
 public class BallMove : MonoBehaviour
 {
@@ -60,7 +62,7 @@ public class BallMove : MonoBehaviour
             //             (GameManager.main.ballShootPowerValue * Time.fixedDeltaTime * 50)
             //     , ForceMode.Impulse); //We set rigidbody force, because without physics we have lag
             //BallShoot.main.Launch(gameManagerPos, Random.Range(5,10),-18);
-            
+           
             BallParabollaMove(gameManagerPos, randomPos: new Vector3(Random.Range(-1f,1f),Random.Range(.35f,1.26f),-5));
             CameraFollow.main.StartFieldOfViewChange(); //Triggering camera zoom function.
         }
@@ -68,24 +70,19 @@ public class BallMove : MonoBehaviour
         if ((transform.position - gameManagerPos).sqrMagnitude < 3 && GameManager.main.ballGoesToHead
             ) //This is for slow motion situations.
             //If player makes perfect hit. Ball will slow down and hit to the head.
-        {
+        {   AttackCompleted();
             GameManager.main.ballMoveStop = true;
             transform.localScale = new Vector3(.25f, .25f, .25f);
-            AttackCompleted();
+         
         }
 
         if ((transform.position - gameManagerPos).sqrMagnitude < .1f
         ) //This is for camera follow stop and slow motion stop.
-        {
+        {   AttackCompleted();
             //Bu kısımda can scriptini tetikleyebilirsin
             CameraFollow.main.CinemacHineClose();
             GameManager.main.ballMoveStop = true; //This is the trigger for balls force stop.
-            AttackCompleted();
-        }
-
-        if (!((transform.position - gameManagerPos).sqrMagnitude > 5f) || !GameManager.main.camStopFollow)
-        {
-            AttackCompleted();
+         
         }
     }
 
@@ -105,9 +102,30 @@ public class BallMove : MonoBehaviour
     
     private void AttackCompleted()
     {
-        ShootSystem.instance.unitPlayer.currentHP = (int) GameManager.main.ballAttackValue;
-        StartCoroutine(ShootSystem.instance.PlayerAttack());
+        if(ShootSystem.instance.state==PlayerState.PlayerTurn){
+            ShootSystem.instance.unitPlayer.currentHP = (int) GameManager.main.ballAttackValue;
+             StartCoroutine(ShootSystem.instance.PlayerAttack());
+             }
+        else  if(ShootSystem.instance.state==PlayerState.GoalKeeperTurn){
+        { 
+          ShootSystem.instance.unitGoalKeeper.currentHP = (int) GameManager.main.ballShootPowerValue;
+          StartCoroutine(ShootSystem.instance.GoalKeeperAttack());
+             }
         GameManager.main.shootTheBall = false;
     }
+    }
     #endregion
+
+   public IEnumerator ChangeKeeper()
+        {
+          GameManager.main.ballShootPowerValue = Random.Range(5,20);
+         // GameManager.main.transformPositionToShoot = GameManager.main.playerShootPositions[Random.Range(0,GameManager.main.playerShootPositions.Length)].position;
+       // GameManager.main.transformPositionToShoot = GameManager.main.playerShootPositions[Random.Range(1,3)].transform.position;
+         GameManager.main.calculationID=0;
+           yield return new WaitForSeconds(.01f); 
+         
+         AttackCompleted();
+       
+
+      }
 }
