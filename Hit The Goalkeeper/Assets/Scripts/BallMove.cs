@@ -89,17 +89,17 @@ public class BallMove : MonoBehaviour
             switch (GameManager.main.ballsHitRoad)
             {
                 case TransformPosition.Head:
-                    GameManager.main.goalKeeperAnim.SetBool(HeadHit, true);
+                    GameManager.main.goalKeeperAnim.SetBool(HeadHit, true);AttackCompleted();
                     break;
                 case TransformPosition.Spine:
-                    GameManager.main.goalKeeperAnim.SetBool(MidHit, true);
+                    GameManager.main.goalKeeperAnim.SetBool(MidHit, true);AttackCompleted();
                     break;
                 case TransformPosition.Leg:
-                    GameManager.main.goalKeeperAnim.SetBool(LegHit, true);
+                    GameManager.main.goalKeeperAnim.SetBool(LegHit, true);AttackCompleted();
                     break;
             }
             GameManager.main.ballMoveStop = true; //This is the trigger for balls force stop.
-            AttackCompleted();
+            
         }
     }
 

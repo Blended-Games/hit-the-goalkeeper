@@ -1696,8 +1696,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitName: GoalKeeper
   point: 3
-  damage: 5
-  currentHP: 1
+  damage: 1
+  currentHP: 10
   maxHP: 100
 --- !u!95 &1642141002 stripped
 Animator:
@@ -2105,8 +2105,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitName: 
   point: 10
-  damage: 5
-  currentHP: 1
+  damage: 1
+  currentHP: 10
   maxHP: 100
 --- !u!23 &1750627555
 MeshRenderer:
