@@ -4,33 +4,25 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    //  #region Singleton
-    // public static Unit instance;
-    // private void Awake()
-    // {
-    //     if (instance != null && instance != this)
-    //     {
-    //         Destroy(gameObject);
-    //         return;
-    //     }
-    //     instance = this;
-    // }
+    
+    public string UnitName;
+    public int point;
 
-  //  #endregion
-   public string UnitName;
-   public int point;
-   public int damage;
-   // değiştirilen değer
-   public int currentHP;
-   public int maxHP;
-   public bool TakeDamage(int dmg){
-     
-      currentHP-=dmg;
+    public int damage;
 
-      if(currentHP<=0){
-         return true;
-      }
-      else 
-         return false;
+    // değiştirilen değer
+    public int currentHP;
+    public int maxHP;
+
+    public bool TakeDamage(int dmg)
+    {
+        currentHP -= dmg;
+
+        if (currentHP <= 0)
+        {
+            return true;
+        }
+        else
+            return false;
     }
 }

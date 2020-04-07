@@ -151,51 +151,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.27, y: 0.43, z: 0.09}
   m_Center: {x: 0.00000001490116, y: -0.27789155, z: -0.010250843}
---- !u!1 &203951145
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 203951146}
-  - component: {fileID: 203951147}
-  m_Layer: 0
-  m_Name: TimeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &203951146
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203951145}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7023095, y: 0.5338144, z: -1.0780339}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &203951147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203951145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf93466db7935487faab1f4f0c0c39a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slowdownFactor: 0.05
-  _timeFix: 0
 --- !u!1 &302745824
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,7 +591,7 @@ MonoBehaviour:
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
   m_Priority: 250
-  m_StandbyUpdate: 2
+  m_StandbyUpdate: 0
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1750627557}
   m_Lens:
@@ -647,22 +602,11 @@ MonoBehaviour:
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
-    m_BlendHint: 0
+    m_BlendHint: 1
     m_InheritPosition: 0
     m_OnCameraLive:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1519604829}
 --- !u!1 &862588886
@@ -901,7 +845,7 @@ MonoBehaviour:
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
   m_Priority: 500
-  m_StandbyUpdate: 2
+  m_StandbyUpdate: 0
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
@@ -998,7 +942,7 @@ Transform:
   m_Children:
   - {fileID: 1398275745}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1280707989
 GameObject:
@@ -1183,7 +1127,7 @@ Transform:
   - {fileID: 753131608}
   - {fileID: 2059182661}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1398275744
 GameObject:
@@ -1369,7 +1313,7 @@ Transform:
   m_LocalScale: {x: 3.2395, y: 3.2395, z: 3.2395}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1519604828
 GameObject:
@@ -1654,7 +1598,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   motion: 0
   ballShootPowerValue: 0
-  transformPositionToShoot: {fileID: 0}
+  ballAttackValue: 0
+  transformPositionToShoot: {x: 0, y: 0, z: 0}
   ballAnimStartTrigger: {fileID: 97585412}
   firstTouch: 0
   goalKeeperShootPositions:
@@ -1662,14 +1607,17 @@ MonoBehaviour:
   - {fileID: 202906842}
   - {fileID: 1572307584}
   - {fileID: 404399387}
+  playerShootPositions: []
   shootTheBall: 0
   ballMoveStop: 0
   camStopFollow: 0
+  goalkeepersPositionArrayValue: 0
+  goalKeeperAnim: {fileID: 0}
   ballGoesToHead: 0
   calculationID: 0
   cineMachines:
   - {fileID: 1248270184}
-  - {fileID: 0}
+  - {fileID: 753131607}
   - {fileID: 2059182660}
 --- !u!4 &1577940864
 Transform:
@@ -1766,7 +1714,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1625512569
 GameObject:
@@ -1971,7 +1919,7 @@ RectTransform:
   - {fileID: 338479465}
   - {fileID: 1284154595}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2111,7 +2059,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1737525050
 PrefabInstance:
@@ -2163,7 +2111,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 11b4ca362151248d19fd4460ba9c3180,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 11b4ca362151248d19fd4460ba9c3180,
         type: 3}
@@ -2368,7 +2316,7 @@ Transform:
   m_LocalScale: {x: 0.14587648, y: 0.14587648, z: 0.14587648}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1750627558
 MonoBehaviour:
@@ -2712,7 +2660,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 8.814, y: -26.499, z: -1.1960001}
 --- !u!114 &1848528498
 MonoBehaviour:
@@ -2727,6 +2675,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isNotFollow: 0
+  ZoomEffect: You can change the zoom effects values from this area.
+  fieldOfViewEndValue: 90
+  duration: 1
+  easeActive: 0
+  ease: 0
 --- !u!114 &1848528499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2903,7 +2856,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 11b4ca362151248d19fd4460ba9c3180,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 11b4ca362151248d19fd4460ba9c3180,
         type: 3}
@@ -3338,7 +3291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2059182661
 Transform:
   m_ObjectHideFlags: 0
@@ -3551,5 +3504,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}

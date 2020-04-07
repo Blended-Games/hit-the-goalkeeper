@@ -45,7 +45,6 @@
           <e p="Managers" t="Include">
             <e p="GameManager.cs" t="Include" />
             <e p="LevelManager.cs" t="Include" />
-            <e p="TimeManager.cs" t="Include" />
           </e>
           <e p="ShootSystem.cs" t="Include" />
         </e>
