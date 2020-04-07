@@ -30,11 +30,12 @@ namespace GUI
 
         List<string> textList;
         TextAsset textFile;
-        [SerializeField] private TextMeshProUGUI powerBarText;
+         private TextMeshProUGUI powerBarText;
         #endregion
 
         private void Start()
         {
+            powerBarText = GetComponent<TextMeshProUGUI>();
             //Setting text files path and reading it.
             ReadFromFile();
         }

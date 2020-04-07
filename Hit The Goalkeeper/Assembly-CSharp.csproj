@@ -70,7 +70,7 @@
      <Compile Include="Assets\Scripts\Animator States\MakeChanges.cs" />
      <Compile Include="Assets\Scripts\Animator States\SetTheGameState.cs" />
      <Compile Include="Assets\Scripts\BallMove.cs" />
-     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\CameraControls.cs" />
      <Compile Include="Assets\Scripts\GUI\Bar.cs" />
      <Compile Include="Assets\Scripts\GUI\DisplayMessage.cs" />
      <Compile Include="Assets\Scripts\GUI\HealthBar.cs" />
@@ -103,9 +103,6 @@
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
- <Reference Include="Cinemachine">
- <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
- </Reference>
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
@@ -135,9 +132,6 @@
  </Reference>
  <Reference Include="Unity.2D.Tilemap.Editor">
  <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
- </Reference>
- <Reference Include="com.unity.cinemachine.editor">
- <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>/Users/okandemirel/Desktop/Blended Games Unity Projects/Hit The GoalKeeper/Hit The Goalkeeper/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
