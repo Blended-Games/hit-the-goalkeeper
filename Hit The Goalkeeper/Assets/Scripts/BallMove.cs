@@ -33,11 +33,11 @@ public class BallMove : MonoBehaviour
     private Vector3[] path = new Vector3[3];
     private PathType pathType = PathType.CatmullRom;
     private bool close;
-    
+
     private static readonly int LegHit = Animator.StringToHash("LegHit");
     private static readonly int MidHit = Animator.StringToHash("MidHit");
     private static readonly int HeadHit = Animator.StringToHash("HeadHit");
-    
+
     #endregion
 
     #region Movement
@@ -124,19 +124,22 @@ public class BallMove : MonoBehaviour
 
     private void AttackCompleted()
     {
-        if(ShootSystem.instance.state==PlayerState.PlayerTurn){
-            ShootSystem.instance.unitPlayer.currentHP = (int) GameManager.main.ballAttackValue;
-             StartCoroutine(ShootSystem.instance.PlayerAttack());
-             }
-        else  if(ShootSystem.instance.state==PlayerState.GoalKeeperTurn){
-        { 
-          ShootSystem.instance.unitGoalKeeper.currentHP = (int) GameManager.main.ballShootPowerValue;
-          StartCoroutine(ShootSystem.instance.GoalKeeperAttack());
-             }
-        GameManager.main.shootTheBall = false;
+        if (ShootSystem.instance.state == PlayerState.PlayerTurn)
+        {
+            ShootSystem.instance.unitPlayer.currentHP = (int)GameManager.main.ballAttackValue;
+            StartCoroutine(ShootSystem.instance.PlayerAttack());
+        }
+        else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
+        {
+            {
+                ShootSystem.instance.unitGoalKeeper.currentHP = (int)GameManager.main.ballShootPowerValue;
+                StartCoroutine(ShootSystem.instance.GoalKeeperAttack());
+            }
+            GameManager.main.shootTheBall = false;
+        }
+
+        #endregion
+
+
     }
-
-    #endregion
-
-    
 }
