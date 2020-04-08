@@ -16,13 +16,8 @@ public class Unit : MonoBehaviour
 
     public bool TakeDamage(int dmg)
     {
-        currentHP -= dmg;
+        maxHP -= dmg;
 
-        if (currentHP <= 0)
-        {
-            return true;
-        }
-        else
-            return false;
+        return maxHP <= 0;
     }
 }

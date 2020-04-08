@@ -77,9 +77,6 @@ namespace GUI
 
                     GameManager.main.camStopFollow = true;
 
-                    //ShootSystem.instance.goalKeeperHUD.SetHp((int)GameManager.main.ballShootPowerValue);
-                    //ShootSystem.instance.PlayerAttack();
-
                     break;
 
                 case 0 when shootValue >= .5f && shootValue < .8f:

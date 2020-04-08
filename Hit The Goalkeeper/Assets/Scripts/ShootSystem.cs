@@ -55,9 +55,7 @@ public class ShootSystem : MonoBehaviour
     {
         var isDead = unitGoalKeeper.TakeDamage(unitPlayer.damage);
 
-        goalKeeperHUD.SetHp(unitPlayer.currentHP);
-
-        //yield return new WaitForSeconds(0.2f);
+        goalKeeperHUD.SetHp(unitPlayer.damage);
 
         if (isDead)
         {
@@ -66,18 +64,17 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log("Girdim mi!?");
-            BallMove.main.ChangeKeeper();
+            state = PlayerState.GoalKeeperTurn;
             GameManager.main.firstTouch = false;
+            BallMove.main.ChangeKeeper();
         }
     }
 
     public void GoalKeeperAttack()
     {
-        bool isDead = unitPlayer.TakeDamage(unitGoalKeeper.damage);
+        var isDead = unitPlayer.TakeDamage(unitGoalKeeper.damage);
 
-        playerHUD.SetHp(unitGoalKeeper.currentHP);
-        //yield return new WaitForSeconds(.2f);
+        playerHUD.SetHp(unitGoalKeeper.damage);
         if (isDead)
         {
             state = PlayerState.Lost;
@@ -86,6 +83,7 @@ public class ShootSystem : MonoBehaviour
         else
         {
             GameManager.main.firstTouch = true;
+            state = PlayerState.PlayerTurn;
         }
     }
 

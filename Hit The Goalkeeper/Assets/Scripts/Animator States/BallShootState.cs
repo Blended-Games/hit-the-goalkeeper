@@ -21,12 +21,11 @@ namespace Animator_States
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            GameManager.main.shootTheBall = true; //This is the trigger for ball shooting mechanic.
+            BallMove.main.Movement();
             GameManager.main.playerAnim
                 .SetBool(Shoot, false); //This is the animation trigger for ball shooting mechanic
             
             CameraControls.main.StartFieldOfViewChangeMainCam(); //This is the trigger for camera following mechanic.
-            GameManager.main.ballHasTriggered = true;
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()

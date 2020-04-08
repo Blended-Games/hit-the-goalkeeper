@@ -33,7 +33,6 @@
             <e p="LaughState.cs" t="Include" />
             <e p="LegHitState.cs" t="Include" />
             <e p="MainCameraAnimationState.cs" t="Include" />
-            <e p="MakeChanges.cs" t="Include" />
             <e p="MidHitState.cs" t="Include" />
             <e p="SetTheGameState.cs" t="Include" />
           </e>

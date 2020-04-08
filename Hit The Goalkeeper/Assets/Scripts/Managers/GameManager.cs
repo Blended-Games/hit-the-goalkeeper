@@ -62,8 +62,6 @@ namespace Managers
         public Transform
             p1sCameraPosition, p2sCameraPosition; //These are the positions for the cameras to move on different states.
 
-        public bool shootTheBall; //This will be the trigger for balls movement;
-
         public bool
             camStopFollow; //This is the condition for offrecords movement. Because we do not want to follow the ball from there.
 
@@ -75,8 +73,6 @@ namespace Managers
 
         public GameObject levelChange; //This will be the button for level changing.
 
-        public bool ballHasTriggered; //This will be the statement for BallMoves OnTriggerFunction.
-        
         #endregion
 
         #region TargetFrameRate
