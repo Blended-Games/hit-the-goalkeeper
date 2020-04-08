@@ -8,6 +8,8 @@ using Vector3 = UnityEngine.Vector3;
 using System.Collections;
 using System.Collections.Generic;
 using Accessables;
+using UnityEditor;
+using UnityEngine.Experimental.VFX;
 
 public class BallMove : MonoBehaviour
 {
@@ -71,12 +73,6 @@ public class BallMove : MonoBehaviour
         if (!GameManager.main.ballMoveStop && !close
         ) //If this trigger is not set by game manager, ball gets a force to reach the position.
         {
-            //rb.AddForce((gameManagerPos - position).normalized *
-            //         (GameManager.main.ballShootPowerValue * Time.fixedDeltaTime * 50)
-            //   , ForceMode.Impulse); //We set rigidbody force, because without physics we have lag
-            //BallShoot.main.Launch(gameManagerPos, Random.Range(5,10),-18);
-
-
             CameraControls.main.StartFieldOfViewChangeMainCam();
 
             BallParabollaMove(gameManagerPos,
@@ -139,7 +135,9 @@ public class BallMove : MonoBehaviour
     private void ForceStop()
     {
         transform.DOKill();
-        //Camera.main.transform.DOKill();
+        Camera.main.GetComponent<CameraControls>().enabled = false;
+        ShootSystem.instance.state = PlayerState.GoalKeeperTurn;
+
         //rb.AddForce(Vector3.forward * 1000, ForceMode.Impulse);
     }
 
@@ -150,11 +148,11 @@ public class BallMove : MonoBehaviour
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
-                DoTweenController.SequenceMoveAndRotate3D(Camera.main.transform, p1.position, p1.rotation, 1);
+                DoTweenController.SequenceMoveAndRotate3D(Camera.main.transform, p2.position, p2.rotation, 1);
                 transform.position = GameManager.main.p2BallsTransform.localPosition;
                 break;
             case PlayerState.GoalKeeperTurn:
-                DoTweenController.SequenceMoveAndRotate3D(Camera.main.transform, p2.position, p2.rotation, 1);
+                DoTweenController.SequenceMoveAndRotate3D(Camera.main.transform, p1.position, p1.rotation, 1);
                 transform.position = GameManager.main.p1BallsTransform.localPosition;
                 break;
         }

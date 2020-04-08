@@ -291,6 +291,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -199}
   m_SizeDelta: {x: 1125, y: 232}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!95 &402052989 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 11b4ca362151248d19fd4460ba9c3180,
+    type: 3}
+  m_PrefabInstance: {fileID: 1737525050}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &404399386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,7 +1870,7 @@ MonoBehaviour:
   ballShootPowerValue: 0
   ballAttackValue: 0
   transformPositionToShoot: {x: 0, y: 0, z: 0}
-  playerAnim: {fileID: 0}
+  playerAnim: {fileID: 402052989}
   firstTouch: 0
   messageForArtists: You need to add the corresponding transform positions to these
     arrays. Start from the worst condition (0 - leg, 1 - spine, 2 - head, etc..).
@@ -1878,7 +1884,7 @@ MonoBehaviour:
   - {fileID: 1838347583}
   messageForArtists2: You need to add the corresponding ball positions to these Transforms.Ball
     wil transform to those areas on different game states.
-  p1BallsTransform: {fileID: 0}
+  p1BallsTransform: {fileID: 842380877}
   p2BallsTransform: {fileID: 1324041841}
   messageForArtists3: You need to add the corresponding camera positions to these
     Transforms. I suggest you to add the camera transform position and make it a prefab

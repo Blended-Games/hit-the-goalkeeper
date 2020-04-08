@@ -66,10 +66,10 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
-            state = PlayerState.GoalKeeperTurn;
+            //state = PlayerState.GoalKeeperTurn;
 
               GameManager.main.firstTouch =false;
-           StartCoroutine(BallMove.main.ChangeKeeper());
+           //StartCoroutine(BallMove.main.ChangeKeeper());
          }
     }
     public IEnumerator GoalKeeperAttack()
