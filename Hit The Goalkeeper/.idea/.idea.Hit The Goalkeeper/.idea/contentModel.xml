@@ -20,7 +20,6 @@
             </e>
           </e>
         </e>
-        <e p="goalKeeperMovement.cs" t="Include" />
         <e p="Resources" t="Include">
           <e p="Display Text.txt" t="Include" />
         </e>
@@ -29,8 +28,13 @@
             <e p="DoTweenController.cs" t="Include" />
           </e>
           <e p="Animator States" t="Include">
+            <e p="BallShootState.cs" t="Include" />
+            <e p="HeadHitState.cs" t="Include" />
+            <e p="LaughState.cs" t="Include" />
+            <e p="LegHitState.cs" t="Include" />
             <e p="MainCameraAnimationState.cs" t="Include" />
             <e p="MakeChanges.cs" t="Include" />
+            <e p="MidHitState.cs" t="Include" />
             <e p="SetTheGameState.cs" t="Include" />
           </e>
           <e p="BallMove.cs" t="Include" />

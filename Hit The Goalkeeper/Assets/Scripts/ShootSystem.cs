@@ -42,7 +42,7 @@ public class ShootSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      state= PlayerState.PlayerTurn;
+        state = PlayerState.PlayerTurn;
     }
 
     public void SetupShoot()
@@ -51,13 +51,13 @@ public class ShootSystem : MonoBehaviour
         goalKeeperHUD.SetHud(unitGoalKeeper);
     }
 
-    public IEnumerator PlayerAttack()
+    public void PlayerAttack()
     {
-        bool isDead = unitGoalKeeper.TakeDamage(unitPlayer.damage);
-      
+        var isDead = unitGoalKeeper.TakeDamage(unitPlayer.damage);
+
         goalKeeperHUD.SetHp(unitPlayer.currentHP);
 
-        yield return new WaitForSeconds(0.2f);
+        //yield return new WaitForSeconds(0.2f);
 
         if (isDead)
         {
@@ -66,18 +66,18 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
-            //state = PlayerState.GoalKeeperTurn;
-
-              GameManager.main.firstTouch =false;
-           //StartCoroutine(BallMove.main.ChangeKeeper());
-         }
+            Debug.Log("Girdim mi!?");
+            BallMove.main.ChangeKeeper();
+            GameManager.main.firstTouch = false;
+        }
     }
-    public IEnumerator GoalKeeperAttack()
+
+    public void GoalKeeperAttack()
     {
         bool isDead = unitPlayer.TakeDamage(unitGoalKeeper.damage);
-       
+
         playerHUD.SetHp(unitGoalKeeper.currentHP);
-        yield return new WaitForSeconds(.2f);
+        //yield return new WaitForSeconds(.2f);
         if (isDead)
         {
             state = PlayerState.Lost;
@@ -85,14 +85,16 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
-              GameManager.main.firstTouch =true;
-              state=PlayerState.PlayerTurn;
+            GameManager.main.firstTouch = true;
         }
     }
 
     void EndShoot()
     {
-        if (state == PlayerState.Won) Debug.Log("you won");
+        if (state == PlayerState.Won)
+        {
+            GameManager.main.levelChange.SetActive(true);
+        }
         else if (state == PlayerState.Lost) Debug.Log("you lost");
     }
 }

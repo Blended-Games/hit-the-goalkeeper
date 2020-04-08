@@ -14,6 +14,7 @@ namespace GUI
 
         private static readonly int
             Shoot = Animator.StringToHash("Shoot"); //This is temporary its just reaching the value inside animator.
+
         #endregion
 
         #region RectAnim
@@ -52,74 +53,89 @@ namespace GUI
             //when we finalize the result we kill the animation.
             switch (id)
             {
-                case 0 when shootValue >= .71f:
+                case 0 when shootValue >= .8f:
                     DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2)); //Text that will display on the screen.
                     GameManager.main.calculationID = 1; //Moving to next step which is shoot power.
                     switch (ShootSystem.instance.state)
                     {
                         case PlayerState.PlayerTurn:
-                            GameManager.main.transformPositionToShoot = new Vector3(Random.Range(-1,1),Random.Range(.35f,1.26f),
-                                GameManager.main.goalKeeperShootPositions[2].transform.position.z);
+                            GameManager.main.transformPositionToShoot = new Vector3(Random.Range(-1, 1),
+                                Random.Range(.35f, 1.26f),
+                                GameManager.main.goalKeeperShootPositions[2].transform.position.z + 5);
                             break;
                         case PlayerState.GoalKeeperTurn:
-                            GameManager.main.transformPositionToShoot = new Vector3(Random.Range(-1,1),Random.Range(.35f,1.26f),
-                                GameManager.main.playerShootPositions[2].transform.position.z);
+                            GameManager.main.transformPositionToShoot = new Vector3(Random.Range(-1, 1),
+                                Random.Range(.35f, 1.26f),
+                                GameManager.main.playerShootPositions[2].transform.position.z + 5);
                             break;
                     }
-                    GameManager.main.transformPositionToShoot = new Vector3(Random.Range(-1,1),Random.Range(.35f,1.26f),
-                        GameManager.main.goalKeeperShootPositions[2].transform.position.z);
+
+                    GameManager.main.transformPositionToShoot = new Vector3(Random.Range(-1, 1),
+                        Random.Range(.35f, 1.26f),
+                        GameManager.main.goalKeeperShootPositions[2].transform.position.z + 5);
+                    GameManager.main.ballsHitRoad = TransformPosition.Off;
+
                     GameManager.main.camStopFollow = true;
 
-                    ShootSystem.instance.goalKeeperHUD.SetHp((int)GameManager.main.ballShootPowerValue);
-                     ShootSystem.instance.PlayerAttack();
-           
+                    //ShootSystem.instance.goalKeeperHUD.SetHp((int)GameManager.main.ballShootPowerValue);
+                    //ShootSystem.instance.PlayerAttack();
+
                     break;
-                case 0 when shootValue >= .45f && shootValue < .7f:
+
+                case 0 when shootValue >= .5f && shootValue < .8f:
                     DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2)); //Text that will display on the screen.
-                  
+
                     GameManager.main.calculationID = 1; //Moving to next step which is shoot power.
                     switch (ShootSystem.instance.state)
                     {
                         case PlayerState.PlayerTurn:
-                            GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[0].transform.position;
+                            GameManager.main.transformPositionToShoot =
+                                GameManager.main.goalKeeperShootPositions[0].transform.position;
                             break;
                         case PlayerState.GoalKeeperTurn:
                             GameManager.main.transformPositionToShoot =
                                 GameManager.main.playerShootPositions[0].transform.position;
                             break;
                     }
+
                     GameManager.main.ballsHitRoad = TransformPosition.Leg;
+
                     break;
-                case 0 when shootValue >= .135f && shootValue < .45f:
+
+                case 0 when shootValue >= .135f && shootValue < .5f:
                     DisplayMessage.main.ShowPowerBarText(Random.Range(2, 4));
                     GameManager.main.calculationID = 1;
                     switch (ShootSystem.instance.state)
                     {
                         case PlayerState.PlayerTurn:
-                            GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[1].transform.position;
+                            GameManager.main.transformPositionToShoot =
+                                GameManager.main.goalKeeperShootPositions[1].transform.position;
                             break;
                         case PlayerState.GoalKeeperTurn:
                             GameManager.main.transformPositionToShoot =
                                 GameManager.main.playerShootPositions[1].transform.position;
                             break;
                     }
+
                     GameManager.main.ballsHitRoad = TransformPosition.Spine;
 
                     break;
                 case 0 when shootValue < .135f:
                     DisplayMessage.main.ShowPowerBarText(Random.Range(4, 6));
-                  
+
                     GameManager.main.calculationID = 1;
                     switch (ShootSystem.instance.state)
                     {
                         case PlayerState.PlayerTurn:
-                            GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[2].transform.position;
+                            GameManager.main.transformPositionToShoot =
+                                GameManager.main.goalKeeperShootPositions[2].transform.position;
                             break;
                         case PlayerState.GoalKeeperTurn:
                             GameManager.main.transformPositionToShoot =
                                 GameManager.main.playerShootPositions[2].transform.position;
                             break;
                     }
+
                     GameManager.main.ballsHitRoad = TransformPosition.Head;
                     break;
                 case 0:
@@ -128,27 +144,24 @@ namespace GUI
                 case 1:
 
                     #region Display Message Conditions
-                    
-                    if(shootValue < .135f) DisplayMessage.main.ShowPowerBarText(Random.Range(4, 6));
-                    if(shootValue >= .135f && shootValue <.45f) DisplayMessage.main.ShowPowerBarText(Random.Range(2, 4));
-                    if(shootValue >=.45f && shootValue <.7f) DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2));
-                    if(shootValue >= .71f && shootValue <=1) DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2));
+
+                    if (shootValue < .135f) DisplayMessage.main.ShowPowerBarText(Random.Range(4, 6));
+                    if (shootValue >= .135f && shootValue < .45f)
+                        DisplayMessage.main.ShowPowerBarText(Random.Range(2, 4));
+                    if (shootValue >= .45f && shootValue < .7f)
+                        DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2));
+                    if (shootValue >= .71f && shootValue <= 1) DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2));
+
                     #endregion
 
                     GameManager.main.playerAnim.SetBool(Shoot, true);
-                    GameManager.main.ballShootPowerValue = (1 / shootValue) * 1.5f; //Setting the balls shooting value.
-                    GameManager.main.ballAttackValue = GameManager.main.ballShootPowerValue % 20; //Setting the balls attack value to a normalized range.
-                    if (shootValue < 1.5f) GameManager.main.ballShootPowerValue = 55f;
-                    if (GameManager.main.ballShootPowerValue <= 20)
-                        GameManager.main.ballShootPowerValue = 15f; //Setting the balls min shooting value.
-                    if (GameManager.main.ballShootPowerValue >= 45)
-                        GameManager.main.ballShootPowerValue = 55f; //Setting the balls max shooting value.
+                    GameManager.main.ballAttackValue = ((1 / shootValue) * 1.5f) % 20; //Setting the balls shooting value with a normalized range.
                     transform.DOKill(); //Killing the power bar indicator animation.
                     GameManager.main.firstTouch = false;
                     break;
-                      }
-           }
+            }
+        }
 
         #endregion
-           }
+    }
 }

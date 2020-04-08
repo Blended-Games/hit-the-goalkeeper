@@ -6,10 +6,7 @@ using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 using System.Collections;
-using System.Collections.Generic;
 using Accessables;
-using UnityEditor;
-using UnityEngine.Experimental.VFX;
 
 public class BallMove : MonoBehaviour
 {
@@ -35,11 +32,13 @@ public class BallMove : MonoBehaviour
     private Rigidbody rb;
     private Vector3[] path = new Vector3[3];
     private PathType pathType = PathType.CatmullRom;
-    private bool close;
+    private bool ballMoveAnimClose;
 
     private static readonly int LegHit = Animator.StringToHash("LegHit");
     private static readonly int MidHit = Animator.StringToHash("MidHit");
     private static readonly int HeadHit = Animator.StringToHash("HeadHit");
+    private static readonly int Laugh = Animator.StringToHash("Laugh");
+    private Camera _camera;
 
     #endregion
 
@@ -47,6 +46,7 @@ public class BallMove : MonoBehaviour
 
     private void Start()
     {
+        _camera = Camera.main;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -70,22 +70,23 @@ public class BallMove : MonoBehaviour
         var position = transform.position; //This is for performance clearity.
 
 
-        if (!GameManager.main.ballMoveStop && !close
+        if (!ballMoveAnimClose
         ) //If this trigger is not set by game manager, ball gets a force to reach the position.
         {
             CameraControls.main.StartFieldOfViewChangeMainCam();
 
             BallParabollaMove(gameManagerPos,
                 randomPos: new Vector3(Random.Range(-.45f, .45f), Random.Range(.35f, 1.26f), -5));
-            close = true;
+            ballMoveAnimClose = true;
         }
 
-        if ((transform.position - gameManagerPos).sqrMagnitude < .1f)
+        if (Vector3.Distance(transform.position, gameManagerPos) <= 1f)
         {
-//            Debug.Log("Veya Bu");
+            Debug.Log("Veya Bu");
             switch (ShootSystem.instance.state)
             {
-                case PlayerState.PlayerTurn:{
+                case PlayerState.PlayerTurn:
+                {
                     switch (GameManager.main.ballsHitRoad)
                     {
                         case TransformPosition.Head:
@@ -97,6 +98,11 @@ public class BallMove : MonoBehaviour
                         case TransformPosition.Leg:
                             GameManager.main.goalKeeperAnim.SetBool(LegHit, true);
                             break;
+                        case TransformPosition.Off:
+                            GameManager.main.goalKeeperAnim.SetBool(Laugh, true);
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
                 }
                     break;
@@ -113,15 +119,27 @@ public class BallMove : MonoBehaviour
                         case TransformPosition.Leg:
                             GameManager.main.playerAnim.SetBool(LegHit, true);
                             break;
-                    } 
+                        case TransformPosition.Off:
+                            GameManager.main.playerAnim.SetBool(Laugh, true);
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
                 }
                     break;
+                case PlayerState.Won:
+                    break;
+                case PlayerState.Lost:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+
             }
 
-            GameManager.main.ballMoveStop = true; //This is the trigger for balls force stop.
-            Invoke("ChangeState", 2);
+            ChangeState();
             AttackCompleted();
         }
+        
     }
 
     private void BallParabollaMove(Vector3 endValue, Vector3 randomPos)
@@ -135,10 +153,8 @@ public class BallMove : MonoBehaviour
     private void ForceStop()
     {
         transform.DOKill();
-        Camera.main.GetComponent<CameraControls>().enabled = false;
-        ShootSystem.instance.state = PlayerState.GoalKeeperTurn;
-
-        //rb.AddForce(Vector3.forward * 1000, ForceMode.Impulse);
+        _camera.GetComponent<CameraControls>().enabled = false;
+        GameManager.main.shootTheBall = false;
     }
 
     private void ChangeState()
@@ -148,13 +164,43 @@ public class BallMove : MonoBehaviour
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
-                DoTweenController.SequenceMoveAndRotate3D(Camera.main.transform, p2.position, p2.rotation, 1);
+                var seq = DOTween.Sequence();
+                seq.Append(_camera.transform.DOLocalMove(p2.position, 1))
+                    .Join(_camera.transform.DORotate(p2.eulerAngles, 1)).OnComplete(TurnChange);
                 transform.position = GameManager.main.p2BallsTransform.localPosition;
+
                 break;
             case PlayerState.GoalKeeperTurn:
-                DoTweenController.SequenceMoveAndRotate3D(Camera.main.transform, p1.position, p1.rotation, 1);
+                var seq2 = DOTween.Sequence();
+                seq2.Append(_camera.transform.DOLocalMove(p1.position, 1))
+                    .Join(_camera.transform.DORotate(p1.eulerAngles, 1)).OnComplete(TurnChange);
                 transform.position = GameManager.main.p1BallsTransform.localPosition;
                 break;
+            case PlayerState.Won:
+                break;
+            case PlayerState.Lost:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    private void TurnChange()
+    {
+        switch (ShootSystem.instance.state)
+        {
+            case PlayerState.PlayerTurn:
+                ShootSystem.instance.state = PlayerState.GoalKeeperTurn;
+                break;
+            case PlayerState.GoalKeeperTurn:
+                ShootSystem.instance.state = PlayerState.PlayerTurn;
+                break;
+            case PlayerState.Won:
+                break;
+            case PlayerState.Lost:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
@@ -164,31 +210,40 @@ public class BallMove : MonoBehaviour
 
     private void AttackCompleted()
     {
+        Debug.Log("eeeee");
         if (ShootSystem.instance.state == PlayerState.PlayerTurn)
         {
-            ShootSystem.instance.unitPlayer.currentHP = (int) GameManager.main.ballAttackValue;
-            StartCoroutine(ShootSystem.instance.PlayerAttack());
+            if (GameManager.main.ballsHitRoad != TransformPosition.Off)
+            {
+                ShootSystem.instance.unitPlayer.currentHP = (int) GameManager.main.ballAttackValue;
+            }
+
+            //StartCoroutine(ShootSystem.instance.PlayerAttack());
+            ShootSystem.instance.PlayerAttack();
         }
         else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
         {
             {
-                ShootSystem.instance.unitGoalKeeper.currentHP = (int) GameManager.main.ballShootPowerValue;
-                StartCoroutine(ShootSystem.instance.GoalKeeperAttack());
+                if (GameManager.main.ballsHitRoad != TransformPosition.Off)
+                {
+                    ShootSystem.instance.unitGoalKeeper.currentHP = (int) GameManager.main.ballAttackValue;
+                }
+
+                //StartCoroutine(ShootSystem.instance.GoalKeeperAttack());
+                ShootSystem.instance.GoalKeeperAttack();
             }
-            GameManager.main.shootTheBall = false;
         }
     }
 
     #endregion
 
-    public IEnumerator ChangeKeeper()
+    public void ChangeKeeper()
     {
-        GameManager.main.ballShootPowerValue = Random.Range(5, 20);
-        Debug.Log(GameManager.main.ballShootPowerValue);
-        GameManager.main.calculationID = 0;
-        yield return new WaitForSeconds(.01f);
-        GameManager.main.calculationID = 1;
-
-        AttackCompleted();
+        GameManager.main.ballAttackValue = Random.Range(5, 20);
+        GameManager.main.transformPositionToShoot = GameManager.main.playerShootPositions[Random.Range(0, 3)].position;
+        Debug.Log(GameManager.main.ballAttackValue);
+        //_camera.GetComponent<CameraControls>().enabled = true;
+        Movement();
     }
+    
 }

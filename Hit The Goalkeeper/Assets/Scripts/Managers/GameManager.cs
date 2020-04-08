@@ -6,7 +6,8 @@ namespace Managers
     {
         Head,
         Spine,
-        Leg
+        Leg,
+        Off
     };
 
     public class GameManager : MonoBehaviour
@@ -31,8 +32,7 @@ namespace Managers
 
         #region Introducing Global Dependencies
 
-        [Header("Global Dependencies")] public float ballShootPowerValue;
-        public float ballAttackValue; //Balls power value
+        [Header("Global Dependencies")] public float ballAttackValue; //Balls power value
 
         public UnityEngine.Vector3 transformPositionToShoot; //This will be the position that we are shooting.
 
@@ -64,8 +64,6 @@ namespace Managers
 
         public bool shootTheBall; //This will be the trigger for balls movement;
 
-        public bool ballMoveStop; //This will stop rigidbody force and make 
-
         public bool
             camStopFollow; //This is the condition for offrecords movement. Because we do not want to follow the ball from there.
 
@@ -75,6 +73,10 @@ namespace Managers
 
         public TransformPosition ballsHitRoad; //This will be the state for controlling balls transform point. 
 
+        public GameObject levelChange; //This will be the button for level changing.
+
+        public bool ballHasTriggered; //This will be the statement for BallMoves OnTriggerFunction.
+        
         #endregion
 
         #region TargetFrameRate
