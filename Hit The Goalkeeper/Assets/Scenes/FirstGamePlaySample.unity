@@ -1870,11 +1870,7 @@ MonoBehaviour:
   ballShootPowerValue: 0
   ballAttackValue: 0
   transformPositionToShoot: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-  playerAnim: {fileID: 1642141002}
-=======
   playerAnim: {fileID: 402052989}
->>>>>>> okan
   firstTouch: 0
   messageForArtists: You need to add the corresponding transform positions to these
     arrays. Start from the worst condition (0 - leg, 1 - spine, 2 - head, etc..).
