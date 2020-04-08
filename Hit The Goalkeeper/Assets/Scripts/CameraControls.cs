@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using Managers;
 using UnityEngine;
 
 public class CameraControls : MonoBehaviour
@@ -52,6 +53,7 @@ public class CameraControls : MonoBehaviour
         // First create the "move to target" tween and store it as a Tweener.
         // In this case I'm also setting autoKill to FALSE so the tween can go on forever
         // (otherwise it will stop executing if it reaches the target)
+        if (GameManager.main.camStopFollow) return;
         desiredPosition = target.position + offset;
         tween = transform.DOMove(desiredPosition, duration).SetEase(ease).SetAutoKill(false);
         // Store the target's last position, so it can be used to know if it changes
@@ -59,13 +61,14 @@ public class CameraControls : MonoBehaviour
         targetLastPos = target.position;
     }
 
-    void Update()
+    private void Update()
     {
         // Use an Update routine to change the tween's endValue each frame
         // so that it updates to the target's position if that changed
+        if (GameManager.main.camStopFollow) return;
         if (targetLastPos == target.position) return;
         // Add a Restart in the end, so that if the tween was completed it will play again
-        tween.ChangeEndValue(target.position, true).Restart();
+        tween.ChangeEndValue(desiredPosition, true).Restart();
         targetLastPos = target.position;
         
     }
@@ -75,16 +78,12 @@ public class CameraControls : MonoBehaviour
 
     public void StartFieldOfViewChangeMainCam()
     {
-        Debug.Log("EEveEeee");
-
         if (!easeActive)
         {
-            Debug.Log("EEEeee");
             _camera.DOFieldOfView(fieldOfViewEndValue, duration).PlayBackwards();
         }
         else if (easeActive)
-        {            
-            Debug.Log("EEEee2e");
+        {
             _camera.DOFieldOfView(fieldOfViewEndValue, duration).SetEase(ease).PlayBackwards();
         }
     }

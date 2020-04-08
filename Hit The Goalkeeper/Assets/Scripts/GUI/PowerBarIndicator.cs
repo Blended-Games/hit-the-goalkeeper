@@ -22,7 +22,7 @@ namespace GUI
         {
             //Moving the indicator from corner to another corner.
             var transform1 = transform;
-            DoTweenController.DoLocalMove3D(transform1,
+            DoTweenController.DoLocalMove3DWithLoop(transform1,
                 new Vector3(1, 0, 0), 2,
                 Ease.Linear, -1,
                 LoopType.Yoyo);
@@ -135,7 +135,7 @@ namespace GUI
                     if(shootValue >= .71f && shootValue <=1) DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2));
                     #endregion
 
-                    GameManager.main.ballAnimStartTrigger.SetBool(Shoot, true);
+                    GameManager.main.playerAnim.SetBool(Shoot, true);
                     GameManager.main.ballShootPowerValue = (1 / shootValue) * 1.5f; //Setting the balls shooting value.
                     GameManager.main.ballAttackValue = GameManager.main.ballShootPowerValue % 20; //Setting the balls attack value to a normalized range.
                     if (shootValue < 1.5f) GameManager.main.ballShootPowerValue = 55f;
@@ -145,8 +145,6 @@ namespace GUI
                         GameManager.main.ballShootPowerValue = 55f; //Setting the balls max shooting value.
                     transform.DOKill(); //Killing the power bar indicator animation.
                     GameManager.main.firstTouch = false;
-                    if (shootValue >= .8f) break;
-
                     break;
                       }
            }

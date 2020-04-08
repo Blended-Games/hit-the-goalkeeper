@@ -22,7 +22,7 @@ namespace Animator_States
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             GameManager.main.shootTheBall = true; //This is the trigger for ball shooting mechanic.
-            GameManager.main.ballAnimStartTrigger
+            GameManager.main.playerAnim
                 .SetBool(Shoot, false); //This is the animation trigger for ball shooting mechanic
             
             CameraControls.main.StartFieldOfViewChangeMainCam(); //This is the trigger for camera following mechanic.

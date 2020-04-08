@@ -7,29 +7,38 @@ namespace Accessables
     public static class DoTweenController
     {
         //Moving an object in 3 dimensional space.
-        internal static void DoMove3D(Transform thisTransform, Vector2 endValue, float duration, Ease ease, int setLoops, LoopType loop)
+        internal static void DoMove3D(Transform thisTransform, Vector2 endValue, float duration, Ease ease,
+            int setLoops, LoopType loop)
         {
-            thisTransform.DOMove(endValue, duration).SetEase(ease).SetLoops(-1,loop);
+            thisTransform.DOMove(endValue, duration).SetEase(ease).SetLoops(-1, loop);
         }
 
         //Moving an objects local position in 3 dimensional space.
-        internal static void DoLocalMove3D(Transform thisTransform, Vector2 endValue, float duration, Ease ease, int setLoops, LoopType loop)
+        internal static void DoLocalMove3D(Transform thisTransform, Vector2 endValue, float duration, Ease ease)
         {
-            thisTransform.DOLocalMove(endValue, duration).SetEase(ease).SetLoops(-1,loop);
+            thisTransform.DOLocalMove(endValue, duration).SetEase(ease);
+        }
+
+        internal static void DoLocalMove3DWithLoop(Transform thisTransform, Vector2 endValue, float duration, Ease ease,
+            int setLoops, LoopType loop)
+        {
+            thisTransform.DOLocalMove(endValue, duration).SetEase(ease).SetLoops(-1, loop);
         }
 
         //Moving an object in 2 dimensional space.
-        internal static void DoMove2D(Transform thisTransform, Vector2 endValue, float duration, Ease ease, int setLoops, LoopType loop)
+        internal static void DoMove2D(Transform thisTransform, Vector2 endValue, float duration, Ease ease,
+            int setLoops, LoopType loop)
         {
-            thisTransform.DOMove(endValue, duration).SetEase(ease).SetLoops(-1,loop);
+            thisTransform.DOMove(endValue, duration).SetEase(ease).SetLoops(-1, loop);
         }
 
         //Moving and rotating an object in 3 dimensional space.
-        public static void SequenceMoveAndRotate3D(Transform thisTransform, Vector3 endValuePos, Vector3 endValueRot,
+        public static void SequenceMoveAndRotate3D(Transform thisTransform, Vector3 endValuePos, Quaternion endValueRot,
             float duration)
         {
             var seq = DOTween.Sequence();
-            seq.Append(thisTransform.DOLocalRotate(endValueRot, duration));
+            seq.Append(thisTransform.DOLocalMove(endValuePos, duration))
+                .Join(thisTransform.DOLocalRotate(endValueRot.eulerAngles, duration));
         }
 
         //Moving an objects y position and changing its color with ease.

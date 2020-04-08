@@ -20,6 +20,7 @@
             </e>
           </e>
         </e>
+        <e p="goalKeeperMovement.cs" t="Include" />
         <e p="Resources" t="Include">
           <e p="Display Text.txt" t="Include" />
         </e>

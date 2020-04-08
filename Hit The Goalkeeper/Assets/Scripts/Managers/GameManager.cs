@@ -36,7 +36,7 @@ namespace Managers
 
         public UnityEngine.Vector3 transformPositionToShoot; //This will be the position that we are shooting.
 
-        public Animator ballAnimStartTrigger; //This trigger is enabling blendTrees trigger controller for next anim.
+        public Animator playerAnim; //This trigger is enabling blendTrees trigger controller for next anim.
 
         public bool firstTouch; //This the first calculation bool, it controls the bars function.
 
@@ -53,12 +53,12 @@ namespace Managers
             "You need to add the corresponding ball positions to these Transforms." +
             "Ball wil transform to those areas on different game states.";
 
-        public Transform p1sBallPosition, p2BallsTransform; //These will be the positions for the balls.
+        public Transform p1BallsTransform, p2BallsTransform; //These will be the positions for the balls.
 
         [TextArea] [SerializeField] private string messageForArtists3 =
             "You need to add the corresponding camera positions to these Transforms. " +
             "I suggest you to add the camera transform position and make it a prefab with the character.";
-        
+
         public Transform
             p1sCameraPosition, p2sCameraPosition; //These are the positions for the cameras to move on different states.
 

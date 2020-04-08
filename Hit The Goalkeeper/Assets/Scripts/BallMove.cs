@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 using System.Collections;
 using System.Collections.Generic;
+using Accessables;
 
 public class BallMove : MonoBehaviour
 {
@@ -86,20 +87,44 @@ public class BallMove : MonoBehaviour
         if ((transform.position - gameManagerPos).sqrMagnitude < .1f)
         {
 //            Debug.Log("Veya Bu");
-            switch (GameManager.main.ballsHitRoad)
+            switch (ShootSystem.instance.state)
             {
-                case TransformPosition.Head:
-                    GameManager.main.goalKeeperAnim.SetBool(HeadHit, true);AttackCompleted();
+                case PlayerState.PlayerTurn:{
+                    switch (GameManager.main.ballsHitRoad)
+                    {
+                        case TransformPosition.Head:
+                            GameManager.main.goalKeeperAnim.SetBool(HeadHit, true);
+                            break;
+                        case TransformPosition.Spine:
+                            GameManager.main.goalKeeperAnim.SetBool(MidHit, true);
+                            break;
+                        case TransformPosition.Leg:
+                            GameManager.main.goalKeeperAnim.SetBool(LegHit, true);
+                            break;
+                    }
+                }
                     break;
-                case TransformPosition.Spine:
-                    GameManager.main.goalKeeperAnim.SetBool(MidHit, true);AttackCompleted();
-                    break;
-                case TransformPosition.Leg:
-                    GameManager.main.goalKeeperAnim.SetBool(LegHit, true);AttackCompleted();
+                case PlayerState.GoalKeeperTurn:
+                {
+                    switch (GameManager.main.ballsHitRoad)
+                    {
+                        case TransformPosition.Head:
+                            GameManager.main.playerAnim.SetBool(HeadHit, true);
+                            break;
+                        case TransformPosition.Spine:
+                            GameManager.main.playerAnim.SetBool(MidHit, true);
+                            break;
+                        case TransformPosition.Leg:
+                            GameManager.main.playerAnim.SetBool(LegHit, true);
+                            break;
+                    } 
+                }
                     break;
             }
+
             GameManager.main.ballMoveStop = true; //This is the trigger for balls force stop.
-            
+            Invoke("ChangeState", 2);
+            AttackCompleted();
         }
     }
 
@@ -108,47 +133,64 @@ public class BallMove : MonoBehaviour
         path[0] = transform.position;
         path[1] = randomPos;
         path[2] = endValue;
-        transform.DOLocalPath(path, .75f, pathType, PathMode.Full3D).SetEase(Ease.Linear).OnComplete(AddForce);
+        transform.DOLocalPath(path, .75f, pathType, PathMode.Full3D).SetEase(Ease.Linear).OnComplete(ForceStop);
     }
 
-    private void AddForce()
+    private void ForceStop()
     {
         transform.DOKill();
         //Camera.main.transform.DOKill();
         //rb.AddForce(Vector3.forward * 1000, ForceMode.Impulse);
     }
 
+    private void ChangeState()
+    {
+        var p1 = GameManager.main.p1sCameraPosition.transform;
+        var p2 = GameManager.main.p2sCameraPosition.transform;
+        switch (ShootSystem.instance.state)
+        {
+            case PlayerState.PlayerTurn:
+                DoTweenController.SequenceMoveAndRotate3D(Camera.main.transform, p1.position, p1.rotation, 1);
+                transform.position = GameManager.main.p2BallsTransform.localPosition;
+                break;
+            case PlayerState.GoalKeeperTurn:
+                DoTweenController.SequenceMoveAndRotate3D(Camera.main.transform, p2.position, p2.rotation, 1);
+                transform.position = GameManager.main.p1BallsTransform.localPosition;
+                break;
+        }
+    }
+
     #endregion
 
     #region Attack
 
- private void AttackCompleted()
+    private void AttackCompleted()
     {
-        if(ShootSystem.instance.state==PlayerState.PlayerTurn){
+        if (ShootSystem.instance.state == PlayerState.PlayerTurn)
+        {
             ShootSystem.instance.unitPlayer.currentHP = (int) GameManager.main.ballAttackValue;
-             StartCoroutine(ShootSystem.instance.PlayerAttack());
-             }
-        else  if(ShootSystem.instance.state==PlayerState.GoalKeeperTurn){
-        { 
-          ShootSystem.instance.unitGoalKeeper.currentHP = (int) GameManager.main.ballShootPowerValue;
-          StartCoroutine(ShootSystem.instance.GoalKeeperAttack());
-             }
-        GameManager.main.shootTheBall = false;
+            StartCoroutine(ShootSystem.instance.PlayerAttack());
+        }
+        else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
+        {
+            {
+                ShootSystem.instance.unitGoalKeeper.currentHP = (int) GameManager.main.ballShootPowerValue;
+                StartCoroutine(ShootSystem.instance.GoalKeeperAttack());
+            }
+            GameManager.main.shootTheBall = false;
+        }
     }
-    }
+
     #endregion
 
-   public IEnumerator ChangeKeeper()
-        {
-          GameManager.main.ballShootPowerValue = Random.Range(5,20);
-         Debug.Log(   GameManager.main.ballShootPowerValue);
-        GameManager.main.calculationID=0;
-           yield return new WaitForSeconds(.01f); 
-           GameManager.main.calculationID=1;
-         
-         AttackCompleted();
-       
+    public IEnumerator ChangeKeeper()
+    {
+        GameManager.main.ballShootPowerValue = Random.Range(5, 20);
+        Debug.Log(GameManager.main.ballShootPowerValue);
+        GameManager.main.calculationID = 0;
+        yield return new WaitForSeconds(.01f);
+        GameManager.main.calculationID = 1;
 
-      }
+        AttackCompleted();
+    }
 }
-   
