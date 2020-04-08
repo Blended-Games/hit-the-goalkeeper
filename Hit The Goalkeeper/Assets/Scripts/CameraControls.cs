@@ -54,11 +54,12 @@ public class CameraControls : MonoBehaviour
         // In this case I'm also setting autoKill to FALSE so the tween can go on forever
         // (otherwise it will stop executing if it reaches the target)
         if (GameManager.main.camStopFollow) return;
-        desiredPosition = target.position + offset;
+        var position = target.position;
+        desiredPosition = position + offset;
         tween = transform.DOMove(desiredPosition, duration).SetEase(ease).SetAutoKill(false);
         // Store the target's last position, so it can be used to know if it changes
         // (to prevent changing the tween if nothing actually changes)
-        targetLastPos = target.position;
+        targetLastPos = position;
     }
 
     private void Update()

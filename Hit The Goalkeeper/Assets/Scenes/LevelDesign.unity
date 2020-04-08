@@ -1507,7 +1507,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324041840}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.63, y: 0.2, z: -2.2}
+  m_LocalPosition: {x: -0.818, y: 0.2, z: -2.453}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 520631244}
@@ -1917,7 +1917,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   unitPlayer: {fileID: 1776328142}
-  unitGoalKeeper: {fileID: 1642141001}
+  unitGoalKeeper: {fileID: 1921760211}
   playerHUD: {fileID: 1954837800}
   goalKeeperHUD: {fileID: 1674397885}
 --- !u!1 &1596049835

@@ -91,6 +91,7 @@ public class ShootSystem : MonoBehaviour
     {
         if (state == PlayerState.Won)
         {
+            Debug.Log("You won");
             GameManager.main.levelChange.SetActive(true);
         }
         else if (state == PlayerState.Lost) Debug.Log("you lost");
