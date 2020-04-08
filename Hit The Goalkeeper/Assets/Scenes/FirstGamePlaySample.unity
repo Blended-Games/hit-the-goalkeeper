@@ -1864,7 +1864,7 @@ MonoBehaviour:
   ballShootPowerValue: 0
   ballAttackValue: 0
   transformPositionToShoot: {x: 0, y: 0, z: 0}
-  playerAnim: {fileID: 0}
+  playerAnim: {fileID: 1642141002}
   firstTouch: 0
   messageForArtists: You need to add the corresponding transform positions to these
     arrays. Start from the worst condition (0 - leg, 1 - spine, 2 - head, etc..).
@@ -1878,7 +1878,7 @@ MonoBehaviour:
   - {fileID: 1838347583}
   messageForArtists2: You need to add the corresponding ball positions to these Transforms.Ball
     wil transform to those areas on different game states.
-  p1BallsTransform: {fileID: 0}
+  p1BallsTransform: {fileID: 842380877}
   p2BallsTransform: {fileID: 1324041841}
   messageForArtists3: You need to add the corresponding camera positions to these
     Transforms. I suggest you to add the camera transform position and make it a prefab
