@@ -95,35 +95,44 @@ public class BallMove : MonoBehaviour
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
-                //seq.Append(_camera.transform.DOLocalMove(p2.position, 1))
-                //    .Join(_camera.transform.DORotate(p2.eulerAngles, 1)); 
+                _seq.Append(_camera.transform.DOLocalMove(p2.position, 1))
+                  .Join(_camera.transform.DORotate(p2.eulerAngles, 1)); 
+               
                 _camera.transform.DOLocalMove(p2.position, 5).OnComplete(ChangeStateDelay);
+               
                 transform.position = GameManager.main.p2BallsTransform.localPosition;
                 //ChangeStateDelay();
-                //Debug.Log("Buraya Gelmeyi başardım");
+              
                 break;
             case PlayerState.GoalKeeperTurn:
+
                 _seq.Append(_camera.transform.DOLocalMove(p1.position, 1))
-                    .Join(_camera.transform.DORotate(p1.eulerAngles, 1)).OnComplete(ChangeStateDelay);
+                    .Join(_camera.transform.DORotate(p1.eulerAngles, 1));
+                   
+                   _camera.transform.DOLocalMove(p1.position, 5).OnComplete(ChangeStateDelay);
+              
                 transform.position = GameManager.main.p1BallsTransform.localPosition;
+                Debug.Log("Buraya Gelmeyi başardım"+ transform.position);
+                
                 break;
         }
     }
 
     private void ChangeStateDelay()
     {
-        Debug.Log("ChangeStateDelay Girdim");
+       
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
                 ShootSystem.instance.state = PlayerState.GoalKeeperTurn;
-                _updateStop = true;
-                Debug.Log("PlayerTurndeki Updatei kapattım");
+                _updateStop = false;
+            //    Debug.Log("PlayerTurndeki Updatei kapattım");
                 break;
             case PlayerState.GoalKeeperTurn:
-                ShootSystem.instance.state = PlayerState.PlayerTurn;
-                Debug.Log("Goalkeeperturndeki Updatei kapattım");
-                _updateStop = true;
+             Debug.Log("ChangeStateDelay Girdim");
+          //    ShootSystem.instance.state = PlayerState.PlayerTurn;
+         //       Debug.Log("Goalkeeperturndeki Updatei kapattım");
+               _updateStop = true;
                 break;
         }
     }
@@ -140,7 +149,6 @@ public class BallMove : MonoBehaviour
             {
                 ShootSystem.instance.unitPlayer.damage = (int) GameManager.main.ballAttackValue;
             }
-
             ShootSystem.instance.PlayerAttack();
         }
         else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
@@ -151,6 +159,7 @@ public class BallMove : MonoBehaviour
                     ShootSystem.instance.unitGoalKeeper.damage = (int) GameManager.main.ballAttackValue;
                 }
 
+                Debug.Log("attackCompleted ÇALIŞTI");
                 ShootSystem.instance.GoalKeeperAttack();
             }
         }
@@ -208,17 +217,19 @@ public class BallMove : MonoBehaviour
         
         ChangeState();
 
-         // if (GameManager.main.ballsHitRoad != TransformPosition.Off)
-         // {
-         //     AttackCompleted();
-         // }
+         if (GameManager.main.ballsHitRoad != TransformPosition.Off)
+         {
+             AttackCompleted();
+         }
          
     }
     
     public void ChangeKeeper()
     {
         GameManager.main.ballAttackValue = Random.Range(5, 20);
-        GameManager.main.transformPositionToShoot = GameManager.main.playerShootPositions[Random.Range(0, 3)].position;
+    //   GameManager.main.transformPositionToShoot = GameManager.main.playerShootPositions[Random.Range(0, 3)].position;
+        
+        GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[Random.Range(0, 3)].position;
         Debug.Log(GameManager.main.ballAttackValue);
         Movement();
     }

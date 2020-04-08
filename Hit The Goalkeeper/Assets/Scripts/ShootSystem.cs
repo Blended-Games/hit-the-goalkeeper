@@ -83,7 +83,7 @@ public class ShootSystem : MonoBehaviour
         else
         {
             GameManager.main.firstTouch = true;
-            state = PlayerState.PlayerTurn;
+            
         }
     }
 
