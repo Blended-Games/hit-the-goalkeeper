@@ -107,7 +107,8 @@ namespace Accessables
         {
             var seq = DOTween.Sequence();
             seq.Append(thisTransform.DOLocalMove(endValıe, duration))
-                .Join(thisTransform.DOLocalRotate(quaternion, duration - .5f).SetEase(ease).SetAutoKill(false).OnComplete(callback));
+                .Join(thisTransform.DOLocalRotate(quaternion, duration - .5f).SetEase(ease).SetAutoKill(false)
+                    .OnComplete(callback));
         }
     }
 }

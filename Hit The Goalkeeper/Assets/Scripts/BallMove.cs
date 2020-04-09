@@ -87,12 +87,12 @@ public class BallMove : MonoBehaviour
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
-                
+
                 DoTweenController.SeqMoveRotateCallBack(_camera.transform, p2.position, p2.eulerAngles, 2,
                     ChangeStateDelay, Ease.Flash);
                 break;
             case PlayerState.GoalKeeperTurn:
-                
+
                 DoTweenController.SeqMoveRotateCallBack(_camera.transform, p1.position, p1.eulerAngles, 2,
                     ChangeStateDelay, Ease.Flash);
                 break;
@@ -103,29 +103,29 @@ public class BallMove : MonoBehaviour
     {
         switch (ShootSystem.instance.state)
         {
-            case PlayerState.PlayerTurn: 
+            case PlayerState.PlayerTurn:
                 transform.position = GameManager.main.p2BallsTransform.localPosition;
                 GameManager.main.p1.transform.position = GameManager.main.p1Pos.position;
                 GameManager.main.p1.transform.rotation = GameManager.main.p1Pos.rotation;
                 break;
-            case PlayerState.GoalKeeperTurn: 
+            case PlayerState.GoalKeeperTurn:
                 transform.position = GameManager.main.p1BallsTransform.localPosition;
                 GameManager.main.p2.transform.position = GameManager.main.p2Pos.position;
                 GameManager.main.p2.transform.rotation = GameManager.main.p2Pos.rotation;
                 break;
         }
+
         StartCoroutine(ChangeStateDelayCoroutine());
     }
 
     private IEnumerator ChangeStateDelayCoroutine()
-    { 
+    {
         if (ShootSystem.instance.state == PlayerState.PlayerTurn)
         {
             if (GameManager.main.ballsHitRoad != TransformPosition.Off)
             {
                 ShootSystem.instance.unitPlayer.damage = (int) GameManager.main.ballAttackValue;
             }
-
         }
         else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
         {
@@ -134,9 +134,9 @@ public class BallMove : MonoBehaviour
                 {
                     ShootSystem.instance.unitGoalKeeper.damage = (int) GameManager.main.ballAttackValue;
                 }
-
             }
         }
+
         yield return new WaitForSeconds(2);
         switch (ShootSystem.instance.state)
         {

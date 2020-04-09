@@ -20,7 +20,6 @@ namespace Animator_States
                 GameManager.main.playerAnim
                     .SetBool(Shoot, false);
                 //BallMove.main._updateStop = false;
-
             }
             else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
             {

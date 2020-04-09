@@ -65,6 +65,8 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
+            GameManager.main.p2.transform.position = GameManager.main.p2Pos.transform.position;
+            GameManager.main.p2.transform.rotation = GameManager.main.p2Pos.transform.rotation;
             GameManager.main.ballAttackValue = 0;
             GameManager.main.firstTouch = false;
             //GameManager.main.playersAnimMoveStart = false;
@@ -87,7 +89,8 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log("Goalkeepers state end");
+            GameManager.main.p1.transform.position = GameManager.main.p1Pos.transform.position;
+            GameManager.main.p1.transform.rotation = GameManager.main.p1Pos.transform.rotation;
             GameManager.main.firstTouch = true;
             GameManager.main.powerBarIndicatorParent.SetActive(true);
             state = PlayerState.PlayerTurn;

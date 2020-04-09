@@ -75,7 +75,9 @@ namespace Managers
 
         public GameObject powerBarIndicatorParent; //This is the powerbar indicator script.
 
-        public Transform p1Pos, p2Pos; //These are the positions for the characters. We need these because animation states are changing characters positions.
+        public Transform
+            p1Pos,
+            p2Pos; //These are the positions for the characters. We need these because animation states are changing characters positions.
 
         public GameObject p1, p2;
 

@@ -23,8 +23,6 @@ public class CameraControls : MonoBehaviour
 
     #region Variables
 
-    
-
     [TextArea] [Header("Message To Artists")] [SerializeField]
     private string ZoomEffect = "You can change the zoom effects values from this area.";
 
@@ -61,11 +59,11 @@ public class CameraControls : MonoBehaviour
         {
             desiredPosition = target.position - offsetGoalkeeper;
         }
+
         var smooothedPosition = Vector3.Lerp(transform.position, desiredPosition, 0.125f);
         transform.position = smooothedPosition;
-        
-        //transform.LookAt(target);
 
+        //transform.LookAt(target);
     }
 
     #endregion
