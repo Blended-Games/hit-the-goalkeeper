@@ -13,19 +13,29 @@ namespace Animator_States
         //}
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-        //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        //{
-        //    
-        //}
+        override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            if (ShootSystem.instance.state == PlayerState.PlayerTurn)
+            {
+                GameManager.main.playerAnim
+                    .SetBool(Shoot, false);
+                //BallMove.main._updateStop = false;
+
+            }
+            else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
+            {
+                GameManager.main.goalKeeperAnim
+                    .SetBool(Shoot, false); //This is the animation trigger for ball shooting mechanic
+                //BallMove.main._updateStop = false;
+            }
+        }
 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             BallMove.main.Movement();
-            GameManager.main.playerAnim
-                .SetBool(Shoot, false); //This is the animation trigger for ball shooting mechanic
-            
-            CameraControls.main.StartFieldOfViewChangeMainCam(); //This is the trigger for camera following mechanic.
+            //CameraControls.main.StartFieldOfViewChangeMainCam(); //This is the trigger for camera following mechanic.
+            BallMove.main._updateStop = false;
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()

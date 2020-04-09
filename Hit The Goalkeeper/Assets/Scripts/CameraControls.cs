@@ -40,7 +40,7 @@ public class CameraControls : MonoBehaviour
     [TextArea] [SerializeField]
     private string messageForTheArtists = "You can change the offset of the camera follow thru here.";
 
-    public Vector3 offset;
+    public Vector3 offsetPlayer, offsetGoalkeeper;
 
     #endregion
 
@@ -53,7 +53,14 @@ public class CameraControls : MonoBehaviour
 
     private void FixedUpdate()
     {
-        desiredPosition = target.position - offset;
+        if (ShootSystem.instance.state == PlayerState.PlayerTurn)
+        {
+            desiredPosition = target.position - offsetPlayer;
+        }
+        else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
+        {
+            desiredPosition = target.position - offsetGoalkeeper;
+        }
         var smooothedPosition = Vector3.Lerp(transform.position, desiredPosition, 0.125f);
         transform.position = smooothedPosition;
         

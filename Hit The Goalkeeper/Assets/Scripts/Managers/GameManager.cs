@@ -81,6 +81,8 @@ namespace Managers
 
         private CameraControls _camera;
 
+        public bool playersAnimMoveStart; //This is the players second and after trigger.
+
         #endregion
 
         #region TargetFrameRate

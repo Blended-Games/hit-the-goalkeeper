@@ -38,6 +38,7 @@ public class ShootSystem : MonoBehaviour
     public Unit unitGoalKeeper;
     public HUDScript playerHUD;
     public HUDScript goalKeeperHUD;
+   
 
 
     // Start is called before the first frame update
@@ -65,12 +66,19 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
+            GameManager.main.ballAttackValue = 0;
+            GameManager.main.firstTouch = false;
+            //GameManager.main.playersAnimMoveStart = false;
+            state = PlayerState.GoalKeeperTurn;
+            Debug.Log("State goalkeepera geçti");
             BallMove.main.ChangeKeeper();
+            
         }
     }
 
     public void GoalKeeperAttack()
     {
+        Debug.Log("Goalkeeper Attacka girildi");
         var isDead = unitPlayer.TakeDamage(unitGoalKeeper.damage);
 
         playerHUD.SetHp(unitGoalKeeper.damage);
@@ -78,6 +86,14 @@ public class ShootSystem : MonoBehaviour
         {
             state = PlayerState.Lost;
             EndShoot();
+        }
+        else
+        {
+            Debug.Log("Goalkeepers state end");
+            GameManager.main.firstTouch = true;
+            GameManager.main.powerBarIndicatorParent.SetActive(true);
+            state = PlayerState.PlayerTurn;
+
         }
     }
 

@@ -224,6 +224,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Teacher
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 989d602539d7548438404ee6152922f4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2205578517556902735, guid: 989d602539d7548438404ee6152922f4,
         type: 3}
       propertyPath: m_LocalRotation.y
@@ -295,7 +300,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165256962}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.291, y: 0.03, z: -8.092}
+  m_LocalPosition: {x: 0.217, y: 0.03, z: -8.092}
   m_LocalScale: {x: 0.30077, y: 0.30077, z: 0.30077}
   m_Children: []
   m_Father: {fileID: 520631244}
@@ -2476,7 +2481,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 11b4ca362151248d19fd4460ba9c3180,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.291
+      value: 0.217
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 11b4ca362151248d19fd4460ba9c3180,
         type: 3}
@@ -3135,7 +3140,8 @@ MonoBehaviour:
   ease: 15
   target: {fileID: 1750627557}
   messageForTheArtists: You can change the offset of the camera follow thru here.
-  offset: {x: -0.41, y: -0.63, z: 2.81}
+  offsetPlayer: {x: -0.4, y: -0.66, z: 2.56}
+  offsetGoalkeeper: {x: 1, y: -0.66, z: -2.56}
 --- !u!1 &1885770310
 GameObject:
   m_ObjectHideFlags: 0

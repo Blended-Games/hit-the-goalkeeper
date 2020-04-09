@@ -35,11 +35,14 @@ namespace GUI
 
         private void Update()
         {
-            if (!Input.GetMouseButtonDown(0) || !GameManager.main.firstTouch) return; //Detecting for the input.
-            var shootValue =
-                Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
-            CalculateShotValue(shootValue, GameManager.main.calculationID);
-            transform.DORestart(); //Restarting anim for the second time because of power value assignment
+            if (Input.GetMouseButtonDown(0) && GameManager.main.firstTouch && ShootSystem.instance.state == PlayerState.PlayerTurn)
+            {
+                //Detecting for the input.
+                var shootValue =
+                    Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
+                CalculateShotValue(shootValue, GameManager.main.calculationID);
+                transform.DORestart(); //Restarting anim for the second time because of power value assignment
+            }
         }
 
 
@@ -152,8 +155,10 @@ namespace GUI
                     GameManager.main.ballAttackValue = ((1 / shootValue) * 1.5f) % 20; //Setting the balls shooting value with a normalized range.
                     transform.DOKill(); //Killing the power bar indicator animation.
                     GameManager.main.firstTouch = false;
-                    GameManager.main.powerBarIndicatorParent.SetActive(false);
+                    //GameManager.main.powerBarIndicatorParent.SetActive(false);
                     GameManager.main.ActivateCam();
+                    GameManager.main.calculationID = 0;
+                    //GameManager.main.playersAnimMoveStart = true;
                     break;
             }
         }
