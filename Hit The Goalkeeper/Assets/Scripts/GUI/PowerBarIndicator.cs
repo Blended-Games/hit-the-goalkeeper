@@ -61,18 +61,18 @@ namespace GUI
                         case PlayerState.PlayerTurn:
                             GameManager.main.transformPositionToShoot = new Vector3(Random.Range(-1, 1),
                                 Random.Range(.35f, 1.26f),
-                                GameManager.main.goalKeeperShootPositions[2].transform.position.z + 5);
+                                GameManager.main.goalKeeperShootPositions[2].transform.position.z + 1);
                             break;
                         case PlayerState.GoalKeeperTurn:
                             GameManager.main.transformPositionToShoot = new Vector3(Random.Range(-1, 1),
                                 Random.Range(.35f, 1.26f),
-                                GameManager.main.playerShootPositions[2].transform.position.z + 5);
+                                GameManager.main.playerShootPositions[2].transform.position.z + 1);
                             break;
                     }
 
                     GameManager.main.transformPositionToShoot = new Vector3(Random.Range(-1, 1),
                         Random.Range(.35f, 1.26f),
-                        GameManager.main.goalKeeperShootPositions[2].transform.position.z + 5);
+                        GameManager.main.goalKeeperShootPositions[2].transform.position.z + 1);
                     GameManager.main.ballsHitRoad = TransformPosition.Off;
 
                     GameManager.main.camStopFollow = true;
@@ -158,7 +158,6 @@ namespace GUI
                     GameManager.main.firstTouch = false;
                     GameManager.main.ActivateCam();
                     GameManager.main.calculationID = 0;
-                    //GameManager.main.playersAnimMoveStart = true;
                     break;
             }
 

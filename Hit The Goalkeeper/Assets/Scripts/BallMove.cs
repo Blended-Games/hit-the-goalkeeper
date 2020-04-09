@@ -118,7 +118,25 @@ public class BallMove : MonoBehaviour
     }
 
     private IEnumerator ChangeStateDelayCoroutine()
-    {
+    { 
+        if (ShootSystem.instance.state == PlayerState.PlayerTurn)
+        {
+            if (GameManager.main.ballsHitRoad != TransformPosition.Off)
+            {
+                ShootSystem.instance.unitPlayer.damage = (int) GameManager.main.ballAttackValue;
+            }
+
+        }
+        else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
+        {
+            {
+                if (GameManager.main.ballsHitRoad != TransformPosition.Off)
+                {
+                    ShootSystem.instance.unitGoalKeeper.damage = (int) GameManager.main.ballAttackValue;
+                }
+
+            }
+        }
         yield return new WaitForSeconds(2);
         switch (ShootSystem.instance.state)
         {

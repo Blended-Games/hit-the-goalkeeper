@@ -871,7 +871,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: P2
 --- !u!222 &681072237
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1947,7 +1947,6 @@ MonoBehaviour:
   p2Pos: {fileID: 228066682}
   p1: {fileID: 1776328141}
   p2: {fileID: 1921760209}
-  playersAnimMoveStart: 0
 --- !u!4 &1577940864
 Transform:
   m_ObjectHideFlags: 0
@@ -2989,7 +2988,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: P1
 --- !u!222 &1810011223
 CanvasRenderer:
   m_ObjectHideFlags: 0

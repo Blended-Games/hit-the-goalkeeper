@@ -38,7 +38,6 @@ public class ShootSystem : MonoBehaviour
     public Unit unitGoalKeeper;
     public HUDScript playerHUD;
     public HUDScript goalKeeperHUD;
-   
 
 
     // Start is called before the first frame update
@@ -72,7 +71,6 @@ public class ShootSystem : MonoBehaviour
             state = PlayerState.GoalKeeperTurn;
             Debug.Log("State goalkeepera geçti");
             BallMove.main.ChangeKeeper();
-            
         }
     }
 
@@ -93,7 +91,6 @@ public class ShootSystem : MonoBehaviour
             GameManager.main.firstTouch = true;
             GameManager.main.powerBarIndicatorParent.SetActive(true);
             state = PlayerState.PlayerTurn;
-
         }
     }
 
