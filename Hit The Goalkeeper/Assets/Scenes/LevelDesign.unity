@@ -365,7 +365,7 @@ BoxCollider:
   m_GameObject: {fileID: 212730398}
   m_Material: {fileID: 13400000, guid: 8a2349bab11274e4ca44254dc7d12a6b, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.75, y: 2.48, z: 0.92}
   m_Center: {x: 0.00000001490116, y: -0.27789155, z: -0.010250843}
@@ -524,7 +524,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 374372909}
-  - component: {fileID: 374372910}
   m_Layer: 0
   m_Name: GameObject_Hair_Geo
   m_TagString: StateChange
@@ -546,19 +545,6 @@ Transform:
   m_Father: {fileID: 47972612}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &374372910
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 374372908}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 6, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &402052989 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 11b4ca362151248d19fd4460ba9c3180,
@@ -813,7 +799,7 @@ BoxCollider:
   m_GameObject: {fileID: 649547342}
   m_Material: {fileID: 13400000, guid: 8a2349bab11274e4ca44254dc7d12a6b, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.84, y: 0.79, z: 1.13}
   m_Center: {x: 0.008453845, y: 0.14, z: 0.020396171}
@@ -1574,7 +1560,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324041840}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.818, y: 0.2, z: -2.453}
+  m_LocalPosition: {x: -1.207, y: 0.2, z: -3.019}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 520631244}
@@ -1825,7 +1811,7 @@ BoxCollider:
   m_GameObject: {fileID: 1512697446}
   m_Material: {fileID: 13400000, guid: 8a2349bab11274e4ca44254dc7d12a6b, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 3.56, y: 1.01, z: 0.96}
   m_Center: {x: 0.00000002980232, y: 0.24337403, z: -0.011997486}
@@ -1961,6 +1947,7 @@ MonoBehaviour:
   p2Pos: {fileID: 228066682}
   p1: {fileID: 1776328141}
   p2: {fileID: 1921760209}
+  playersAnimMoveStart: 0
 --- !u!4 &1577940864
 Transform:
   m_ObjectHideFlags: 0

@@ -42,13 +42,12 @@ public class BallMove : MonoBehaviour
     private static readonly int HeadHit = Animator.StringToHash("HeadHit");
     private static readonly int Laugh = Animator.StringToHash("Laugh");
     private static readonly int Shoot = Animator.StringToHash("Shoot");
-    
+
     #endregion
 
     private void Start()
     {
         _camera = Camera.main;
-
     }
 
     private void Update()
@@ -68,7 +67,7 @@ public class BallMove : MonoBehaviour
             GameManager.main
                 .transformPositionToShoot; //The position for the ball to reach, it was taken via players input.
         //CameraControls.main.StartFieldOfViewChangeMainCam();
-        BallParabollaMove(_gameManagerPos, 
+        BallParabollaMove(_gameManagerPos,
             randomPos: new Vector3(Random.Range(-.45f, .45f), Random.Range(.35f, 1.26f), -5));
     }
 
@@ -80,7 +79,6 @@ public class BallMove : MonoBehaviour
         transform.DOLocalPath(path, 1.5f, pathType).SetEase(Ease.Linear).OnComplete(CameraFollowStop);
     }
 
-    
 
     private void ChangeState()
     {
@@ -89,22 +87,33 @@ public class BallMove : MonoBehaviour
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
-                transform.position = GameManager.main.p2BallsTransform.localPosition;
-                GameManager.main.p1.transform.position = GameManager.main.p1Pos.position;
+                
                 DoTweenController.SeqMoveRotateCallBack(_camera.transform, p2.position, p2.eulerAngles, 2,
                     ChangeStateDelay, Ease.Flash);
                 break;
             case PlayerState.GoalKeeperTurn:
-                transform.position = GameManager.main.p1BallsTransform.localPosition;
-                GameManager.main.p2.transform.position = GameManager.main.p2Pos.position;
-                DoTweenController.SeqMoveRotateCallBack(_camera.transform,p1.position,p1.eulerAngles,2,ChangeStateDelay, Ease.Flash);
+                
+                DoTweenController.SeqMoveRotateCallBack(_camera.transform, p1.position, p1.eulerAngles, 2,
+                    ChangeStateDelay, Ease.Flash);
                 break;
         }
     }
 
     private void ChangeStateDelay()
     {
-        //transform.DOKill();
+        switch (ShootSystem.instance.state)
+        {
+            case PlayerState.PlayerTurn: 
+                transform.position = GameManager.main.p2BallsTransform.localPosition;
+                GameManager.main.p1.transform.position = GameManager.main.p1Pos.position;
+                GameManager.main.p1.transform.rotation = GameManager.main.p1Pos.rotation;
+                break;
+            case PlayerState.GoalKeeperTurn: 
+                transform.position = GameManager.main.p1BallsTransform.localPosition;
+                GameManager.main.p2.transform.position = GameManager.main.p2Pos.position;
+                GameManager.main.p2.transform.rotation = GameManager.main.p2Pos.rotation;
+                break;
+        }
         StartCoroutine(ChangeStateDelayCoroutine());
     }
 
@@ -134,6 +143,7 @@ public class BallMove : MonoBehaviour
             {
                 ShootSystem.instance.unitPlayer.damage = (int) GameManager.main.ballAttackValue;
             }
+
             ShootSystem.instance.PlayerAttack();
         }
         else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
@@ -143,6 +153,7 @@ public class BallMove : MonoBehaviour
                 {
                     ShootSystem.instance.unitGoalKeeper.damage = (int) GameManager.main.ballAttackValue;
                 }
+
                 ShootSystem.instance.GoalKeeperAttack();
             }
         }
@@ -194,10 +205,9 @@ public class BallMove : MonoBehaviour
             }
                 break;
         }
+
         _updateStop = true;
         ChangeState();
-       
-
     }
 
     public void ChangeKeeper()
@@ -206,13 +216,12 @@ public class BallMove : MonoBehaviour
         GameManager.main.transformPositionToShoot = GameManager.main.playerShootPositions[Random.Range(0, 3)].position;
         GameManager.main.goalKeeperAnim.SetBool(Shoot, true);
     }
-    
+
     private void CameraFollowStop()
     {
         //transform.DOPause();
         _camera.GetComponent<CameraControls>().enabled = false;
     }
-
 
 
     //
@@ -248,7 +257,7 @@ public class BallMove : MonoBehaviour
     //         this.initialVelocity = initialVelocity;
     //         this.timeToTarget = timeToTarget;
     //     }
-		  //
+    //
     // }
     //
     //
