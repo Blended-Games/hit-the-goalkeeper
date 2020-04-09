@@ -20,7 +20,6 @@
             </e>
           </e>
         </e>
-        <e p="İdleBeforeHit.cs" t="Include" />
         <e p="Resources" t="Include">
           <e p="Display Text.txt" t="Include" />
         </e>
@@ -31,6 +30,7 @@
           <e p="Animator States" t="Include">
             <e p="BallShootState.cs" t="Include" />
             <e p="HeadHitState.cs" t="Include" />
+            <e p="İdleBeforeHit.cs" t="Include" />
             <e p="LaughState.cs" t="Include" />
             <e p="LegHitState.cs" t="Include" />
             <e p="MainCameraAnimationState.cs" t="Include" />
@@ -40,9 +40,7 @@
           <e p="BallMove.cs" t="Include" />
           <e p="CameraControls.cs" t="Include" />
           <e p="GUI" t="Include">
-            <e p="Bar.cs" t="Include" />
             <e p="DisplayMessage.cs" t="Include" />
-            <e p="HealthBar.cs" t="Include" />
             <e p="HUDScript.cs" t="Include" />
             <e p="PowerBarIndicator.cs" t="Include" />
             <e p="Unit.cs" t="Include" />

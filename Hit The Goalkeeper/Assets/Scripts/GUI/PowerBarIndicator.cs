@@ -45,6 +45,8 @@ namespace GUI
                      shootValue =
                         (transform.localPosition.x);
                      GameManager.main.ballCurveValue = shootValue;
+                     shootValue =
+                         Mathf.Abs(transform.localPosition.x);
                 }
                 else if (GameManager.main.calculationID == 0)
                 {

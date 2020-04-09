@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Diagnostics;
+using System.Globalization;
 using Accessables;
 using DG.Tweening;
 using GUI;
@@ -76,7 +77,7 @@ public class BallMove : MonoBehaviour
         path[0] = transform.position;
         path[1] = randomPos;
         path[2] = endValue;
-        transform.DOLocalPath(path, 1f, pathType).SetEase(Ease.Flash).OnComplete(CameraFollowStop);
+        transform.DOLocalPath(path, .65f, pathType).SetEase(Ease.Flash).OnComplete(CameraFollowStop);
     }
 
 
@@ -137,7 +138,7 @@ public class BallMove : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(.3f);
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
@@ -179,6 +180,7 @@ public class BallMove : MonoBehaviour
 
     #endregion
 
+    #region AnimStateChanger
 
     private void AnimStateChanger()
     {
@@ -190,6 +192,7 @@ public class BallMove : MonoBehaviour
                 {
                     case TransformPosition.Head:
                         GameManager.main.goalKeeperAnim.SetBool(HeadHit, true);
+                        GameManager.main.playerAnim.SetLayerWeight(1, 1);
                         break;
                     case TransformPosition.Spine:
                         GameManager.main.goalKeeperAnim.SetBool(MidHit, true);
@@ -209,6 +212,7 @@ public class BallMove : MonoBehaviour
                 {
                     case TransformPosition.Head:
                         GameManager.main.playerAnim.SetBool(HeadHit, true);
+                        GameManager.main.goalKeeperAnim.SetLayerWeight(1, 1);
                         break;
                     case TransformPosition.Spine:
                         GameManager.main.playerAnim.SetBool(MidHit, true);
@@ -227,56 +231,20 @@ public class BallMove : MonoBehaviour
         _updateStop = true;
         ChangeState();
     }
+    #endregion
 
     public void ChangeKeeper()
     {
         GameManager.main.ballAttackValue = Random.Range(5, 20);
         GameManager.main.transformPositionToShoot = GameManager.main.playerShootPositions[Random.Range(0, 3)].position;
         GameManager.main.goalKeeperAnim.SetBool(Shoot, true);
+        GameManager.main.ActivateCam();
     }
 
     private void CameraFollowStop()
     {
-        //transform.DOPause();
+        transform.DOKill();
         _camera.GetComponent<CameraControls>().enabled = false;
+        GetComponent<Rigidbody>().AddForce(Vector3.forward * (10000 * Time.fixedDeltaTime), ForceMode.Force);
     }
-
-
-    //
-    //
-    //
-    // public float h = 2;
-    // public float gravity = -18;
-    //
-    //
-    //
-    // void Launcher() {
-    //     Physics.gravity = Vector3.up * gravity;
-    //     transform.GetComponent<Rigidbody>().useGravity = true;
-    //     transform.GetComponent<Rigidbody>().velocity = CalculateLaunchData ().initialVelocity;
-    // }
-    //
-    // LaunchData CalculateLaunchData() {
-    //     float displacementY = target.y - transform.GetComponent<Rigidbody>().position.y;
-    //     Vector3 displacementXZ = new Vector3 (target.x - transform.GetComponent<Rigidbody>().position.x, 0, target.z - transform.GetComponent<Rigidbody>().position.z);
-    //     float time = Mathf.Sqrt(-2*h/gravity) + Mathf.Sqrt(2*(displacementY - h)/gravity);
-    //     Vector3 velocityY = Vector3.up * Mathf.Sqrt (-2 * gravity * h);
-    //     Vector3 velocityXZ = displacementXZ / time;
-    //
-    //     return new LaunchData(velocityXZ + velocityY * -Mathf.Sign(gravity), time);
-    // }
-    //
-    // struct LaunchData {
-    //     public readonly Vector3 initialVelocity;
-    //     public readonly float timeToTarget;
-    //
-    //     public LaunchData (Vector3 initialVelocity, float timeToTarget)
-    //     {
-    //         this.initialVelocity = initialVelocity;
-    //         this.timeToTarget = timeToTarget;
-    //     }
-    //
-    // }
-    //
-    //
 }

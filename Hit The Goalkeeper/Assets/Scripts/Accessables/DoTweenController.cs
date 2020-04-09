@@ -108,10 +108,24 @@ namespace Accessables
             float duration, TweenCallback callback, Ease ease)
         {
             var seq = DOTween.Sequence();
-            seq
+            seq.SetDelay(2)
                 .Append(thisTransform.DOLocalMove(endValıe, duration))
                 .Join(thisTransform.DOLocalRotate(quaternion, duration - .5f).SetEase(ease).SetAutoKill(false)
                     .OnComplete(callback));
+        }
+
+        internal static void CameraFieldOfViewChange(Camera main, int endValue, int firstValue, float duration)
+        {
+            var seq = DOTween.Sequence();
+            seq.Append(main.DOFieldOfView(endValue, duration)).Append(main.DOFieldOfView(firstValue, duration));
+        }
+
+        internal static void CameraFieldOfViewChangeWithEase(Camera main, int endValue, int firstValue,
+            float duration, Ease ease)
+        {
+            var seq = DOTween.Sequence();
+            seq.Append(main.DOFieldOfView(endValue, duration)).SetEase(ease)
+                .Append(main.DOFieldOfView(firstValue, duration));
         }
     }
 }

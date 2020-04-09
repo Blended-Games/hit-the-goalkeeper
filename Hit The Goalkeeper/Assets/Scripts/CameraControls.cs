@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Accessables;
+using DG.Tweening;
 using Managers;
 using UnityEngine;
 
@@ -26,7 +27,7 @@ public class CameraControls : MonoBehaviour
     [TextArea] [Header("Message To Artists")] [SerializeField]
     private string ZoomEffect = "You can change the zoom effects values from this area.";
 
-    public int fieldOfViewEndValue; //This is the end value for camera zoom.
+    public int fieldOfViewEndValue, fieldOfViewFirstValue; //This is the end value for camera zoom.
     public float duration; //This is the duration for camera zoom effect.
     public bool easeActive;
     public Ease ease;
@@ -39,7 +40,7 @@ public class CameraControls : MonoBehaviour
     private string messageForTheArtists = "You can change the offset of the camera follow thru here.";
 
     public Vector3 offsetPlayer, offsetGoalkeeper;
-
+    
     #endregion
 
     #region CamFollow
@@ -61,9 +62,11 @@ public class CameraControls : MonoBehaviour
         }
 
         var smooothedPosition = Vector3.Lerp(transform.position, desiredPosition, .125f);
-        transform.position = smooothedPosition;
+        var transform1 = transform;
+        transform1.position = smooothedPosition;
 
         //transform.LookAt(target);
+        
     }
 
     #endregion
@@ -73,11 +76,11 @@ public class CameraControls : MonoBehaviour
     {
         if (!easeActive)
         {
-            _camera.DOFieldOfView(fieldOfViewEndValue, duration).PlayBackwards();
+            DoTweenController.CameraFieldOfViewChange(_camera,fieldOfViewEndValue,fieldOfViewFirstValue,duration);
         }
         else if (easeActive)
         {
-            _camera.DOFieldOfView(fieldOfViewEndValue, duration).SetEase(ease).PlayBackwards();
+            DoTweenController.CameraFieldOfViewChangeWithEase(_camera,fieldOfViewEndValue,fieldOfViewFirstValue,duration, ease);
         }
     }
 }

@@ -65,19 +65,19 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
-            GameManager.main.p2.transform.position = GameManager.main.p2Pos.transform.position;
-            GameManager.main.p2.transform.rotation = GameManager.main.p2Pos.transform.rotation;
+            var transform1 = GameManager.main.p2Pos.transform;
+            var transform2 = GameManager.main.p2.transform;
+            transform2.position = transform1.position;
+            transform2.rotation = transform1.rotation;
             GameManager.main.ballAttackValue = 0;
             GameManager.main.firstTouch = false;
             state = PlayerState.GoalKeeperTurn;
-            Debug.Log("State goalkeepera geçti");
             BallMove.main.ChangeKeeper();
         }
     }
 
     public void GoalKeeperAttack()
     {
-        Debug.Log("Goalkeeper Attacka girildi");
         var isDead = unitPlayer.TakeDamage(unitGoalKeeper.damage);
 
         playerHUD.SetHp(unitGoalKeeper.damage);
@@ -88,8 +88,9 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
-            GameManager.main.p1.transform.position = GameManager.main.p1Pos.transform.position;
-            GameManager.main.p1.transform.rotation = GameManager.main.p1Pos.transform.rotation;
+            var transform1 = GameManager.main.p1Pos.transform;
+            GameManager.main.p1.transform.position = transform1.position;
+            GameManager.main.p1.transform.rotation = transform1.rotation;
             GameManager.main.firstTouch = true;
             GameManager.main.powerBarIndicatorParent.SetActive(true);
             state = PlayerState.PlayerTurn;
