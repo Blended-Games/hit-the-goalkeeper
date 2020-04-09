@@ -83,6 +83,8 @@ namespace Managers
 
         private CameraControls _camera;
 
+        public float ballCurveValue; //This will be the value for balls left, right movement.
+
         #endregion
 
         #region TargetFrameRate

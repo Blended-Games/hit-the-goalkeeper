@@ -15,6 +15,7 @@ namespace GUI
         private static readonly int
             Shoot = Animator.StringToHash("Shoot"); //This is temporary its just reaching the value inside animator.
 
+        private float shootValue;
         #endregion
 
         #region RectAnim
@@ -39,8 +40,18 @@ namespace GUI
                 ShootSystem.instance.state == PlayerState.PlayerTurn)
             {
                 //Detecting for the input.
-                var shootValue =
-                    Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
+                if (GameManager.main.calculationID == 1)
+                {
+                     shootValue =
+                        (transform.localPosition.x);
+                     GameManager.main.ballCurveValue = shootValue;
+                }
+                else if (GameManager.main.calculationID == 0)
+                {
+                     shootValue =
+                        Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
+                }
+
                 CalculateShotValue(shootValue, GameManager.main.calculationID);
                 transform.DORestart(); //Restarting anim for the second time because of power value assignment
             }

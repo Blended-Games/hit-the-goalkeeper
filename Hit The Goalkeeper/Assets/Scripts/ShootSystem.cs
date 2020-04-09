@@ -69,7 +69,6 @@ public class ShootSystem : MonoBehaviour
             GameManager.main.p2.transform.rotation = GameManager.main.p2Pos.transform.rotation;
             GameManager.main.ballAttackValue = 0;
             GameManager.main.firstTouch = false;
-            //GameManager.main.playersAnimMoveStart = false;
             state = PlayerState.GoalKeeperTurn;
             Debug.Log("State goalkeepera geçti");
             BallMove.main.ChangeKeeper();

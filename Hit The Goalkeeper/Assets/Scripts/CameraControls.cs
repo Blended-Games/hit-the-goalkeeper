@@ -60,7 +60,7 @@ public class CameraControls : MonoBehaviour
             desiredPosition = target.position - offsetGoalkeeper;
         }
 
-        var smooothedPosition = Vector3.Lerp(transform.position, desiredPosition, 0.125f);
+        var smooothedPosition = Vector3.Lerp(transform.position, desiredPosition, .125f);
         transform.position = smooothedPosition;
 
         //transform.LookAt(target);
