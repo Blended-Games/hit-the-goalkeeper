@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using GUI;
 using Managers;
 using UnityEngine;
@@ -64,8 +65,6 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
-            state = PlayerState.GoalKeeperTurn;
-            GameManager.main.firstTouch = false;
             BallMove.main.ChangeKeeper();
         }
     }
@@ -79,11 +78,6 @@ public class ShootSystem : MonoBehaviour
         {
             state = PlayerState.Lost;
             EndShoot();
-        }
-        else
-        {
-            GameManager.main.firstTouch = true;
-            
         }
     }
 

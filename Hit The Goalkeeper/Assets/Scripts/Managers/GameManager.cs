@@ -73,6 +73,14 @@ namespace Managers
 
         public GameObject levelChange; //This will be the button for level changing.
 
+        public GameObject powerBarIndicatorParent; //This is the powerbar indicator script.
+
+        public Transform p1Pos, p2Pos; //These are the positions for the characters. We need these because animation states are changing characters positions.
+
+        public GameObject p1, p2;
+
+        private CameraControls _camera;
+
         #endregion
 
         #region TargetFrameRate
@@ -80,6 +88,12 @@ namespace Managers
         private void Start()
         {
             Application.targetFrameRate = 30; //Setting the target frame rate for unexpected frame drop rates.
+            _camera = FindObjectOfType<CameraControls>();
+        }
+
+        public void ActivateCam()
+        {
+            _camera.enabled = true;
         }
 
         #endregion

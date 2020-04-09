@@ -36,9 +36,6 @@ namespace GUI
         private void Update()
         {
             if (!Input.GetMouseButtonDown(0) || !GameManager.main.firstTouch) return; //Detecting for the input.
-            //GameManager.main.firstTouch = false;
-
-//kordinat duzlemndeki degeri
             var shootValue =
                 Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
             CalculateShotValue(shootValue, GameManager.main.calculationID);
@@ -46,7 +43,7 @@ namespace GUI
         }
 
 
-        public void CalculateShotValue(float shootValue, int id)
+        private void CalculateShotValue(float shootValue, int id)
         {
             //Calculating value of the power
             //Id is representing the current state(transform bar, power bar).
@@ -155,6 +152,8 @@ namespace GUI
                     GameManager.main.ballAttackValue = ((1 / shootValue) * 1.5f) % 20; //Setting the balls shooting value with a normalized range.
                     transform.DOKill(); //Killing the power bar indicator animation.
                     GameManager.main.firstTouch = false;
+                    GameManager.main.powerBarIndicatorParent.SetActive(false);
+                    GameManager.main.ActivateCam();
                     break;
             }
         }

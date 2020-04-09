@@ -265,12 +265,42 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63483005}
   m_LocalRotation: {x: -0, y: -0.07106904, z: -0, w: 0.9974714}
-  m_LocalPosition: {x: 0.95, y: 0.73, z: -10.11}
+  m_LocalPosition: {x: 0.813, y: 0.73, z: -9.872}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 520631244}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 8.814, y: -26.499, z: -1.1960001}
+--- !u!1 &165256962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 165256963}
+  m_Layer: 0
+  m_Name: p1Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &165256963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165256962}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.291, y: 0.03, z: -8.092}
+  m_LocalScale: {x: 0.30077, y: 0.30077, z: 0.30077}
+  m_Children: []
+  m_Father: {fileID: 520631244}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &202906841 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7699609291776095489, guid: 11b4ca362151248d19fd4460ba9c3180,
@@ -334,6 +364,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.75, y: 2.48, z: 0.92}
   m_Center: {x: 0.00000001490116, y: -0.27789155, z: -0.010250843}
+--- !u!1 &228066681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 228066682}
+  m_Layer: 0
+  m_Name: p2Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &228066682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228066681}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: -0.6997668, y: 0.038, z: -1.772}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_Children: []
+  m_Father: {fileID: 520631244}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &302745824
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +637,8 @@ Transform:
   - {fileID: 63483006}
   - {fileID: 2017145075}
   - {fileID: 510209739}
+  - {fileID: 165256963}
+  - {fileID: 228066682}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1889,6 +1951,11 @@ MonoBehaviour:
   calculationID: 0
   ballsHitRoad: 0
   levelChange: {fileID: 1148796526}
+  powerBarIndicatorParent: {fileID: 1280509288}
+  p1Pos: {fileID: 165256963}
+  p2Pos: {fileID: 228066682}
+  p1: {fileID: 1776328141}
+  p2: {fileID: 1921760209}
 --- !u!4 &1577940864
 Transform:
   m_ObjectHideFlags: 0
@@ -2571,8 +2638,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750627551}
   serializedVersion: 2
-  m_Mass: 4
-  m_Drag: 4
+  m_Mass: 1
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -2651,6 +2718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b0c24c486dd4966802a6ee06f57f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _updateStop: 0
 --- !u!1 &1761712617 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2706790727220717145, guid: d6d2e90f792a39044b0907570f28dbf4,
@@ -3023,7 +3091,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848528494}
   m_LocalRotation: {x: -0, y: -0.07106904, z: -0, w: 0.9974714}
-  m_LocalPosition: {x: 0.95, y: 0.73, z: -10.11}
+  m_LocalPosition: {x: 0.813, y: 0.73, z: -9.872}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 520631244}
@@ -3061,13 +3129,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ZoomEffect: You can change the zoom effects values from this area.
-  fieldOfViewEndValue: 90
-  duration: 2
+  fieldOfViewEndValue: 45
+  duration: 0.5
   easeActive: 0
   ease: 15
   target: {fileID: 1750627557}
   messageForTheArtists: You can change the offset of the camera follow thru here.
-  offset: {x: -0.5, y: 0.3, z: 3}
+  offset: {x: -0.41, y: -0.63, z: 2.81}
 --- !u!1 &1885770310
 GameObject:
   m_ObjectHideFlags: 0
@@ -3678,6 +3746,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: -6140330621076108852, guid: d6d2e90f792a39044b0907570f28dbf4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -5353798428512139739, guid: d6d2e90f792a39044b0907570f28dbf4,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3777,6 +3850,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -1716368181774306098, guid: d6d2e90f792a39044b0907570f28dbf4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1233657081076909810, guid: d6d2e90f792a39044b0907570f28dbf4,
         type: 3}

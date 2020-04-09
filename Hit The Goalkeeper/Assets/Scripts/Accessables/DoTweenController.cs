@@ -101,5 +101,13 @@ namespace Accessables
         {
             rectTransform.DOAnchorPos(endValue, duration).SetLoops(setLoops, loopType).SetEase(ease);
         }
+
+        internal static void SeqMoveRotateCallBack(Transform thisTransform, Vector3 endValıe, Vector3 quaternion,
+            float duration, TweenCallback callback, Ease ease)
+        {
+            var seq = DOTween.Sequence();
+            seq.Append(thisTransform.DOLocalMove(endValıe, duration))
+                .Join(thisTransform.DOLocalRotate(quaternion, duration - .5f).SetEase(ease).SetAutoKill(false).OnComplete(callback));
+        }
     }
 }

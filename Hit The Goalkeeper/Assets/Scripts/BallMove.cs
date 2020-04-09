@@ -1,4 +1,8 @@
-﻿using DG.Tweening;
+﻿using System.Collections;
+using System.Diagnostics;
+using Accessables;
+using DG.Tweening;
+using GUI;
 using Managers;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -29,28 +33,28 @@ public class BallMove : MonoBehaviour
     private Vector3[] path = new Vector3[3];
     private PathType pathType = PathType.CatmullRom;
     private bool _close;
-    private Sequence _seq;
     private Vector3 _gameManagerPos;
     private Camera _camera;
-    private bool _updateStop;
+    public bool _updateStop;
 
     private static readonly int LegHit = Animator.StringToHash("LegHit");
     private static readonly int MidHit = Animator.StringToHash("MidHit");
     private static readonly int HeadHit = Animator.StringToHash("HeadHit");
     private static readonly int Laugh = Animator.StringToHash("Laugh");
 
+
+    
     #endregion
 
     private void Start()
-    { 
+    {
         _camera = Camera.main;
-        _seq = DOTween.Sequence();
+
     }
 
     private void Update()
     {
-        
-        if ((transform.position - _gameManagerPos).sqrMagnitude < 5 && !_updateStop)
+        if ((transform.position - _gameManagerPos).sqrMagnitude < 3 && !_updateStop)
         {
             AnimStateChanger();
         }
@@ -64,13 +68,11 @@ public class BallMove : MonoBehaviour
         _gameManagerPos =
             GameManager.main
                 .transformPositionToShoot; //The position for the ball to reach, it was taken via players input.
-
-        
-            CameraControls.main.StartFieldOfViewChangeMainCam();
-
-            BallParabollaMove(_gameManagerPos,
-                randomPos: new Vector3(Random.Range(-.45f, .45f), Random.Range(.35f, 1.26f), -5));
-        
+        //target = _gameManagerPos;
+        //Launcher();
+        CameraControls.main.StartFieldOfViewChangeMainCam();
+        BallParabollaMove(_gameManagerPos, 
+            randomPos: new Vector3(Random.Range(-.45f, .45f), Random.Range(.35f, 1.26f), -5));
     }
 
     private void BallParabollaMove(Vector3 endValue, Vector3 randomPos)
@@ -78,15 +80,10 @@ public class BallMove : MonoBehaviour
         path[0] = transform.position;
         path[1] = randomPos;
         path[2] = endValue;
-        transform.DOLocalPath(path, .75f, pathType).SetEase(Ease.Linear).OnComplete(ForceStop);
+        transform.DOLocalPath(path, .75f, pathType).SetEase(Ease.Linear).OnComplete(CameraFollowStop);
     }
 
-    private void ForceStop()
-    {
-        Debug.Log("ForceStop çalıştı");
-        transform.DOKill();
-        _camera.GetComponent<CameraControls>().enabled = false;
-    }
+    
 
     private void ChangeState()
     {
@@ -95,44 +92,41 @@ public class BallMove : MonoBehaviour
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
-                _seq.Append(_camera.transform.DOLocalMove(p2.position, 1))
-                  .Join(_camera.transform.DORotate(p2.eulerAngles, 1)); 
-               
-                _camera.transform.DOLocalMove(p2.position, 5).OnComplete(ChangeStateDelay);
-               
+                DoTweenController.SeqMoveRotateCallBack(_camera.transform,p2.position,p2.eulerAngles,2,ChangeStateDelay,Ease.Flash);
                 transform.position = GameManager.main.p2BallsTransform.localPosition;
-                //ChangeStateDelay();
-              
+                GameManager.main.p1.transform.position = GameManager.main.p1Pos.position;
                 break;
             case PlayerState.GoalKeeperTurn:
-
-                _seq.Append(_camera.transform.DOLocalMove(p1.position, 1))
-                    .Join(_camera.transform.DORotate(p1.eulerAngles, 1));
-                   
-                   _camera.transform.DOLocalMove(p1.position, 5).OnComplete(ChangeStateDelay);
-              
+                DoTweenController.SeqMoveRotateCallBack(_camera.transform,p1.position,p1.eulerAngles,2,ChangeStateDelay, Ease.Flash);
                 transform.position = GameManager.main.p1BallsTransform.localPosition;
-                Debug.Log("Buraya Gelmeyi başardım"+ transform.position);
-                
+                GameManager.main.p2.transform.position = GameManager.main.p2Pos.position;
                 break;
         }
     }
 
     private void ChangeStateDelay()
     {
-       
+        StartCoroutine(ChangeStateDelayCoroutine());
+    }
+
+    private IEnumerator ChangeStateDelayCoroutine()
+    {
+        yield return new WaitForSeconds(2);
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
+                AttackCompleted();
                 ShootSystem.instance.state = PlayerState.GoalKeeperTurn;
-                _updateStop = false;
-            //    Debug.Log("PlayerTurndeki Updatei kapattım");
+                GameManager.main.firstTouch = false;
+                Debug.Log("State goalkeeper oldu");
                 break;
             case PlayerState.GoalKeeperTurn:
-             Debug.Log("ChangeStateDelay Girdim");
-          //    ShootSystem.instance.state = PlayerState.PlayerTurn;
-         //       Debug.Log("Goalkeeperturndeki Updatei kapattım");
-               _updateStop = true;
+                AttackCompleted();
+                ShootSystem.instance.state = PlayerState.PlayerTurn;
+                Debug.Log("State player turn oldu");
+                GameManager.main.powerBarIndicatorParent.SetActive(true);
+                GameManager.main.firstTouch = true;
+                _updateStop = false;
                 break;
         }
     }
@@ -158,8 +152,6 @@ public class BallMove : MonoBehaviour
                 {
                     ShootSystem.instance.unitGoalKeeper.damage = (int) GameManager.main.ballAttackValue;
                 }
-
-                Debug.Log("attackCompleted ÇALIŞTI");
                 ShootSystem.instance.GoalKeeperAttack();
             }
         }
@@ -167,7 +159,6 @@ public class BallMove : MonoBehaviour
 
     #endregion
 
-    
 
     private void AnimStateChanger()
     {
@@ -213,24 +204,66 @@ public class BallMove : MonoBehaviour
                 break;
         }
 
-        
-        
         ChangeState();
+        _updateStop = true;
+        GameManager.main.calculationID = 0;
 
-         if (GameManager.main.ballsHitRoad != TransformPosition.Off)
-         {
-             AttackCompleted();
-         }
-         
     }
-    
+
     public void ChangeKeeper()
     {
         GameManager.main.ballAttackValue = Random.Range(5, 20);
-    //   GameManager.main.transformPositionToShoot = GameManager.main.playerShootPositions[Random.Range(0, 3)].position;
-        
-        GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[Random.Range(0, 3)].position;
-        Debug.Log(GameManager.main.ballAttackValue);
+        GameManager.main.transformPositionToShoot = GameManager.main.playerShootPositions[Random.Range(0, 3)].position;
+        _updateStop = false;
+        Debug.Log("Buraya kaç kere girdim");
+        //GameManager.main.transformPositionToShoot = GameManager.main.goalKeeperShootPositions[Random.Range(0, 3)].position;
+        GameManager.main.ActivateCam();
         Movement();
     }
+    
+    private void CameraFollowStop()
+    {
+        //transform.DOPause();
+        _camera.GetComponent<CameraControls>().enabled = false;
+    }
+
+
+
+    //
+    //
+    //
+    // public float h = 2;
+    // public float gravity = -18;
+    //
+    //
+    //
+    // void Launcher() {
+    //     Physics.gravity = Vector3.up * gravity;
+    //     transform.GetComponent<Rigidbody>().useGravity = true;
+    //     transform.GetComponent<Rigidbody>().velocity = CalculateLaunchData ().initialVelocity;
+    // }
+    //
+    // LaunchData CalculateLaunchData() {
+    //     float displacementY = target.y - transform.GetComponent<Rigidbody>().position.y;
+    //     Vector3 displacementXZ = new Vector3 (target.x - transform.GetComponent<Rigidbody>().position.x, 0, target.z - transform.GetComponent<Rigidbody>().position.z);
+    //     float time = Mathf.Sqrt(-2*h/gravity) + Mathf.Sqrt(2*(displacementY - h)/gravity);
+    //     Vector3 velocityY = Vector3.up * Mathf.Sqrt (-2 * gravity * h);
+    //     Vector3 velocityXZ = displacementXZ / time;
+    //
+    //     return new LaunchData(velocityXZ + velocityY * -Mathf.Sign(gravity), time);
+    // }
+    //
+    // struct LaunchData {
+    //     public readonly Vector3 initialVelocity;
+    //     public readonly float timeToTarget;
+    //
+    //     public LaunchData (Vector3 initialVelocity, float timeToTarget)
+    //     {
+    //         this.initialVelocity = initialVelocity;
+    //         this.timeToTarget = timeToTarget;
+    //     }
+		  //
+    // }
+    //
+    //
 }

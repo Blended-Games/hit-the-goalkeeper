@@ -41,7 +41,6 @@ public class CameraControls : MonoBehaviour
     private string messageForTheArtists = "You can change the offset of the camera follow thru here.";
 
     public Vector3 offset;
-    Tweener tween;
 
     #endregion
 
@@ -50,28 +49,16 @@ public class CameraControls : MonoBehaviour
     void Start()
     {
         _camera = Camera.main;
-        // First create the "move to target" tween and store it as a Tweener.
-        // In this case I'm also setting autoKill to FALSE so the tween can go on forever
-        // (otherwise it will stop executing if it reaches the target)
-        if (GameManager.main.camStopFollow) return;
-        var position = target.position;
-        desiredPosition = position + offset;
-        tween = transform.DOMove(desiredPosition, duration).SetEase(ease).SetAutoKill(false);
-        // Store the target's last position, so it can be used to know if it changes
-        // (to prevent changing the tween if nothing actually changes)
-        targetLastPos = position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        // Use an Update routine to change the tween's endValue each frame
-        // so that it updates to the target's position if that changed
-        if (GameManager.main.camStopFollow) return;
-        if (targetLastPos == target.position) return;
-        // Add a Restart in the end, so that if the tween was completed it will play again
-        tween.ChangeEndValue(desiredPosition, true).Restart();
-        targetLastPos = target.position;
+        desiredPosition = target.position - offset;
+        var smooothedPosition = Vector3.Lerp(transform.position, desiredPosition, 0.125f);
+        transform.position = smooothedPosition;
         
+        //transform.LookAt(target);
+
     }
 
     #endregion
