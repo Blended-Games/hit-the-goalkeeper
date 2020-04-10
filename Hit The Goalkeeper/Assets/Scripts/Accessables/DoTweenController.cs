@@ -49,7 +49,8 @@ namespace Accessables
         {
             var seq = DOTween.Sequence();
             seq.Append(thisTransform.DOLocalMove(endValue, duration))
-                .Join(thisTransform.DOLocalRotate(rotation, duration)).SetEase(Ease.Flash);
+                .Join(thisTransform.DOLocalRotate(rotation, duration)).SetEase(Ease.OutExpo);
+            //Bunu outexpor yaptımız zaman zıbın diye yaklaşıyor
         }
     }
 }

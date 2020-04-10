@@ -2,6 +2,7 @@
 using Accessables;
 using Managers;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Vector3 = UnityEngine.Vector3;
 
 public class CameraControls : MonoBehaviour
@@ -38,7 +39,9 @@ public class CameraControls : MonoBehaviour
     // private string messageForTheArtists = "You can change the offset of the camera follow thru here.";
 
     public Vector3 offsetPlayer, offsetGoalkeeper;
-    public Vector3 p1CamClose, p2CamClose;
+    [FormerlySerializedAs("p1CamClose")] public Vector3 p1CamFaceClose;
+    [FormerlySerializedAs("p2CamClose")] public Vector3 p2CamFaceClose;
+    public Vector3 p1CamClose, p2camClose;
 
     #endregion
 
@@ -95,10 +98,26 @@ public class CameraControls : MonoBehaviour
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
-                DoTweenController.SequenceMoveAndRotate(this.transform, p1CamClose, new Vector3(0, 0, 0), .5f);
+                if (GameManager.main.ballsHitRoad == TransformPosition.Head)
+                {
+                    DoTweenController.SequenceMoveAndRotate(this.transform, p1CamFaceClose, new Vector3(0, 0, 0), 2f);
+                }
+                else
+                {
+                    DoTweenController.SequenceMoveAndRotate(this.transform, p1CamClose, new Vector3(0, 0, 0), 2f);
+
+                }
                 break;
             case PlayerState.GoalKeeperTurn:
-                DoTweenController.SequenceMoveAndRotate(this.transform, p2CamClose, new Vector3(0, -180, 0), .5f);
+                if (GameManager.main.ballsHitRoad == TransformPosition.Head)
+                {
+                    DoTweenController.SequenceMoveAndRotate(this.transform, p2CamFaceClose, new Vector3(0, -180, 0), 2f);
+                }
+                else
+                {
+                    DoTweenController.SequenceMoveAndRotate(this.transform, p2camClose, new Vector3(0, -180, 0), 2f);
+
+                }
                 break;
             case PlayerState.Won:
                 break;
