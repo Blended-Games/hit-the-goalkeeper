@@ -150,7 +150,7 @@ public class BallMove : MonoBehaviour
             ShootSystem.instance.unitGoalKeeper.damage = (int) GameManager.main.ballAttackValue;
         }
 
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.1f);
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
@@ -170,29 +170,11 @@ public class BallMove : MonoBehaviour
     {
         if (ShootSystem.instance.state == PlayerState.PlayerTurn)
         {
-            if (GameManager.main.ballsHitRoad != TransformPosition.Off)
-            {
-                GameManager.main.ballAttackValue = 0;
-            }
-
-            ShootSystem.instance.unitPlayer.damage = (int) GameManager.main.ballAttackValue;
-
-
-            ShootSystem.instance.PlayerAttack();
+             ShootSystem.instance.PlayerAttack();
         }
         else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
-        {
-            {
-                if (GameManager.main.ballsHitRoad != TransformPosition.Off)
-                {
-                    GameManager.main.ballAttackValue = 0;
-                }
-
-                ShootSystem.instance.unitGoalKeeper.damage = (int) GameManager.main.ballAttackValue;
-
-
-                ShootSystem.instance.GoalKeeperAttack();
-            }
+        {  
+             ShootSystem.instance.GoalKeeperAttack();
         }
     }
 
