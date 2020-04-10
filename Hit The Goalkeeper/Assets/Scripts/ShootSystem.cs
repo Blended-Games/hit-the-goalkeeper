@@ -65,11 +65,13 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
+            CameraControls.main.CameraFixOffset();
             var transform1 = GameManager.main.p2Pos.transform;
             var transform2 = GameManager.main.p2.transform;
             transform2.position = transform1.position;
             transform2.rotation = transform1.rotation;
             GameManager.main.ballAttackValue = 0;
+            GameManager.main.ballCurveValue = 0;
             GameManager.main.firstTouch = false;
             state = PlayerState.GoalKeeperTurn;
             BallMove.main.ChangeKeeper();
@@ -88,6 +90,7 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
+            CameraControls.main.CameraFixOffset();
             var transform1 = GameManager.main.p1Pos.transform;
             GameManager.main.p1.transform.position = transform1.position;
             GameManager.main.p1.transform.rotation = transform1.rotation;

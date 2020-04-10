@@ -7,17 +7,10 @@ namespace Accessables
 {
     public static class DoTweenController
     {
-        //Moving an object in 3 dimensional space.
-        internal static void DoMove3D(Transform thisTransform, Vector2 endValue, float duration, Ease ease,
-            int setLoops, LoopType loop)
-        {
-            thisTransform.DOMove(endValue, duration).SetEase(ease).SetLoops(-1, loop);
-        }
-
         //Moving an objects local position in 3 dimensional space.
-        internal static void DoLocalMove3D(Transform thisTransform, Vector2 endValue, float duration, Ease ease)
+        internal static void DoLocalMove3D(Transform thisTransform, Vector3 endValue, float duration)
         {
-            thisTransform.DOLocalMove(endValue, duration).SetEase(ease);
+            thisTransform.DOLocalMove(endValue, duration);
         }
 
         internal static void DoLocalMove3DWithLoop(Transform thisTransform, Vector2 endValue, float duration, Ease ease,
@@ -26,91 +19,14 @@ namespace Accessables
             thisTransform.DOLocalMove(endValue, duration).SetEase(ease).SetLoops(-1, loop);
         }
 
-        //Moving an object in 2 dimensional space.
-        internal static void DoMove2D(Transform thisTransform, Vector2 endValue, float duration, Ease ease,
-            int setLoops, LoopType loop)
-        {
-            thisTransform.DOMove(endValue, duration).SetEase(ease).SetLoops(-1, loop);
-        }
-
-        //Moving and rotating an object in 3 dimensional space.
-        public static void SequenceMoveAndRotate3D(Transform thisTransform, Vector3 endValuePos, Quaternion endValueRot,
-            float duration)
-        {
-            var seq = DOTween.Sequence();
-            seq.Append(thisTransform.DOLocalMove(endValuePos, duration))
-                .Join(thisTransform.DOLocalRotate(endValueRot.eulerAngles, duration));
-        }
-
-        //Moving an objects y position and changing its color with ease.
-        internal static void SequenceMoveYandChangeColorWithEase(Transform thisTransform, float endValuePos,
-            MeshRenderer meshMat, Color color, float duration)
-        {
-            var ease = Ease.OutBounce;
-            var seq = DOTween.Sequence();
-            seq.Append(thisTransform.DOMoveY(endValuePos, duration)).Join(meshMat.material.DOColor(color, duration))
-                .SetEase(ease);
-        }
-
-        //Scale an objects x axis.
-        internal static void ScaleX(Transform thisTransform, float endValue, float duration)
-        {
-            thisTransform.DOScaleX(endValue, duration).SetEase(Ease.Unset);
-        }
-
-        //Scale an objects z axis.
-        internal static void ScaleZ(Transform thisTransform, float endValue, float duration)
-        {
-            thisTransform.DOScaleZ(endValue, duration).SetEase(Ease.Unset);
-        }
-
-        //Filling the Bar.
-        internal static void BarFill(Image image, float endValue, float duration)
-        {
-            image.DOFillAmount(endValue, duration);
-        }
-
-        //Scale an objects x and y axises.
-        internal static void ScaleXy(Transform thisTransform, float scaleValueX, float scaleValueY, float duration)
-        {
-            var seq = DOTween.Sequence();
-            seq.Append(thisTransform.DOScaleX(scaleValueX, duration))
-                .Join(thisTransform.DOScaleY(scaleValueY, duration))
-                .SetAutoKill(true);
-        }
-
-        //Scaling an objects x, y axis and moving it in 2 dimensions
-        internal static void ScaleXyAndMove2D(Transform thisTransform, Behaviour behaviour, float endValue,
-            float scaleEndValueX, float scaleEndValueY, float duration)
-        {
-            var seq = DOTween.Sequence();
-            seq.Append(thisTransform.DOScaleX(scaleEndValueX, duration))
-                .Join(thisTransform.DOScaleY(scaleEndValueY, duration))
-                .Join(thisTransform.transform.DOLocalMoveY(endValue, duration))
-                .OnComplete(() => DestroyObjBehaviour((behaviour)));
-        }
-
-        //Deactivating an objects behaviour.
-        internal static void DestroyObjBehaviour(Behaviour component)
-        {
-            component.enabled = false;
-        }
-
-        //Moving a GUI objects anchored position.
-        internal static void AnchoredPosMove(RectTransform rectTransform, Vector2 endValue, float duration, Ease ease,
-            int setLoops, LoopType loopType)
-        {
-            rectTransform.DOAnchorPos(endValue, duration).SetLoops(setLoops, loopType).SetEase(ease);
-        }
-
-        internal static void SeqMoveRotateCallBack(Transform thisTransform, Vector3 endValıe,
+        internal static void SeqMoveRotateCallBack(Transform thisTransform, Vector3 endValue,
             Vector3 quaternion,
             float duration, TweenCallback callback, Ease ease)
         {
             var seq = DOTween.Sequence();
             seq.SetDelay(2)
-                .Append(thisTransform.DOLocalMove(endValıe, duration))
-                .Join(thisTransform.DOLocalRotate(quaternion, duration - .5f).SetEase(ease).SetAutoKill(false)
+                .Append(thisTransform.DOLocalMove(endValue, duration))
+                .Join(thisTransform.DOLocalRotate(quaternion, duration - 1.5f).SetEase(ease).SetAutoKill(false)
                     .OnComplete(callback));
         }
 

@@ -168,7 +168,6 @@ namespace GUI
                     GameManager.main.playerAnim.SetBool(Shoot, true);
                     GameManager.main.ballAttackValue =
                         ((1 / shootValue) * 1.5f) % 20; //Setting the balls shooting value with a normalized range.
-                    //transform.DOKill(); //Killing the power bar indicator animation.
                     GameManager.main.powerBarIndicatorParent.SetActive(false);
                     GameManager.main.firstTouch = false;
                     GameManager.main.ActivateCam();
