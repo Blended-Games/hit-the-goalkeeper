@@ -24,25 +24,24 @@ public class CameraControls : MonoBehaviour
     #endregion
 
     #region Variables
-
-    [TextArea] [Header("Message To Artists")] [SerializeField]
-    private string ZoomEffect = "You can change the zoom effects values from this area.";
-
-    public int fieldOfViewEndValue, fieldOfViewFirstValue; //This is the end value for camera zoom.
-    public float duration; //This is the duration for camera zoom effect.
-    public bool easeActive;
-    public Ease ease;
+    
+    // public int fieldOfViewEndValue, fieldOfViewFirstValue; //This is the end value for camera zoom.
+    // public float duration; //This is the duration for camera zoom effect.
+    // public bool easeActive;
+    // public Ease ease;
     private Camera _camera;
     public bool camFollowStop;
 
     public Transform target; // Target to follow
     private Vector3 targetLastPos, desiredPosition;
 
-    [TextArea] [SerializeField]
-    private string messageForTheArtists = "You can change the offset of the camera follow thru here.";
+    // [TextArea] [SerializeField]
+    // private string messageForTheArtists = "You can change the offset of the camera follow thru here.";
 
     public Vector3 offsetPlayer, offsetGoalkeeper;
-    private Vector3 oldOffsetPlayer, oldOffSetGoalPlayer;
+    public Vector3 oldOffsetPlayer, oldOffSetGoalPlayer;
+    public Vector3 closeOffsetPlayer, closeOffSetGoalkeeper;
+    public float closeOffsetDuration;
 
     #endregion
 
@@ -83,7 +82,7 @@ public class CameraControls : MonoBehaviour
     #endregion
 
 
-    public void StartFieldOfViewChangeMainCam()
+    /*public void StartFieldOfViewChangeMainCam()
     {
         if (!easeActive)
         {
@@ -94,15 +93,15 @@ public class CameraControls : MonoBehaviour
             DoTweenController.CameraFieldOfViewChangeWithEase(_camera, fieldOfViewEndValue, fieldOfViewFirstValue,
                 duration, ease);
         }
-    }
+    }*/
 
     public void CameraGetCloser()
     {
         camFollowStop = true;
         if (GameManager.main.ballsHitRoad != TransformPosition.Off || camFollowStop)
         {
-            offsetPlayer = Vector3.Lerp(offsetPlayer, new Vector3(0, .1f, .8f), 1); 
-            offsetGoalkeeper = Vector3.Lerp(offsetGoalkeeper, new Vector3(0f, -.08f, -.8f), 1);
+            //offsetPlayer = Vector3.Lerp(offsetPlayer, closeOffsetPlayer,closeOffsetDuration); 
+            //offsetGoalkeeper = Vector3.Lerp(offsetGoalkeeper, closeOffSetGoalkeeper,closeOffsetDuration);
             // if (ShootSystem.instance.state == PlayerState.PlayerTurn)
             //     DoTweenController.DoLocalMove3D(transform, offsetPlayer, 1);
             // else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)

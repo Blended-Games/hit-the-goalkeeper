@@ -6,7 +6,7 @@ namespace Animator_States
     public class BallShootState : StateMachineBehaviour
     {
         private static readonly int Shoot = Animator.StringToHash("Shoot");
-        override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             animator.SetBool(Shoot,false);
         }
@@ -14,7 +14,7 @@ namespace Animator_States
         {
             BallMove.main._updateStop = false;
             BallMove.main.Movement();
-            CameraControls.main.StartFieldOfViewChangeMainCam(); //This is the trigger for camera following mechanic.
+            //CameraControls.main.StartFieldOfViewChangeMainCam(); //This is the trigger for camera following mechanic.
         }
     }
 }

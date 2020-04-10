@@ -40,24 +40,12 @@ namespace Managers
 
         public bool firstTouch; //This the first calculation bool, it controls the bars function.
 
-        [TextArea] [SerializeField] private string messageForArtists =
-            "You need to add the corresponding transform positions to these arrays. " +
-            "Start from the worst condition (0 - leg, 1 - spine, 2 - head, etc..).";
-
         public Transform[]
             goalKeeperShootPositions,
             playerShootPositions; //The transforms of the keepers should start from the worst scenario,
         //(0 - legs, 1 - spine, etc.)
 
-        [TextArea] [SerializeField] private string messageForArtists2 =
-            "You need to add the corresponding ball positions to these Transforms." +
-            "Ball wil transform to those areas on different game states.";
-
         public Transform p1BallsTransform, p2BallsTransform; //These will be the positions for the balls.
-
-        [TextArea] [SerializeField] private string messageForArtists3 =
-            "You need to add the corresponding camera positions to these Transforms. " +
-            "I suggest you to add the camera transform position and make it a prefab with the character.";
 
         public Transform
             p1sCameraPosition, p2sCameraPosition; //These are the positions for the cameras to move on different states.
@@ -84,6 +72,8 @@ namespace Managers
         private CameraControls _camera;
 
         public float ballCurveValue; //This will be the value for balls left, right movement.
+
+        public bool gameStop; //This is a temporary bool for camera settings.
 
         #endregion
 

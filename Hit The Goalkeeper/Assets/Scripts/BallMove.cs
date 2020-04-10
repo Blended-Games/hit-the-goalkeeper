@@ -53,9 +53,10 @@ public class BallMove : MonoBehaviour
 
     private void Update()
     {
-        if ((transform.position - _gameManagerPos).sqrMagnitude < 3 && !_updateStop)
+        if ((transform.position - _gameManagerPos).sqrMagnitude < 1 && !_updateStop)
         {
             AnimStateChanger();
+            CameraControls.main.CameraGetCloser();
         }
     }
 
@@ -78,7 +79,6 @@ public class BallMove : MonoBehaviour
         path[1] = randomPos;
         path[2] = endValue;
         transform.DOLocalPath(path, .65f, pathType).SetEase(Ease.Flash).OnComplete(CameraFollowStop);
-
     }
 
 
@@ -90,7 +90,7 @@ public class BallMove : MonoBehaviour
         {
             case PlayerState.PlayerTurn:
 
-                DoTweenController.SeqMoveRotateCallBack(_camera.transform,  p2.position, p2.eulerAngles, 2,
+                DoTweenController.SeqMoveRotateCallBack(_camera.transform, p2.position, p2.eulerAngles, 2,
                     ChangeStateDelay, Ease.Flash);
                 break;
             case PlayerState.GoalKeeperTurn:
@@ -139,7 +139,7 @@ public class BallMove : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.01f);
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
@@ -159,11 +159,11 @@ public class BallMove : MonoBehaviour
     {
         if (ShootSystem.instance.state == PlayerState.PlayerTurn)
         {
-        ShootSystem.instance.PlayerAttack();
+            ShootSystem.instance.PlayerAttack();
         }
         else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
         {
-                ShootSystem.instance.GoalKeeperAttack();
+            ShootSystem.instance.GoalKeeperAttack();
         }
     }
 
@@ -180,16 +180,20 @@ public class BallMove : MonoBehaviour
                 switch (GameManager.main.ballsHitRoad)
                 {
                     case TransformPosition.Head:
+                        //Debug.Log("HeadHit Player");
                         GameManager.main.goalKeeperAnim.SetBool(HeadHit, true);
                         GameManager.main.playerAnim.SetLayerWeight(1, 1);
                         break;
                     case TransformPosition.Spine:
+                        //Debug.Log("MidHit Player");
                         GameManager.main.goalKeeperAnim.SetBool(MidHit, true);
                         break;
                     case TransformPosition.Leg:
+                        //Debug.Log("LegHit Player");
                         GameManager.main.goalKeeperAnim.SetBool(LegHit, true);
                         break;
                     case TransformPosition.Off:
+                        //Debug.Log("Off Player");
                         GameManager.main.goalKeeperAnim.SetBool(Laugh, true);
                         break;
                 }
@@ -200,16 +204,20 @@ public class BallMove : MonoBehaviour
                 switch (GameManager.main.ballsHitRoad)
                 {
                     case TransformPosition.Head:
+                        //Debug.Log("HeadHit Goalkeeper");
                         GameManager.main.playerAnim.SetBool(HeadHit, true);
                         GameManager.main.goalKeeperAnim.SetLayerWeight(1, 1);
                         break;
                     case TransformPosition.Spine:
+                        //Debug.Log("MidHit Goalkeeper");
                         GameManager.main.playerAnim.SetBool(MidHit, true);
                         break;
                     case TransformPosition.Leg:
+                        //Debug.Log("LegHit Goalkeeper");
                         GameManager.main.playerAnim.SetBool(LegHit, true);
                         break;
                     case TransformPosition.Off:
+                        //Debug.Log("Off Goalkeeper");
                         GameManager.main.playerAnim.SetBool(Laugh, true);
                         break;
                 }
@@ -217,23 +225,32 @@ public class BallMove : MonoBehaviour
                 break;
         }
 
-        _updateStop = true;
-        ChangeState();
+        if (!GameManager.main.gameStop)
+        {
+            _updateStop = true;
+            ChangeState();
+        }
     }
+
     #endregion
 
     public void ChangeKeeper()
     {
-        GameManager.main.ballAttackValue = Random.Range(5, 20);
-        GameManager.main.transformPositionToShoot = GameManager.main.playerShootPositions[Random.Range(0, 3)].position;
-         GameManager.main.goalKeeperAnim.SetBool(Shoot, true);
+        //GameManager.main.ballAttackValue = Random.Range(5, 20);
+        //GameManager.main.transformPositionToShoot = GameManager.main.playerShootPositions[Random.Range(0, 3)].position;
+        var random = Random.Range(-.99f, .99f);
+        var calculationID = 0;
+        PowerBarIndicator.main.CalculateShotValue(random, calculationID);
+        calculationID++;
+        PowerBarIndicator.main.CalculateShotValue(random, calculationID);
+        GameManager.main.goalKeeperAnim.SetBool(Shoot, true);
         GameManager.main.ActivateCam();
     }
 
     private void CameraFollowStop()
     {
         transform.DOKill();
-        _camera.GetComponent<CameraControls>().enabled = false;
+        //_camera.GetComponent<CameraControls>().enabled = false;
         GetComponent<Rigidbody>().AddForce(Vector3.forward * (10000 * Time.fixedDeltaTime), ForceMode.Force);
     }
 }

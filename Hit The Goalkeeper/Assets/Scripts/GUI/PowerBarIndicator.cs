@@ -1,21 +1,41 @@
-﻿using Accessables;
+﻿using System;
+using Accessables;
 using DG.Tweening;
 using Managers;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 namespace GUI
 {
     public class PowerBarIndicator : MonoBehaviour
     {
+        #region Singleton
+
+        public static PowerBarIndicator main;
+
+        private void Awake()
+        {
+            if (main != null && main != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            main = this;
+        }
+
+        #endregion
+
         #region Variables
 
         private static readonly int
             Shoot = Animator.StringToHash("Shoot"); //This is temporary its just reaching the value inside animator.
 
         private float shootValue;
+
         #endregion
 
         #region RectAnim
@@ -42,15 +62,15 @@ namespace GUI
                 //Detecting for the input.
                 if (GameManager.main.calculationID == 1)
                 {
-                     shootValue =
+                    shootValue =
                         (transform.localPosition.x);
-                     GameManager.main.ballCurveValue = shootValue;
-                     shootValue =
-                         Mathf.Abs(transform.localPosition.x);
+                    GameManager.main.ballCurveValue = shootValue;
+                    shootValue =
+                        Mathf.Abs(transform.localPosition.x);
                 }
                 else if (GameManager.main.calculationID == 0)
                 {
-                     shootValue =
+                    shootValue =
                         Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
                 }
 
@@ -60,7 +80,7 @@ namespace GUI
         }
 
 
-        private void CalculateShotValue(float shootValue, int id)
+        public void CalculateShotValue(float shootValue, int id)
         {
             //Calculating value of the power
             //Id is representing the current state(transform bar, power bar).
@@ -83,10 +103,6 @@ namespace GUI
                                 GameManager.main.playerShootPositions[2].transform.position.z + 1);
                             break;
                     }
-
-                    GameManager.main.transformPositionToShoot = new Vector3(Random.Range(-1, 1),
-                        Random.Range(.35f, 1.26f),
-                        GameManager.main.goalKeeperShootPositions[2].transform.position.z + 1);
                     GameManager.main.ballsHitRoad = TransformPosition.Off;
 
                     GameManager.main.camStopFollow = true;
@@ -165,7 +181,10 @@ namespace GUI
 
                     #endregion
 
-                    GameManager.main.playerAnim.SetBool(Shoot, true);
+                    if (ShootSystem.instance.state == PlayerState.PlayerTurn)
+                    {
+                        GameManager.main.playerAnim.SetBool(Shoot, true);
+                    }
                     GameManager.main.ballAttackValue =
                         ((1 / shootValue) * 1.5f) % 20; //Setting the balls shooting value with a normalized range.
                     GameManager.main.powerBarIndicatorParent.SetActive(false);
