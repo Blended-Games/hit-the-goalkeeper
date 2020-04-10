@@ -10,11 +10,6 @@ namespace Animator_States
         {
             animator.SetBool(Shoot,false);
         }
-        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        {
-            BallMove.main._updateStop = false;
-            BallMove.main.Movement();
-            //CameraControls.main.StartFieldOfViewChangeMainCam(); //This is the trigger for camera following mechanic.
-        }
+        
     }
 }

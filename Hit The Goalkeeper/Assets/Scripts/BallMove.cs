@@ -251,6 +251,6 @@ public class BallMove : MonoBehaviour
     {
         transform.DOKill();
         //_camera.GetComponent<CameraControls>().enabled = false;
-        GetComponent<Rigidbody>().AddForce(Vector3.forward * (10000 * Time.fixedDeltaTime), ForceMode.Force);
+          GetComponent<Rigidbody>().AddForce(Vector3.forward * (10000 * Time.fixedDeltaTime), ForceMode.Force);
     }
 }
