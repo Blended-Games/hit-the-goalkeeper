@@ -1126,6 +1126,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.0847342
       objectReference: {fileID: 0}
+    - target: {fileID: 4351212563003554075, guid: 989d602539d7548438404ee6152922f4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6917492882280284150, guid: 989d602539d7548438404ee6152922f4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989d602539d7548438404ee6152922f4, type: 3}
 --- !u!1 &750370394
@@ -3290,6 +3300,7 @@ MonoBehaviour:
   duration: 2
   easeActive: 0
   ease: 18
+  camFollowStop: 0
   target: {fileID: 1750627557}
   messageForTheArtists: You can change the offset of the camera follow thru here.
   offsetPlayer: {x: -0.06, y: -0.66, z: 2.83}
@@ -3595,7 +3606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0.20754719, g: 0.16153437, b: 0.16153437, a: 0.98039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3746,7 +3757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnitName: GoalKeeper
-  point: 3
+  point: 5
   damage: 1
   currentHP: 10
   maxHP: 100
