@@ -1,11 +1,7 @@
-﻿using System;
-using Accessables;
+﻿using Accessables;
 using DG.Tweening;
 using Managers;
 using UnityEngine;
-using UnityEngine.UIElements;
-using System.Collections;
-using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
 namespace GUI
@@ -100,7 +96,7 @@ namespace GUI
                         case PlayerState.GoalKeeperTurn:
                             GameManager.main.transformPositionToShoot = new Vector3(Random.Range(-1, 1),
                                 Random.Range(.35f, 1.26f),
-                                GameManager.main.playerShootPositions[2].transform.position.z + 1);
+                                GameManager.main.playerShootPositions[2].transform.position.z - 1);
                             break;
                     }
                     GameManager.main.ballsHitRoad = TransformPosition.Off;
@@ -186,7 +182,7 @@ namespace GUI
                         GameManager.main.playerAnim.SetBool(Shoot, true);
                     }
                     GameManager.main.ballAttackValue =
-                        ((1 / shootValue) * 1.5f) % 20; //Setting the balls shooting value with a normalized range.
+                        (((1 / shootValue) * 1.5f) %10) * 4; //Setting the balls shooting value with a normalized range.
                     GameManager.main.powerBarIndicatorParent.SetActive(false);
                     GameManager.main.firstTouch = false;
                     GameManager.main.ActivateCam();

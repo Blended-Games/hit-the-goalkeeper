@@ -4,3 +4,5 @@ Do Better
 Not Bad
 Impressive
 Perfect
+You Lost
+You Won

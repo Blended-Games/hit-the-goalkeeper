@@ -28,7 +28,7 @@
             <e p="DoTweenController.cs" t="Include" />
           </e>
           <e p="Animator States" t="Include">
-            <e p="BallShootState.cs" t="Include" />
+            <e p="eventTriggerOtherPlayer.cs" t="Include" />
             <e p="HeadHitState.cs" t="Include" />
             <e p="İdleBeforeHit.cs" t="Include" />
             <e p="LaughState.cs" t="Include" />

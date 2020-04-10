@@ -43,5 +43,13 @@ namespace Accessables
             seq.Append(main.DOFieldOfView(endValue, duration)).SetEase(ease)
                 .Append(main.DOFieldOfView(firstValue, duration));
         }
+
+        internal static void SequenceMoveAndRotate(Transform thisTransform, Vector3 endValue,
+            Vector3 rotation, float duration)
+        {
+            var seq = DOTween.Sequence();
+            seq.Append(thisTransform.DOLocalMove(endValue, duration))
+                .Join(thisTransform.DOLocalRotate(rotation, duration)).SetEase(Ease.Flash);
+        }
     }
 }

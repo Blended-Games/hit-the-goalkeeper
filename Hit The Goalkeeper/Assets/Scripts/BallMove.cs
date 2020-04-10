@@ -1,12 +1,10 @@
 ﻿using System.Collections;
-using System.Diagnostics;
-using System.Globalization;
 using Accessables;
 using DG.Tweening;
 using GUI;
 using Managers;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
@@ -36,7 +34,7 @@ public class BallMove : MonoBehaviour
     private bool _close;
     private Vector3 _gameManagerPos;
     private Camera _camera;
-    public bool _updateStop;
+    [FormerlySerializedAs("_updateStop")] public bool updateStop;
 
     private static readonly int LegHit = Animator.StringToHash("LegHit");
     private static readonly int MidHit = Animator.StringToHash("MidHit");
@@ -53,10 +51,12 @@ public class BallMove : MonoBehaviour
 
     private void Update()
     {
-        if ((transform.position - _gameManagerPos).sqrMagnitude < 1 && !_updateStop)
+        if ((transform.position - _gameManagerPos).sqrMagnitude < 5 && !updateStop)
+            CameraControls.main.CameraGetCloser();
+
+        if ((transform.position - _gameManagerPos).sqrMagnitude < 1 && !updateStop)
         {
             AnimStateChanger();
-            CameraControls.main.CameraGetCloser();
         }
     }
 
@@ -68,7 +68,6 @@ public class BallMove : MonoBehaviour
         _gameManagerPos =
             GameManager.main
                 .transformPositionToShoot; //The position for the ball to reach, it was taken via players input.
-        //CameraControls.main.StartFieldOfViewChangeMainCam();
         BallParabollaMove(_gameManagerPos,
             randomPos: new Vector3(GameManager.main.ballCurveValue, Random.Range(.35f, 1.26f), -5));
     }
@@ -86,6 +85,9 @@ public class BallMove : MonoBehaviour
     {
         var p1 = GameManager.main.p1sCameraPosition.transform;
         var p2 = GameManager.main.p2sCameraPosition.transform;
+
+
+        StartCoroutine(ChangeStateDelayCoroutine());
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
@@ -116,8 +118,6 @@ public class BallMove : MonoBehaviour
                 GameManager.main.p2.transform.rotation = GameManager.main.p2Pos.rotation;
                 break;
         }
-
-        StartCoroutine(ChangeStateDelayCoroutine());
     }
 
     private IEnumerator ChangeStateDelayCoroutine()
@@ -127,6 +127,7 @@ public class BallMove : MonoBehaviour
             if (GameManager.main.ballsHitRoad != TransformPosition.Off)
             {
                 ShootSystem.instance.unitPlayer.damage = (int) GameManager.main.ballAttackValue;
+                ShootSystem.instance.PanelHealthDisplayPlayer();
             }
         }
         else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
@@ -135,11 +136,12 @@ public class BallMove : MonoBehaviour
                 if (GameManager.main.ballsHitRoad != TransformPosition.Off)
                 {
                     ShootSystem.instance.unitGoalKeeper.damage = (int) GameManager.main.ballAttackValue;
+                    ShootSystem.instance.PanelHealthDisplayGoalkeeper();
                 }
             }
         }
 
-        yield return new WaitForSeconds(.01f);
+        yield return new WaitForSeconds(3);
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
@@ -180,20 +182,16 @@ public class BallMove : MonoBehaviour
                 switch (GameManager.main.ballsHitRoad)
                 {
                     case TransformPosition.Head:
-                        //Debug.Log("HeadHit Player");
                         GameManager.main.goalKeeperAnim.SetBool(HeadHit, true);
-                        GameManager.main.playerAnim.SetLayerWeight(1, 1);
+                        GameManager.main.goalKeeperAnim.SetLayerWeight(1, 1);
                         break;
                     case TransformPosition.Spine:
-                        //Debug.Log("MidHit Player");
                         GameManager.main.goalKeeperAnim.SetBool(MidHit, true);
                         break;
                     case TransformPosition.Leg:
-                        //Debug.Log("LegHit Player");
                         GameManager.main.goalKeeperAnim.SetBool(LegHit, true);
                         break;
                     case TransformPosition.Off:
-                        //Debug.Log("Off Player");
                         GameManager.main.goalKeeperAnim.SetBool(Laugh, true);
                         break;
                 }
@@ -204,20 +202,16 @@ public class BallMove : MonoBehaviour
                 switch (GameManager.main.ballsHitRoad)
                 {
                     case TransformPosition.Head:
-                        //Debug.Log("HeadHit Goalkeeper");
                         GameManager.main.playerAnim.SetBool(HeadHit, true);
-                        GameManager.main.goalKeeperAnim.SetLayerWeight(1, 1);
+                        GameManager.main.playerAnim.SetLayerWeight(1, 1);
                         break;
                     case TransformPosition.Spine:
-                        //Debug.Log("MidHit Goalkeeper");
                         GameManager.main.playerAnim.SetBool(MidHit, true);
                         break;
                     case TransformPosition.Leg:
-                        //Debug.Log("LegHit Goalkeeper");
                         GameManager.main.playerAnim.SetBool(LegHit, true);
                         break;
                     case TransformPosition.Off:
-                        //Debug.Log("Off Goalkeeper");
                         GameManager.main.playerAnim.SetBool(Laugh, true);
                         break;
                 }
@@ -225,20 +219,16 @@ public class BallMove : MonoBehaviour
                 break;
         }
 
-        if (!GameManager.main.gameStop)
-        {
-            _updateStop = true;
-            ChangeState();
-        }
+
+        ChangeState();
+        updateStop = true;
     }
 
     #endregion
 
     public void ChangeKeeper()
     {
-        //GameManager.main.ballAttackValue = Random.Range(5, 20);
-        //GameManager.main.transformPositionToShoot = GameManager.main.playerShootPositions[Random.Range(0, 3)].position;
-        var random = Random.Range(-.99f, .99f);
+        var random = Random.Range(0, .99f);
         var calculationID = 0;
         PowerBarIndicator.main.CalculateShotValue(random, calculationID);
         calculationID++;
@@ -250,7 +240,7 @@ public class BallMove : MonoBehaviour
     private void CameraFollowStop()
     {
         transform.DOKill();
-        //_camera.GetComponent<CameraControls>().enabled = false;
-          GetComponent<Rigidbody>().AddForce(Vector3.forward * (10000 * Time.fixedDeltaTime), ForceMode.Force);
+        _camera.GetComponent<CameraControls>().enabled = false;
+        GetComponent<Rigidbody>().AddForce(Vector3.forward * (10000 * Time.fixedDeltaTime), ForceMode.Force);
     }
 }

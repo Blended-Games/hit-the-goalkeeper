@@ -56,8 +56,6 @@ public class ShootSystem : MonoBehaviour
     {
         var isDead = unitGoalKeeper.TakeDamage(unitPlayer.damage);
 
-        goalKeeperHUD.SetHp(unitPlayer.damage);
-
         if (isDead)
         {
             state = PlayerState.Won;
@@ -65,7 +63,7 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
-            CameraControls.main.CameraFixOffset();
+            //CameraControls.main.CameraFixOffset();
             var transform1 = GameManager.main.p2Pos.transform;
             var transform2 = GameManager.main.p2.transform;
             transform2.position = transform1.position;
@@ -81,8 +79,7 @@ public class ShootSystem : MonoBehaviour
     public void GoalKeeperAttack()
     {
         var isDead = unitPlayer.TakeDamage(unitGoalKeeper.damage);
-
-        playerHUD.SetHp(unitGoalKeeper.damage);
+        
         if (isDead)
         {
             state = PlayerState.Lost;
@@ -90,7 +87,7 @@ public class ShootSystem : MonoBehaviour
         }
         else
         {
-            CameraControls.main.CameraFixOffset();
+            //CameraControls.main.CameraFixOffset();
             var transform1 = GameManager.main.p1Pos.transform;
             GameManager.main.p1.transform.position = transform1.position;
             GameManager.main.p1.transform.rotation = transform1.rotation;
@@ -104,9 +101,24 @@ public class ShootSystem : MonoBehaviour
     {
         if (state == PlayerState.Won)
         {
-            Debug.Log("You won");
-            GameManager.main.levelChange.SetActive(true);
+            DisplayMessage.main.ShowPowerBarText(8);
         }
-        else if (state == PlayerState.Lost) Debug.Log("you lost");
+        else if (state == PlayerState.Lost)
+        {
+            DisplayMessage.main.ShowPowerBarText(7);
+        }
+    }
+    
+    public void PanelHealthDisplayGoalkeeper()
+    {
+
+        playerHUD.SetHp(unitGoalKeeper.damage);
+
+    } 
+    public void PanelHealthDisplayPlayer()
+    {
+
+        goalKeeperHUD.SetHp(unitPlayer.damage);
+
     }
 }

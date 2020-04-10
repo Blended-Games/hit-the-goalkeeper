@@ -73,8 +73,6 @@ namespace Managers
 
         public float ballCurveValue; //This will be the value for balls left, right movement.
 
-        public bool gameStop; //This is a temporary bool for camera settings.
-
         #endregion
 
         #region TargetFrameRate
