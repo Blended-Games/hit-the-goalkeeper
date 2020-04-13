@@ -111,11 +111,13 @@ public class BallMove : MonoBehaviour
                 transform.position = GameManager.main.p2BallsTransform.localPosition;
                 GameManager.main.p1.transform.position = GameManager.main.p1Pos.position;
                 GameManager.main.p1.transform.rotation = GameManager.main.p1Pos.rotation;
+                BallGetsFixedSize();
                 break;
             case PlayerState.GoalKeeperTurn:
                 transform.position = GameManager.main.p1BallsTransform.localPosition;
                 GameManager.main.p2.transform.position = GameManager.main.p2Pos.position;
                 GameManager.main.p2.transform.rotation = GameManager.main.p2Pos.rotation;
+                BallGetsFixedSize();
                 break;
         }
     }
@@ -184,6 +186,7 @@ public class BallMove : MonoBehaviour
                     case TransformPosition.Head:
                         GameManager.main.goalKeeperAnim.SetBool(HeadHit, true);
                         GameManager.main.goalKeeperAnim.SetLayerWeight(1, 1);
+                        BallGetsSmaller();
                         break;
                     case TransformPosition.Spine:
                         GameManager.main.goalKeeperAnim.SetBool(MidHit, true);
@@ -204,6 +207,7 @@ public class BallMove : MonoBehaviour
                     case TransformPosition.Head:
                         GameManager.main.playerAnim.SetBool(HeadHit, true);
                         GameManager.main.playerAnim.SetLayerWeight(1, 1);
+                        BallGetsSmaller();
                         break;
                     case TransformPosition.Spine:
                         GameManager.main.playerAnim.SetBool(MidHit, true);
@@ -242,5 +246,15 @@ public class BallMove : MonoBehaviour
         transform.DOKill();
         _camera.GetComponent<CameraControls>().enabled = false;
         GetComponent<Rigidbody>().AddForce(Vector3.forward * (10000 * Time.fixedDeltaTime), ForceMode.Force);
+    }
+
+    private void BallGetsSmaller()
+    {
+        transform.localScale= new Vector3(.08f,.08f,.08f);
+    }
+
+    private void BallGetsFixedSize()
+    {
+        transform.localScale = new Vector3(.15f,.15f,.15f);
     }
 }

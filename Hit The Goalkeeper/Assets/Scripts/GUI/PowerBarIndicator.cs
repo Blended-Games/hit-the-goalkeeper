@@ -2,6 +2,7 @@
 using DG.Tweening;
 using Managers;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 
 namespace GUI
@@ -52,7 +53,7 @@ namespace GUI
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && GameManager.main.firstTouch &&
+            if (Input.GetMouseButtonDown(0) && GameManager.main.firstTouch && !EventSystem.current.IsPointerOverGameObject() &&
                 ShootSystem.instance.state == PlayerState.PlayerTurn)
             {
                 //Detecting for the input.
