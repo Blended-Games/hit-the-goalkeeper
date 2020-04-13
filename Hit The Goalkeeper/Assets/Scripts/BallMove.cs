@@ -108,7 +108,7 @@ public class BallMove : MonoBehaviour
         }
     }
 
-    private void ChangeStateDelay()
+   private void ChangeStateDelay()
     {
         switch (ShootSystem.instance.state)
         {
@@ -264,6 +264,15 @@ public class BallMove : MonoBehaviour
         GetComponent<Rigidbody>().AddForce(Vector3.forward * (10000 * Time.fixedDeltaTime), ForceMode.Force);
     }
 
+    private void BallGetsSmaller()
+    {
+        transform.localScale = new Vector3(.08f, .08f, .08f);
+    }
+
+    private void BallGetsFixedSize()
+    {
+        transform.localScale = new Vector3(.15f, .15f, .15f);
+    }
     private void BallGetsSmaller()
     {
         transform.localScale = new Vector3(.08f, .08f, .08f);
