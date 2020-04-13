@@ -70,6 +70,7 @@ public class BallMove : MonoBehaviour
                 .transformPositionToShoot; //The position for the ball to reach, it was taken via players input.
         BallParabollaMove(_gameManagerPos,
             randomPos: new Vector3(GameManager.main.ballCurveValue, Random.Range(.35f, 1.26f), -5));
+   GameManager.main.shootParticleObj.SetActive(true);
     }
 
     private void BallParabollaMove(Vector3 endValue, Vector3 randomPos)
@@ -94,11 +95,15 @@ public class BallMove : MonoBehaviour
 
                 DoTweenController.SeqMoveRotateCallBack(_camera.transform, p2.position, p2.eulerAngles, 2,
                     ChangeStateDelay, Ease.Flash);
+                    GameManager.main.faceParticleObj.SetActive(true);
+                    
                 break;
             case PlayerState.GoalKeeperTurn:
 
                 DoTweenController.SeqMoveRotateCallBack(_camera.transform, p1.position, p1.eulerAngles, 2,
                     ChangeStateDelay, Ease.Flash);
+                    
+                    GameManager.main.faceParticleObj.SetActive(true);
                 break;
         }
     }
@@ -253,6 +258,7 @@ public class BallMove : MonoBehaviour
 
     private void CameraFollowStop()
     {
+        
         transform.DOKill();
         _camera.GetComponent<CameraControls>().enabled = false;
         GetComponent<Rigidbody>().AddForce(Vector3.forward * (10000 * Time.fixedDeltaTime), ForceMode.Force);

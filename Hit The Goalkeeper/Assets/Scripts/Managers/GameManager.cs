@@ -73,6 +73,8 @@ namespace Managers
 
         public float ballCurveValue; //This will be the value for balls left, right movement.
 
+        public GameObject faceParticleObj,shootParticleObj;
+
         #endregion
 
         #region TargetFrameRate

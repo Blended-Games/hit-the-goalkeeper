@@ -12,5 +12,7 @@ public class eventTriggerOtherPlayer : MonoBehaviour
         BallMove.main.updateStop = false;
         BallMove.main.Movement();
         this.GetComponent<Animator>().SetBool(Shoot, false);
+
+        
     }
 }

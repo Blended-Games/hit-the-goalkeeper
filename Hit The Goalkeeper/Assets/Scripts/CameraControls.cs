@@ -126,7 +126,9 @@ public class CameraControls : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
-    }
+        GameManager.main.shootParticleObj.SetActive(false);
+        GameManager.main.faceParticleObj.SetActive(false);
+            }
 
     /*
     public void CameraFixOffset()
