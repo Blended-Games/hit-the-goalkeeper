@@ -618,7 +618,7 @@ ModelImporter:
     - name: Character4_LeftFoot
       parentName: Character4_LeftLeg
       position: {x: -0.14262481, y: -0.90450966, z: -0.0517132}
-      rotation: {x: -0.16348551, y: 0.0002749875, z: 0.000050277682, w: 0.9865457}
+      rotation: {x: -0.09676081, y: 0.00027774647, z: 0.000031668325, w: 0.9953076}
       scale: {x: 1, y: 1, z: 1}
     - name: Character4_LeftToeBase
       parentName: Character4_LeftFoot
@@ -638,7 +638,7 @@ ModelImporter:
     - name: Character4_RightFoot
       parentName: Character4_RightLeg
       position: {x: 0.14262494, y: -0.9045095, z: -0.051712982}
-      rotation: {x: -0.16353108, y: -0.00027622218, z: -0.000050456907, w: 0.9865382}
+      rotation: {x: -0.09680669, y: -0.00027899208, z: -0.00003176444, w: 0.99530315}
       scale: {x: 1, y: 1, z: 1}
     - name: Character4_RightToeBase
       parentName: Character4_RightFoot

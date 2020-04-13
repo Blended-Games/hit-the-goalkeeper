@@ -53,7 +53,8 @@ namespace GUI
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && GameManager.main.firstTouch && !EventSystem.current.IsPointerOverGameObject() &&
+            if (Input.GetMouseButtonDown(0) && GameManager.main.firstTouch &&
+                !EventSystem.current.IsPointerOverGameObject() &&
                 ShootSystem.instance.state == PlayerState.PlayerTurn)
             {
                 //Detecting for the input.
@@ -85,7 +86,12 @@ namespace GUI
             switch (id)
             {
                 case 0 when shootValue >= .8f:
-                    DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2)); //Text that will display on the screen.
+                    if (ShootSystem.instance.state == PlayerState.PlayerTurn)
+                    {
+                        DisplayMessage.main.ShowPowerBarText(Random.Range(0,
+                            2)); //Text that will display on the screen.
+                    }
+
                     GameManager.main.calculationID = 1; //Moving to next step which is shoot power.
                     switch (ShootSystem.instance.state)
                     {
@@ -100,6 +106,7 @@ namespace GUI
                                 GameManager.main.playerShootPositions[2].transform.position.z - 1);
                             break;
                     }
+
                     GameManager.main.ballsHitRoad = TransformPosition.Off;
 
                     GameManager.main.camStopFollow = true;
@@ -107,7 +114,11 @@ namespace GUI
                     break;
 
                 case 0 when shootValue >= .5f && shootValue < .8f:
-                    DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2)); //Text that will display on the screen.
+                    if (ShootSystem.instance.state == PlayerState.PlayerTurn)
+                    {
+                        DisplayMessage.main.ShowPowerBarText(Random.Range(0,
+                            2)); //Text that will display on the screen.
+                    }
 
                     GameManager.main.calculationID = 1; //Moving to next step which is shoot power.
                     switch (ShootSystem.instance.state)
@@ -127,7 +138,11 @@ namespace GUI
                     break;
 
                 case 0 when shootValue >= .135f && shootValue < .5f:
-                    DisplayMessage.main.ShowPowerBarText(Random.Range(2, 4));
+                    if (ShootSystem.instance.state == PlayerState.PlayerTurn)
+                    {
+                        DisplayMessage.main.ShowPowerBarText(Random.Range(2, 4));
+                    }
+
                     GameManager.main.calculationID = 1;
                     switch (ShootSystem.instance.state)
                     {
@@ -145,7 +160,10 @@ namespace GUI
 
                     break;
                 case 0 when shootValue < .135f:
-                    DisplayMessage.main.ShowPowerBarText(Random.Range(4, 6));
+                    if (ShootSystem.instance.state == PlayerState.PlayerTurn)
+                    {
+                        DisplayMessage.main.ShowPowerBarText(Random.Range(4, 6));
+                    }
 
                     GameManager.main.calculationID = 1;
                     switch (ShootSystem.instance.state)
@@ -169,12 +187,14 @@ namespace GUI
 
                     #region Display Message Conditions
 
-                    if (shootValue < .135f) DisplayMessage.main.ShowPowerBarText(Random.Range(4, 6));
-                    if (shootValue >= .135f && shootValue < .45f)
+                    if (shootValue < .135f && ShootSystem.instance.state == PlayerState.PlayerTurn) 
+                        DisplayMessage.main.ShowPowerBarText(Random.Range(4, 6));
+                    if (shootValue >= .135f && shootValue < .45f && ShootSystem.instance.state == PlayerState.PlayerTurn)
                         DisplayMessage.main.ShowPowerBarText(Random.Range(2, 4));
-                    if (shootValue >= .45f && shootValue < .7f)
+                    if (shootValue >= .45f && shootValue < .7f && ShootSystem.instance.state == PlayerState.PlayerTurn)
                         DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2));
-                    if (shootValue >= .71f && shootValue <= 1) DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2));
+                    if (shootValue >= .71f && shootValue <= 1 && ShootSystem.instance.state == PlayerState.PlayerTurn) 
+                        DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2));
 
                     #endregion
 
@@ -182,8 +202,9 @@ namespace GUI
                     {
                         GameManager.main.playerAnim.SetBool(Shoot, true);
                     }
+
                     GameManager.main.ballAttackValue =
-                        (((1 / shootValue) * 1.5f) %10) * 4; //Setting the balls shooting value with a normalized range.
+                        ((1 - shootValue) * 40f); //Setting the balls shooting value with a normalized range.
                     GameManager.main.powerBarIndicatorParent.SetActive(false);
                     GameManager.main.firstTouch = false;
                     GameManager.main.ActivateCam();

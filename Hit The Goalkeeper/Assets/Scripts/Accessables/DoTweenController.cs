@@ -24,7 +24,7 @@ namespace Accessables
             float duration, TweenCallback callback, Ease ease)
         {
             var seq = DOTween.Sequence();
-            seq.SetDelay(2)
+            seq.SetDelay(4)
                 .Append(thisTransform.DOLocalMove(endValue, duration))
                 .Join(thisTransform.DOLocalRotate(quaternion, duration - 1.5f).SetEase(ease).SetAutoKill(false)
                     .OnComplete(callback));
@@ -44,6 +44,17 @@ namespace Accessables
                 .Append(main.DOFieldOfView(firstValue, duration));
         }
 
+        internal static void SequenceMoveAndRotateWithExtraDelay(Transform thisTransform, Vector3 endValue,
+            Vector3 lastBackwardsEndValue,
+            Vector3 rotation, float duration)
+        {
+            var seq = DOTween.Sequence();
+            seq.Append(thisTransform.DOLocalMove(endValue, duration))
+                .Join(thisTransform.DOLocalRotate(rotation, duration)).SetEase(Ease.OutExpo)
+                .Append(thisTransform.DOLocalMove(lastBackwardsEndValue,  duration - .25f));
+            //Bunu outexpor yaptımız zaman zıbın diye yaklaşıyor
+        }
+        
         internal static void SequenceMoveAndRotate(Transform thisTransform, Vector3 endValue,
             Vector3 rotation, float duration)
         {

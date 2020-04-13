@@ -30,7 +30,8 @@ namespace GUI
 
         List<string> textList;
         TextAsset textFile;
-         private TextMeshProUGUI powerBarText;
+        public TextMeshProUGUI powerBarText;
+
         #endregion
 
         private void Start()

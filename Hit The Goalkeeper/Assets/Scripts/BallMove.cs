@@ -143,7 +143,7 @@ public class BallMove : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
@@ -185,7 +185,12 @@ public class BallMove : MonoBehaviour
                 {
                     case TransformPosition.Head:
                         GameManager.main.goalKeeperAnim.SetBool(HeadHit, true);
-                        GameManager.main.goalKeeperAnim.SetLayerWeight(1, 1);
+                        if (Unit.main.maxHP >= 75 && Unit.main.maxHP < 100)
+                            GameManager.main.goalKeeperAnim.SetLayerWeight(1, 1);
+                        else if (Unit.main.maxHP >= 40 && Unit.main.maxHP < 75)
+                            GameManager.main.goalKeeperAnim.SetLayerWeight(2, 1);
+                        else if(Unit.main.maxHP < 40)
+                            GameManager.main.goalKeeperAnim.SetLayerWeight(3, 1);
                         BallGetsSmaller();
                         break;
                     case TransformPosition.Spine:
@@ -206,7 +211,12 @@ public class BallMove : MonoBehaviour
                 {
                     case TransformPosition.Head:
                         GameManager.main.playerAnim.SetBool(HeadHit, true);
-                        GameManager.main.playerAnim.SetLayerWeight(1, 1);
+                        if (Unit.main.maxHP >= 75 && Unit.main.maxHP < 100)
+                            GameManager.main.playerAnim.SetLayerWeight(1, 1);
+                        else if (Unit.main.maxHP >= 40 && Unit.main.maxHP < 75)
+                            GameManager.main.playerAnim.SetLayerWeight(2, 1);
+                        else if(Unit.main.maxHP < 40)
+                            GameManager.main.playerAnim.SetLayerWeight(3, 1);
                         BallGetsSmaller();
                         break;
                     case TransformPosition.Spine:
@@ -250,11 +260,11 @@ public class BallMove : MonoBehaviour
 
     private void BallGetsSmaller()
     {
-        transform.localScale= new Vector3(.08f,.08f,.08f);
+        transform.localScale = new Vector3(.08f, .08f, .08f);
     }
 
     private void BallGetsFixedSize()
     {
-        transform.localScale = new Vector3(.15f,.15f,.15f);
+        transform.localScale = new Vector3(.15f, .15f, .15f);
     }
 }

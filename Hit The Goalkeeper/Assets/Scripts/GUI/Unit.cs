@@ -1,9 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    #region Singleton
+
+    public static Unit main;
+
+    private void Awake()
+    {
+        main = this;
+    }
+
+    #endregion
+
     public string UnitName;
     public int point;
 

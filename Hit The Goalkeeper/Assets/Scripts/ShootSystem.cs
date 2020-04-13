@@ -71,6 +71,7 @@ public class ShootSystem : MonoBehaviour
             GameManager.main.ballAttackValue = 0;
             GameManager.main.ballCurveValue = 0;
             GameManager.main.firstTouch = false;
+            DisplayMessage.main.powerBarText.enabled = false;
             state = PlayerState.GoalKeeperTurn;
             BallMove.main.ChangeKeeper();
         }
@@ -79,7 +80,7 @@ public class ShootSystem : MonoBehaviour
     public void GoalKeeperAttack()
     {
         var isDead = unitPlayer.TakeDamage(unitGoalKeeper.damage);
-        
+
         if (isDead)
         {
             state = PlayerState.Lost;
@@ -93,6 +94,8 @@ public class ShootSystem : MonoBehaviour
             GameManager.main.p1.transform.rotation = transform1.rotation;
             GameManager.main.firstTouch = true;
             GameManager.main.powerBarIndicatorParent.SetActive(true);
+            DisplayMessage.main.powerBarText.text = null;
+            DisplayMessage.main.powerBarText.enabled = true;
             state = PlayerState.PlayerTurn;
         }
     }
@@ -101,24 +104,21 @@ public class ShootSystem : MonoBehaviour
     {
         if (state == PlayerState.Won)
         {
-            DisplayMessage.main.ShowPowerBarText(8);
+            DisplayMessage.main.ShowPowerBarText(7);
         }
         else if (state == PlayerState.Lost)
         {
-            DisplayMessage.main.ShowPowerBarText(7);
+            DisplayMessage.main.ShowPowerBarText(6);
         }
     }
-    
+
     public void PanelHealthDisplayGoalkeeper()
     {
-
         playerHUD.SetHp(unitGoalKeeper.damage);
+    }
 
-    } 
     public void PanelHealthDisplayPlayer()
     {
-
         goalKeeperHUD.SetHp(unitPlayer.damage);
-
     }
 }

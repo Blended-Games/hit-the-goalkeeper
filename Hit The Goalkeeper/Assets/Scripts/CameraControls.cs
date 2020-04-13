@@ -100,22 +100,22 @@ public class CameraControls : MonoBehaviour
             case PlayerState.PlayerTurn:
                 if (GameManager.main.ballsHitRoad == TransformPosition.Head)
                 {
-                    DoTweenController.SequenceMoveAndRotate(this.transform, p1CamFaceClose, new Vector3(0, 0, 0), 2f);
+                    DoTweenController.SequenceMoveAndRotateWithExtraDelay(this.transform, p1CamFaceClose,new Vector3(p1CamFaceClose.x,p1CamFaceClose.y, p1CamFaceClose.z - .45f) , new Vector3(0, 0, 0), 2f);
                 }
                 else
                 {
-                    DoTweenController.SequenceMoveAndRotate(this.transform, p1CamClose, new Vector3(0, 0, 0), 2f);
+                    DoTweenController.SequenceMoveAndRotate(this.transform, p1CamClose,new Vector3(0, 0, 0), 2f);
 
                 }
                 break;
             case PlayerState.GoalKeeperTurn:
                 if (GameManager.main.ballsHitRoad == TransformPosition.Head)
                 {
-                    DoTweenController.SequenceMoveAndRotate(this.transform, p2CamFaceClose, new Vector3(0, -180, 0), 2f);
+                    DoTweenController.SequenceMoveAndRotateWithExtraDelay(this.transform, p2CamFaceClose,new Vector3(p2CamFaceClose.x,p2CamFaceClose.y, p2CamFaceClose.z + .45f) ,new Vector3(0, -180, 0), 2f);
                 }
                 else
                 {
-                    DoTweenController.SequenceMoveAndRotate(this.transform, p2camClose, new Vector3(0, -180, 0), 2f);
+                    DoTweenController.SequenceMoveAndRotate(this.transform, p2camClose,new Vector3(0, -180, 0), 2f);
 
                 }
                 break;
