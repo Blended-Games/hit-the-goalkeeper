@@ -182,7 +182,7 @@ public class BallMove : MonoBehaviour
 
     private void AnimStateChanger()
     {
-        switch (ShootSystem.instance.state)
+       switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
             {
@@ -190,11 +190,13 @@ public class BallMove : MonoBehaviour
                 {
                     case TransformPosition.Head:
                         GameManager.main.goalKeeperAnim.SetBool(HeadHit, true);
-                        if (Unit.main.maxHP >= 75 && Unit.main.maxHP < 100)
+
+                        if (Unit.main.maxHP >= 90 && Unit.main.maxHP < 100)
                             GameManager.main.goalKeeperAnim.SetLayerWeight(1, 1);
-                        else if (Unit.main.maxHP >= 40 && Unit.main.maxHP < 75)
+                        else if (Unit.main.maxHP >= 80 && Unit.main.maxHP < 90)
                             GameManager.main.goalKeeperAnim.SetLayerWeight(2, 1);
-                        else if(Unit.main.maxHP < 40)
+                        else if(Unit.main.maxHP < 70)
+
                             GameManager.main.goalKeeperAnim.SetLayerWeight(3, 1);
                         BallGetsSmaller();
                         break;
