@@ -198,17 +198,17 @@ public class BallMove : MonoBehaviour
                         if (Unit.main.maxHP >= 90 && Unit.main.maxHP < 100)
                         {
                             GameManager.main.goalKeeperAnim.SetLayerWeight(1, 1);
-                            GameManager.main.renderTextureMaterials[0].mainTexture = GameManager.main.p1Textures[0];
+                            GameManager.main.renderTextureMaterials[0].mainTexture = GameManager.main.p1Textures[1];
                         }
                         else if (Unit.main.maxHP >= 80 && Unit.main.maxHP < 90)
                         {
                             GameManager.main.goalKeeperAnim.SetLayerWeight(2, 1);
-                            GameManager.main.renderTextureMaterials[0].mainTexture = GameManager.main.p1Textures[1];
+                            GameManager.main.renderTextureMaterials[0].mainTexture = GameManager.main.p1Textures[2];
                         }
                         else if (Unit.main.maxHP < 70)
                         {
                             GameManager.main.goalKeeperAnim.SetLayerWeight(3, 1);
-                            GameManager.main.renderTextureMaterials[0].mainTexture = GameManager.main.p1Textures[2];
+                            GameManager.main.renderTextureMaterials[0].mainTexture = GameManager.main.p1Textures[3];
                         }
 
                         BallGetsSmaller();
