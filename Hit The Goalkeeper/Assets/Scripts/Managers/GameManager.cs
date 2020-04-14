@@ -75,6 +75,11 @@ namespace Managers
 
         public GameObject faceParticleObj,shootParticleObj;
 
+        public Material[] renderTextureMaterials; //These are variables of the players.
+
+        public Texture[] p1Textures; //These will be textures for the char. It will change its deformation.
+        public Texture[] p2Textures; //These will be textures for the char. It will change its deformation.
+
         #endregion
 
         #region TargetFrameRate
@@ -83,13 +88,19 @@ namespace Managers
         {
             Application.targetFrameRate = 30; //Setting the target frame rate for unexpected frame drop rates.
             _camera = FindObjectOfType<CameraControls>();
+            SetPlayersFirstTexture();
         }
 
         public void ActivateCam()
         {
             _camera.enabled = true;
         }
-
         #endregion
+
+        private void SetPlayersFirstTexture()
+        {
+            renderTextureMaterials[0].mainTexture = p1Textures[0];
+            renderTextureMaterials[1].mainTexture = p1Textures[1];
+        }
     }
 }

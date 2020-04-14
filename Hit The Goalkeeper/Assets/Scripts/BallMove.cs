@@ -42,6 +42,10 @@ public class BallMove : MonoBehaviour
     private static readonly int Laugh = Animator.StringToHash("Laugh");
     private static readonly int Shoot = Animator.StringToHash("Shoot");
 
+    public Material[] renderTextureMaterials;
+
+    public Texture[] p1Textures;
+     public Texture[] p2Textures;
     #endregion
 
     private void Start()
@@ -182,7 +186,7 @@ public class BallMove : MonoBehaviour
 
     private void AnimStateChanger()
     {
-       switch (ShootSystem.instance.state)
+        switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
             {
@@ -192,12 +196,21 @@ public class BallMove : MonoBehaviour
                         GameManager.main.goalKeeperAnim.SetBool(HeadHit, true);
 
                         if (Unit.main.maxHP >= 90 && Unit.main.maxHP < 100)
+                        {
                             GameManager.main.goalKeeperAnim.SetLayerWeight(1, 1);
+                            GameManager.main.renderTextureMaterials[0].mainTexture = GameManager.main.p1Textures[0];
+                        }
                         else if (Unit.main.maxHP >= 80 && Unit.main.maxHP < 90)
+                        {
                             GameManager.main.goalKeeperAnim.SetLayerWeight(2, 1);
-                        else if(Unit.main.maxHP < 70)
-
+                            GameManager.main.renderTextureMaterials[0].mainTexture = GameManager.main.p1Textures[1];
+                        }
+                        else if (Unit.main.maxHP < 70)
+                        {
                             GameManager.main.goalKeeperAnim.SetLayerWeight(3, 1);
+                            GameManager.main.renderTextureMaterials[0].mainTexture = GameManager.main.p1Textures[2];
+                        }
+
                         BallGetsSmaller();
                         break;
                     case TransformPosition.Spine:
@@ -219,11 +232,20 @@ public class BallMove : MonoBehaviour
                     case TransformPosition.Head:
                         GameManager.main.playerAnim.SetBool(HeadHit, true);
                         if (Unit.main.maxHP >= 75 && Unit.main.maxHP < 100)
+                        {
                             GameManager.main.playerAnim.SetLayerWeight(1, 1);
+                            //GameManager.main.renderTextureMaterials[1].mainTexture = GameManager.main.p1Textures[0];
+                        }
                         else if (Unit.main.maxHP >= 40 && Unit.main.maxHP < 75)
+                        {
                             GameManager.main.playerAnim.SetLayerWeight(2, 1);
-                        else if(Unit.main.maxHP < 40)
+                            //GameManager.main.renderTextureMaterials[1].mainTexture = GameManager.main.p1Textures[1];
+                        }
+                        else if (Unit.main.maxHP < 40)
+                        {
                             GameManager.main.playerAnim.SetLayerWeight(3, 1);
+                            //GameManager.main.renderTextureMaterials[1].mainTexture = GameManager.main.p1Textures[2];
+                        }
                         BallGetsSmaller();
                         break;
                     case TransformPosition.Spine:

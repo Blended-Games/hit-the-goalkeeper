@@ -204,7 +204,7 @@ namespace GUI
                     }
 
                     GameManager.main.ballAttackValue =
-                        ((1 - shootValue) * 40f); //Setting the balls shooting value with a normalized range.
+                        ((1 - shootValue) * 35f); //Setting the balls shooting value with a normalized range.
                     GameManager.main.powerBarIndicatorParent.SetActive(false);
                     GameManager.main.firstTouch = false;
                     GameManager.main.ActivateCam();
