@@ -273,13 +273,4 @@ public class BallMove : MonoBehaviour
     {
         transform.localScale = new Vector3(.15f, .15f, .15f);
     }
-    private void BallGetsSmaller()
-    {
-        transform.localScale = new Vector3(.08f, .08f, .08f);
-    }
-
-    private void BallGetsFixedSize()
-    {
-        transform.localScale = new Vector3(.15f, .15f, .15f);
-    }
 }
