@@ -76,7 +76,7 @@ public class ShootSystem : MonoBehaviour
             LevelSetter.main.goalKeeperAnim.SetBool(Dead,true);
              LevelSetter.main.playerAnim.SetBool("Samba",true);
            DoTweenController.FirstDelayThenMoveAndRotate(BallMove.main._camera.transform, new Vector3(-.5f, 2.08f, -4.55f),
-            new Vector3(11.355f, -194.25f, 0), 2, 2);
+            new Vector3(11.355f, -194.25f, 0), 10, 2);
             DisplayMessage.main.ShowPowerBarText(7);
         }
         else if (state == PlayerState.Lost)
@@ -84,7 +84,7 @@ public class ShootSystem : MonoBehaviour
             LevelSetter.main.playerAnim.SetBool(Dead,true);
             LevelSetter.main.goalKeeperAnim.SetBool("Samba",true);
             DoTweenController.FirstDelayThenMoveAndRotate(BallMove.main._camera.transform, new Vector3(-.5f, 2.08f, -4.55f),
-            new Vector3(17.63f, -5.95f, 0), 2, 2);
+            new Vector3(17.63f, -5.95f, 0), 10, 2);
             DisplayMessage.main.ShowPowerBarText(6);
         }
     }

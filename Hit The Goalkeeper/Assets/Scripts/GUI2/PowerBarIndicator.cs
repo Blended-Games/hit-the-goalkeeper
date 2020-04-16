@@ -202,7 +202,7 @@ namespace GUI2
                     {
                         LevelSetter.main.playerAnim.SetBool(Shoot, true);
                     }
-                    if ((PlayerPrefs.GetFloat("highlevel") == 0 || PlayerPrefs.GetFloat("highlevel") == 1) && ShootSystem.instance.state == PlayerState.PlayerTurn)
+                     if ((PlayerPrefs.GetFloat("highlevel") == 0 || PlayerPrefs.GetFloat("highlevel") == 1) && ShootSystem.instance.state == PlayerState.PlayerTurn && GameManager.main.ballsHitRoad != TransformPosition.Off)
                     {
                         GameManager.main.ballAttackValue = 55;
                     }
@@ -212,8 +212,8 @@ namespace GUI2
                             ((1 - shootValue) * 40f); //Setting the balls shooting value with a normalized range.
                     }
                     
-                 //  GameManager.main.ballAttackValue =
-                 //      ((1 - shootValue) * 35f); //Setting the balls shooting value with a normalized range.
+                //  GameManager.main.ballAttackValue =
+                 //     ((1 - shootValue) * 35f); //Setting the balls shooting value with a normalized range.
                     GameManager.main.powerBarIndicatorParent.SetActive(false);
                     GameManager.main.firstTouch = false;
                     LevelSetter.main.ActivateCam();
