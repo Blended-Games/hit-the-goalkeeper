@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using Accessables;
 using DG.Tweening;
-using GUI;
+using GUI2;
 using Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -33,7 +33,7 @@ public class BallMove : MonoBehaviour
     private PathType pathType = PathType.CatmullRom;
     private bool _close;
     private Vector3 _gameManagerPos;
-    private Camera _camera;
+    public Camera _camera; //shootSystemAndValue için .
     [FormerlySerializedAs("_updateStop")] public bool updateStop;
 
     private static readonly int LegHit = Animator.StringToHash("LegHit");
@@ -41,13 +41,7 @@ public class BallMove : MonoBehaviour
     private static readonly int HeadHit = Animator.StringToHash("HeadHit");
     private static readonly int Laugh = Animator.StringToHash("Laugh");
     private static readonly int Shoot = Animator.StringToHash("Shoot");
-
-    public Material[] renderTextureMaterials;
-
-    public Texture[] p1Textures;
-     public Texture[] p2Textures;
     #endregion
-
     private void Start()
     {
         _camera = Camera.main;
@@ -70,7 +64,7 @@ public class BallMove : MonoBehaviour
     public void Movement()
     {
         _gameManagerPos =
-            GameManager.main
+            LevelSetter.main
                 .transformPositionToShoot; //The position for the ball to reach, it was taken via players input.
         BallParabollaMove(_gameManagerPos,
             randomPos: new Vector3(GameManager.main.ballCurveValue, Random.Range(.35f, 1.26f), -5));
@@ -88,8 +82,8 @@ public class BallMove : MonoBehaviour
 
     private void ChangeState()
     {
-        var p1 = GameManager.main.p1sCameraPosition.transform;
-        var p2 = GameManager.main.p2sCameraPosition.transform;
+        var p1 = LevelSetter.main.p1sCameraPosition.transform;
+        var p2 = LevelSetter.main.p2sCameraPosition.transform;
 
 
         StartCoroutine(ChangeStateDelayCoroutine());
@@ -117,15 +111,15 @@ public class BallMove : MonoBehaviour
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
-                transform.position = GameManager.main.p2BallsTransform.localPosition;
-                GameManager.main.p1.transform.position = GameManager.main.p1Pos.position;
-                GameManager.main.p1.transform.rotation = GameManager.main.p1Pos.rotation;
+                transform.position = LevelSetter.main.p2BallsTransform.localPosition;
+                LevelSetter.main.p1.transform.position = LevelSetter.main.p1Pos.position;
+                LevelSetter.main.p1.transform.rotation = LevelSetter.main.p1Pos.rotation;
                 BallGetsFixedSize();
                 break;
             case PlayerState.GoalKeeperTurn:
-                transform.position = GameManager.main.p1BallsTransform.localPosition;
-                GameManager.main.p2.transform.position = GameManager.main.p2Pos.position;
-                GameManager.main.p2.transform.rotation = GameManager.main.p2Pos.rotation;
+                transform.position = LevelSetter.main.p1BallsTransform.localPosition;
+                LevelSetter.main.p2.transform.position = LevelSetter.main.p2Pos.position;
+                LevelSetter.main.p2.transform.rotation = LevelSetter.main.p2Pos.rotation;
                 BallGetsFixedSize();
                 break;
         }
@@ -151,7 +145,7 @@ public class BallMove : MonoBehaviour
                 }
             }
         }
-
+         isDeadControl();
         yield return new WaitForSeconds(5);
         switch (ShootSystem.instance.state)
         {
@@ -193,34 +187,34 @@ public class BallMove : MonoBehaviour
                 switch (GameManager.main.ballsHitRoad)
                 {
                     case TransformPosition.Head:
-                        GameManager.main.goalKeeperAnim.SetBool(HeadHit, true);
+                        LevelSetter.main.goalKeeperAnim.SetBool(HeadHit, true);
 
                         if (Unit.main.maxHP >= 90 && Unit.main.maxHP < 100)
                         {
-                            GameManager.main.goalKeeperAnim.SetLayerWeight(1, 1);
-                            GameManager.main.renderTextureMaterials[0].mainTexture = GameManager.main.p1Textures[1];
+                            LevelSetter.main.goalKeeperAnim.SetLayerWeight(1, 1);
+                            LevelSetter.main.renderTextureMaterials[0].mainTexture = LevelSetter.main.p1Textures[1];
                         }
                         else if (Unit.main.maxHP >= 80 && Unit.main.maxHP < 90)
                         {
-                            GameManager.main.goalKeeperAnim.SetLayerWeight(2, 1);
-                            GameManager.main.renderTextureMaterials[0].mainTexture = GameManager.main.p1Textures[2];
+                            LevelSetter.main.goalKeeperAnim.SetLayerWeight(2, 1);
+                            LevelSetter.main.renderTextureMaterials[0].mainTexture = LevelSetter.main.p1Textures[2];
                         }
                         else if (Unit.main.maxHP < 70)
                         {
-                            GameManager.main.goalKeeperAnim.SetLayerWeight(3, 1);
-                            GameManager.main.renderTextureMaterials[0].mainTexture = GameManager.main.p1Textures[3];
+                            LevelSetter.main.goalKeeperAnim.SetLayerWeight(3, 1);
+                            LevelSetter.main.renderTextureMaterials[0].mainTexture = LevelSetter.main.p1Textures[3];
                         }
 
                         BallGetsSmaller();
                         break;
                     case TransformPosition.Spine:
-                        GameManager.main.goalKeeperAnim.SetBool(MidHit, true);
+                        LevelSetter.main.goalKeeperAnim.SetBool(MidHit, true);
                         break;
                     case TransformPosition.Leg:
-                        GameManager.main.goalKeeperAnim.SetBool(LegHit, true);
+                        LevelSetter.main.goalKeeperAnim.SetBool(LegHit, true);
                         break;
                     case TransformPosition.Off:
-                        GameManager.main.goalKeeperAnim.SetBool(Laugh, true);
+                        LevelSetter.main.goalKeeperAnim.SetBool(Laugh, true);
                         break;
                 }
             }
@@ -230,32 +224,32 @@ public class BallMove : MonoBehaviour
                 switch (GameManager.main.ballsHitRoad)
                 {
                     case TransformPosition.Head:
-                        GameManager.main.playerAnim.SetBool(HeadHit, true);
+                        LevelSetter.main.playerAnim.SetBool(HeadHit, true);
                         if (Unit.main.maxHP >= 75 && Unit.main.maxHP < 100)
                         {
-                            GameManager.main.playerAnim.SetLayerWeight(1, 1);
-                            //GameManager.main.renderTextureMaterials[1].mainTexture = GameManager.main.p1Textures[0];
+                            LevelSetter.main.playerAnim.SetLayerWeight(1, 1);
+                           LevelSetter.main.renderTextureMaterials[1].mainTexture = LevelSetter.main.p2Textures[0];
                         }
                         else if (Unit.main.maxHP >= 40 && Unit.main.maxHP < 75)
                         {
-                            GameManager.main.playerAnim.SetLayerWeight(2, 1);
-                            //GameManager.main.renderTextureMaterials[1].mainTexture = GameManager.main.p1Textures[1];
+                            LevelSetter.main.playerAnim.SetLayerWeight(2, 1);
+                            LevelSetter.main.renderTextureMaterials[1].mainTexture = LevelSetter.main.p2Textures[1];
                         }
                         else if (Unit.main.maxHP < 40)
                         {
-                            GameManager.main.playerAnim.SetLayerWeight(3, 1);
-                            //GameManager.main.renderTextureMaterials[1].mainTexture = GameManager.main.p1Textures[2];
+                            LevelSetter.main.playerAnim.SetLayerWeight(3, 1);
+                            LevelSetter.main.renderTextureMaterials[1].mainTexture = LevelSetter.main.p2Textures[2];
                         }
                         BallGetsSmaller();
                         break;
                     case TransformPosition.Spine:
-                        GameManager.main.playerAnim.SetBool(MidHit, true);
+                        LevelSetter.main.playerAnim.SetBool(MidHit, true);
                         break;
                     case TransformPosition.Leg:
-                        GameManager.main.playerAnim.SetBool(LegHit, true);
+                        LevelSetter.main.playerAnim.SetBool(LegHit, true);
                         break;
                     case TransformPosition.Off:
-                        GameManager.main.playerAnim.SetBool(Laugh, true);
+                        LevelSetter.main.playerAnim.SetBool(Laugh, true);
                         break;
                 }
             }
@@ -276,8 +270,8 @@ public class BallMove : MonoBehaviour
         PowerBarIndicator.main.CalculateShotValue(random, calculationID);
         calculationID++;
         PowerBarIndicator.main.CalculateShotValue(random, calculationID);
-        GameManager.main.goalKeeperAnim.SetBool(Shoot, true);
-        GameManager.main.ActivateCam();
+        LevelSetter.main.goalKeeperAnim.SetBool(Shoot, true);
+        LevelSetter.main.ActivateCam();
     }
 
     private void CameraFollowStop()
@@ -290,11 +284,61 @@ public class BallMove : MonoBehaviour
 
     private void BallGetsSmaller()
     {
-        transform.localScale = new Vector3(.08f, .08f, .08f);
+        transform.localScale = new Vector3(.5f, .5f, .5f);
     }
 
     private void BallGetsFixedSize()
     {
-        transform.localScale = new Vector3(.15f, .15f, .15f);
+        transform.localScale = new Vector3(1f, 1f, 1f);
     }
+
+    private void PlayerAttackElse()
+    {
+            var transform1 = LevelSetter.main.p2Pos.transform;
+            var transform2 = LevelSetter.main.p2.transform;
+            transform2.position = transform1.position;
+            transform2.rotation = transform1.rotation;
+            GameManager.main.ballAttackValue = 0;
+            GameManager.main.ballCurveValue = 0;
+            GameManager.main.firstTouch = false;
+    }
+    private void GoalKeeperAttackElse()
+    {       
+            var transform1 = LevelSetter.main.p1Pos.transform;
+            LevelSetter.main.p1.transform.position = transform1.position;
+            LevelSetter.main.p1.transform.rotation = transform1.rotation;
+            GameManager.main.firstTouch = true;
+    }
+
+    private void isDeadControl()
+    {
+         if (ShootSystem.instance.state == PlayerState.PlayerTurn)
+        {
+             var isDead2 =ShootSystem.instance.unitGoalKeeper.TakeDamage(ShootSystem.instance.unitPlayer.damage);
+
+             if (isDead2)
+             {
+                 ShootSystem.instance.state = PlayerState.Won;
+                 ShootSystem.instance.EndShoot();
+                 
+             }
+             else
+                PlayerAttackElse();
+        
+        }
+        else  if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
+        {
+             var isDead = ShootSystem.instance.unitPlayer.TakeDamage(ShootSystem.instance.unitGoalKeeper.damage);
+
+             if (isDead)
+              {
+                 ShootSystem.instance.state = PlayerState.Lost;
+                ShootSystem.instance.EndShoot();
+              }
+               else
+               GoalKeeperAttackElse();
+        }   
+       
+    }
+    
 }

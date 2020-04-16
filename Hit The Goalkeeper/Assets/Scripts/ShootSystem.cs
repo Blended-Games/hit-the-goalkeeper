@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Accessables;
 using DG.Tweening;
-using GUI;
+using GUI2;
 using Managers;
 using UnityEngine;
-
+using Vector3 = UnityEngine.Vector3;
 
 public enum PlayerState
 {
@@ -38,9 +39,8 @@ public class ShootSystem : MonoBehaviour
     public Unit unitGoalKeeper;
     public HUDScript playerHUD;
     public HUDScript goalKeeperHUD;
-
-
-    // Start is called before the first frame update
+    private static readonly int Dead = Animator.StringToHash("Dead");
+    private static readonly int Samba = Animator.StringToHash("Samba");
     void Start()
     {
         state = PlayerState.PlayerTurn;
@@ -53,61 +53,38 @@ public class ShootSystem : MonoBehaviour
     }
 
     public void PlayerAttack()
-    {
-        var isDead = unitGoalKeeper.TakeDamage(unitPlayer.damage);
-
-        if (isDead)
-        {
-            state = PlayerState.Won;
-            EndShoot();
-        }
-        else
-        {
+    {   
             //CameraControls.main.CameraFixOffset();
-            var transform1 = GameManager.main.p2Pos.transform;
-            var transform2 = GameManager.main.p2.transform;
-            transform2.position = transform1.position;
-            transform2.rotation = transform1.rotation;
-            GameManager.main.ballAttackValue = 0;
-            GameManager.main.ballCurveValue = 0;
-            GameManager.main.firstTouch = false;
             DisplayMessage.main.powerBarText.enabled = false;
             state = PlayerState.GoalKeeperTurn;
             BallMove.main.ChangeKeeper();
-        }
     }
 
     public void GoalKeeperAttack()
     {
-        var isDead = unitPlayer.TakeDamage(unitGoalKeeper.damage);
-
-        if (isDead)
-        {
-            state = PlayerState.Lost;
-            EndShoot();
-        }
-        else
-        {
             //CameraControls.main.CameraFixOffset();
-            var transform1 = GameManager.main.p1Pos.transform;
-            GameManager.main.p1.transform.position = transform1.position;
-            GameManager.main.p1.transform.rotation = transform1.rotation;
-            GameManager.main.firstTouch = true;
             GameManager.main.powerBarIndicatorParent.SetActive(true);
             DisplayMessage.main.powerBarText.text = null;
             DisplayMessage.main.powerBarText.enabled = true;
             state = PlayerState.PlayerTurn;
-        }
     }
 
-    void EndShoot()
+   public  void EndShoot()
     {
         if (state == PlayerState.Won)
         {
+            LevelSetter.main.goalKeeperAnim.SetBool(Dead,true);
+             LevelSetter.main.playerAnim.SetBool("Samba",true);
+           DoTweenController.FirstDelayThenMoveAndRotate(BallMove.main._camera.transform, new Vector3(-.5f, 2.08f, -4.55f),
+            new Vector3(11.355f, -194.25f, 0), 2, 2);
             DisplayMessage.main.ShowPowerBarText(7);
         }
         else if (state == PlayerState.Lost)
         {
+            LevelSetter.main.playerAnim.SetBool(Dead,true);
+            LevelSetter.main.goalKeeperAnim.SetBool("Samba",true);
+            DoTweenController.FirstDelayThenMoveAndRotate(BallMove.main._camera.transform, new Vector3(-.5f, 2.08f, -4.55f),
+            new Vector3(17.63f, -5.95f, 0), 2, 2);
             DisplayMessage.main.ShowPowerBarText(6);
         }
     }

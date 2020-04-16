@@ -14,6 +14,7 @@ public class LaughState : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("Laugh",false);
+        Debug.Log("gülüyor muyum");
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

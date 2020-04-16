@@ -63,5 +63,13 @@ namespace Accessables
                 .Join(thisTransform.DOLocalRotate(rotation, duration)).SetEase(Ease.OutExpo);
             //Bunu outexpor yaptımız zaman zıbın diye yaklaşıyor
         }
+        internal static void FirstDelayThenMoveAndRotate(Transform thisTransform, Vector3 endValue, Vector3 rotation,
+            float delayDuration, float duration)
+             {
+                 var seq = DOTween.Sequence();
+                 seq.SetDelay(delayDuration)
+                    .Append(thisTransform.DOLocalMove(endValue, duration))
+                    .Join(thisTransform.DOLocalRotate(rotation, duration));
+        }
     }
 }
