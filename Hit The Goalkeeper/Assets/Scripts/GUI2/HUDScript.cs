@@ -9,7 +9,7 @@ using System.Collections.Generic;
         public Text pointText;
         public Slider hpSlider;
         // Start is called before the first frame update
-
+        
         public void SetHud(Unit unit)
         {
             pointText.text = "Lvl " + unit.point;

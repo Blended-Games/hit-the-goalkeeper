@@ -647,73 +647,73 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: HeadHit
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: MidHit
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: LegHit
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Dead
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Laugh
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Samba
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Velocity
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: HipHop
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Chicken
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: CapoeriaTrigger
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: FightIdleTrigger
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1263,10 +1263,10 @@ AnimatorStateMachine:
     m_Position: {x: 2310, y: 770, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1559295695938148808}
-    m_Position: {x: 2660, y: 930, z: 0}
+    m_Position: {x: 2320, y: 1000, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6896898542094332793}
-    m_Position: {x: 2390, y: 280, z: 0}
+    m_Position: {x: 2420, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2689959579764481542}
     m_Position: {x: 2410, y: 540, z: 0}
@@ -1278,28 +1278,28 @@ AnimatorStateMachine:
     m_Position: {x: 2630, y: 540, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9142709661593571056}
-    m_Position: {x: 2020, y: 910, z: 0}
+    m_Position: {x: 2010, y: 650, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5606824876328542272}
-    m_Position: {x: 2120, y: 1000, z: 0}
+    m_Position: {x: 2030, y: 880, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3891077985900244671}
-    m_Position: {x: 2230, y: 1140, z: 0}
+    m_Position: {x: 2030, y: 940, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3812774563263129260}
-    m_Position: {x: 2354.6155, y: 1225, z: 0}
+    m_Position: {x: 2030, y: 1000, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2482632627247566534}
-    m_Position: {x: 2468.4614, y: 1148.0769, z: 0}
+    m_Position: {x: 2030, y: 1060, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6602902616878459589}
-    m_Position: {x: 2100, y: 290, z: 0}
+    m_Position: {x: 2120, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4423896351676087581}
-    m_Position: {x: 2020, y: 710, z: 0}
+    m_Position: {x: 2560, y: 830, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1534860092547675756}
-    m_Position: {x: 2010, y: 780, z: 0}
+    m_Position: {x: 2520, y: 930, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -1307,7 +1307,7 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 1890, y: 270, z: 0}
   m_EntryPosition: {x: 1890, y: 370, z: 0}
-  m_ExitPosition: {x: 2690, y: 1070, z: 0}
+  m_ExitPosition: {x: 2610, y: 1070, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -452045645145636242}
 --- !u!1101 &5836546855638875689

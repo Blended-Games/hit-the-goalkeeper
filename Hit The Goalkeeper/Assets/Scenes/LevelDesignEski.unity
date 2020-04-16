@@ -593,6 +593,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: characterTeacher-4
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: dcd9d110eb675467aa4a183d365813f1,
+        type: 3}
+      propertyPath: m_TagString
+      value: goalkeeper
+      objectReference: {fileID: 0}
     - target: {fileID: 4350935703314944468, guid: dcd9d110eb675467aa4a183d365813f1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -634,7 +639,7 @@ MonoBehaviour:
   point: 1
   damage: 10
   currentHP: 1
-  maxHP: 100
+  maxHP: 0
 --- !u!65 &133319941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -806,6 +811,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 79b38b218a627e34fa4d3569189cae49,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2193464892710348218, guid: 79b38b218a627e34fa4d3569189cae49,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -865,7 +875,7 @@ MonoBehaviour:
   point: 10
   damage: 1
   currentHP: 10
-  maxHP: 100
+  maxHP: 0
 --- !u!114 &166459121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1312,6 +1322,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: characterButcherButcherFaceDef1
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 82aba68eb9c5d41ef9e993e260282a94,
+        type: 3}
+      propertyPath: m_TagString
+      value: goalkeeper
+      objectReference: {fileID: 0}
     - target: {fileID: 3204982691033474631, guid: 82aba68eb9c5d41ef9e993e260282a94,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1371,7 +1386,7 @@ MonoBehaviour:
   point: 1
   damage: 10
   currentHP: 1
-  maxHP: 100
+  maxHP: 0
 --- !u!114 &222376263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1536,6 +1551,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 79b38b218a627e34fa4d3569189cae49,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2193464892710348218, guid: 79b38b218a627e34fa4d3569189cae49,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1607,7 +1627,7 @@ MonoBehaviour:
   point: 10
   damage: 1
   currentHP: 10
-  maxHP: 100
+  maxHP: 0
 --- !u!65 &240772664
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2635,6 +2655,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: characterButcherButcherFaceDef1
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 82aba68eb9c5d41ef9e993e260282a94,
+        type: 3}
+      propertyPath: m_TagString
+      value: goalkeeper
+      objectReference: {fileID: 0}
     - target: {fileID: 3204982691033474631, guid: 82aba68eb9c5d41ef9e993e260282a94,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2694,7 +2719,7 @@ MonoBehaviour:
   point: 1
   damage: 10
   currentHP: 1
-  maxHP: 100
+  maxHP: 0
 --- !u!114 &491546500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2737,7 +2762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &520631244
 Transform:
   m_ObjectHideFlags: 0
@@ -3635,6 +3660,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 79b38b218a627e34fa4d3569189cae49,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2193464892710348218, guid: 79b38b218a627e34fa4d3569189cae49,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3976,6 +4006,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: characterTeacher-4
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: dcd9d110eb675467aa4a183d365813f1,
+        type: 3}
+      propertyPath: m_TagString
+      value: goalkeeper
+      objectReference: {fileID: 0}
     - target: {fileID: 4350935703314944468, guid: dcd9d110eb675467aa4a183d365813f1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4035,7 +4070,7 @@ MonoBehaviour:
   point: 1
   damage: 10
   currentHP: 1
-  maxHP: 100
+  maxHP: 0
 --- !u!114 &925080437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4348,6 +4383,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 79b38b218a627e34fa4d3569189cae49,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2193464892710348218, guid: 79b38b218a627e34fa4d3569189cae49,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4407,7 +4447,7 @@ MonoBehaviour:
   point: 10
   damage: 1
   currentHP: 10
-  maxHP: 100
+  maxHP: 0
 --- !u!114 &1056038928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4636,6 +4676,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 79b38b218a627e34fa4d3569189cae49,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2193464892710348218, guid: 79b38b218a627e34fa4d3569189cae49,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4707,7 +4752,7 @@ MonoBehaviour:
   point: 10
   damage: 1
   currentHP: 10
-  maxHP: 100
+  maxHP: 0
 --- !u!65 &1130275000
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5335,6 +5380,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: characterButcherButcherFaceDef1
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 82aba68eb9c5d41ef9e993e260282a94,
+        type: 3}
+      propertyPath: m_TagString
+      value: goalkeeper
+      objectReference: {fileID: 0}
     - target: {fileID: 3204982691033474631, guid: 82aba68eb9c5d41ef9e993e260282a94,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5394,7 +5444,7 @@ MonoBehaviour:
   point: 1
   damage: 10
   currentHP: 1
-  maxHP: 100
+  maxHP: 0
 --- !u!114 &1294257723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6801,7 +6851,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7900,7 +7950,7 @@ MonoBehaviour:
   point: 10
   damage: 1
   currentHP: 10
-  maxHP: 100
+  maxHP: 0
 --- !u!95 &1822459946 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 79b38b218a627e34fa4d3569189cae49,
