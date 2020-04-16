@@ -74,18 +74,22 @@ public class ShootSystem : MonoBehaviour
         if (state == PlayerState.Won)
         {
             LevelSetter.main.goalKeeperAnim.SetBool(Dead,true);
-             LevelSetter.main.playerAnim.SetBool("Samba",true);
+            PlayerWonAnimation();
+          //LevelSetter.main.playerAnim.SetBool("Samba",true);
            DoTweenController.FirstDelayThenMoveAndRotate(BallMove.main._camera.transform, new Vector3(-.5f, 2.08f, -4.55f),
             new Vector3(11.355f, -194.25f, 0), 10, 2);
             DisplayMessage.main.ShowPowerBarText(7);
+            Vibrations.VibrationSuccess();
         }
         else if (state == PlayerState.Lost)
-        {
+        {   
+            LevelSetter.main.goalKeeperAnim.SetBool(Dead,true);
             LevelSetter.main.playerAnim.SetBool(Dead,true);
-            LevelSetter.main.goalKeeperAnim.SetBool("Samba",true);
+            PLayerLostAnimation();
             DoTweenController.FirstDelayThenMoveAndRotate(BallMove.main._camera.transform, new Vector3(-.5f, 2.08f, -4.55f),
             new Vector3(17.63f, -5.95f, 0), 10, 2);
             DisplayMessage.main.ShowPowerBarText(6);
+            Vibrations.VibrationFail();
         }
     }
 
@@ -98,4 +102,33 @@ public class ShootSystem : MonoBehaviour
     {
         goalKeeperHUD.SetHp(unitPlayer.damage);
     }
+
+    protected void PlayerWonAnimation(){
+
+        var rand= Random.Range(1,4);
+          if (rand==1)
+                LevelSetter.main.playerAnim.SetBool("Samba",true);                
+         else if(rand==2)    
+                LevelSetter.main.playerAnim.SetBool("HipHop",true);
+         else if(rand==3)    
+                LevelSetter.main.playerAnim.SetBool("Chicken",true);
+         else if(rand==4)    
+                LevelSetter.main.playerAnim.SetBool("Victory",true);    
+        
+    }
+
+        protected void PLayerLostAnimation()
+        {
+         var rand= Random.Range(1,4);
+            if (rand==1)
+                LevelSetter.main.goalKeeperAnim.SetBool("Samba",true);
+            else if(rand==2)    
+                LevelSetter.main.goalKeeperAnim.SetBool("HipHop",true);
+            else if(rand==3)    
+                LevelSetter.main.goalKeeperAnim.SetBool("Chicken",true);
+            else if(rand==4)    
+                LevelSetter.main.goalKeeperAnim.SetBool("Victory",true);    
+        }
+       
+  
 }

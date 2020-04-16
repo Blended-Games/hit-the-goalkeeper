@@ -71,7 +71,7 @@ namespace GUI2
                     shootValue =
                         Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
                 }
-
+                Vibrations.VibrationSoft();
                 CalculateShotValue(shootValue, GameManager.main.calculationID);
                 transform.DORestart(); //Restarting anim for the second time because of power value assignment
             }

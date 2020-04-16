@@ -204,13 +204,15 @@ public class BallMove : MonoBehaviour
                             LevelSetter.main.goalKeeperAnim.SetLayerWeight(3, 1);
                             LevelSetter.main.renderTextureMaterials[0].mainTexture = LevelSetter.main.p1Textures[3];
                         }
-
+                        Vibrations.VibrationHeavy();
                         BallGetsSmaller();
                         break;
                     case TransformPosition.Spine:
+                        Vibrations.VibrationLight();
                         LevelSetter.main.goalKeeperAnim.SetBool(MidHit, true);
                         break;
                     case TransformPosition.Leg:
+                        Vibrations.VibrationLight();
                         LevelSetter.main.goalKeeperAnim.SetBool(LegHit, true);
                         break;
                     case TransformPosition.Off:
@@ -240,12 +242,15 @@ public class BallMove : MonoBehaviour
                             LevelSetter.main.playerAnim.SetLayerWeight(3, 1);
                             LevelSetter.main.renderTextureMaterials[1].mainTexture = LevelSetter.main.p2Textures[2];
                         }
+                        Vibrations.VibrationHeavy();
                         BallGetsSmaller();
                         break;
                     case TransformPosition.Spine:
+                    Vibrations.VibrationLight();
                         LevelSetter.main.playerAnim.SetBool(MidHit, true);
                         break;
                     case TransformPosition.Leg:
+                    Vibrations.VibrationLight();
                         LevelSetter.main.playerAnim.SetBool(LegHit, true);
                         break;
                     case TransformPosition.Off:
