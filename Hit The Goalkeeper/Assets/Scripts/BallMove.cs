@@ -85,7 +85,8 @@ public class BallMove : MonoBehaviour
         var p1 = LevelSetter.main.p1sCameraPosition.transform;
         var p2 = LevelSetter.main.p2sCameraPosition.transform;
 
-
+        
+       
         StartCoroutine(ChangeStateDelayCoroutine());
         switch (ShootSystem.instance.state)
         {
@@ -130,7 +131,7 @@ public class BallMove : MonoBehaviour
         if (ShootSystem.instance.state == PlayerState.PlayerTurn)
         {
             if (GameManager.main.ballsHitRoad != TransformPosition.Off)
-            {
+            { 
                 ShootSystem.instance.unitPlayer.damage = (int) GameManager.main.ballAttackValue;
                 ShootSystem.instance.PanelHealthDisplayPlayer();
             }

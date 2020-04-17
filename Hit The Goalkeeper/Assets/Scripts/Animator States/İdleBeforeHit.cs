@@ -5,29 +5,27 @@ using UnityEngine;
 
 public class İdleBeforeHit : StateMachineBehaviour
 {
-    readonly float minTime=1;
-    readonly float maxTime=2;
-    float timer= 0;
-    string[] playerTrigger ={"FightIdleTrigger","CapoeriaTrigger"};
+    
+    // string[] playerTrigger ={"FightIdleTrigger","CapoeriaTrigger"};
 
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {   
-        if(timer<=0)
-        {
-            RandomPlayerMove(animator);
-            timer=Random.Range(minTime,maxTime);
+    // override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // {   
+    //     if(timer<=0)
+    //     {
+    //         RandomPlayerMove(animator);
+    //         timer=Random.Range(minTime,maxTime);
 
-        }
-        else
-            timer-=Time.deltaTime;
+    //     }
+    //     else
+    //         timer-=Time.deltaTime;
 
-    }
-    void RandomPlayerMove(Animator animator){
-        System.Random rand= new System.Random();
-        int movePos=rand.Next(playerTrigger.Length);
-        string player=playerTrigger[movePos];
-        animator.SetTrigger(player);
-    }
+    // }
+    // void RandomPlayerMove(Animator animator){
+    //     System.Random rand= new System.Random();
+    //     int movePos=rand.Next(playerTrigger.Length);
+    //     string player=playerTrigger[movePos];
+    //     animator.SetTrigger(player);
+    // }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

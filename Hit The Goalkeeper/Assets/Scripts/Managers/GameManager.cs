@@ -16,7 +16,7 @@ namespace Managers
 
         public static GameManager main;
         [SerializeField] private float motion;
-
+        public GameObject[] upgradeButtons; //These are the upgrade buttons.
         private void Awake()
         {
             if (main != null && main != this)
@@ -57,6 +57,7 @@ namespace Managers
         private void Start()
         {
             Application.targetFrameRate = 30; //Setting the target frame rate for unexpected frame drop rates.
+         
         }
 
         #endregion

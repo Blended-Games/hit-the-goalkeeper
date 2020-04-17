@@ -145,7 +145,7 @@ namespace Managers
             {
                 if (ObjLevelManager[i].activeInHierarchy)
                 {
-                    RestartControl = true;
+                    RestartControl = false;
                     ThisLevel = i;
                     SceneManager.LoadScene(ThisScene);
                     break;

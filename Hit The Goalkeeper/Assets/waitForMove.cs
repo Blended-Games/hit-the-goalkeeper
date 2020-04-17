@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class waitForMove : StateMachineBehaviour
 {
-    readonly float minTime=1;
+    readonly float minTime=0;
     readonly float maxTime=3;
     float timer= 0;
     string[] playerTrigger ={"Laugh","Looking","Taunt"};
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    { 
          if(timer<=0)
         {
             RandomPlayerMove(animator);

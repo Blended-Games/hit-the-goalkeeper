@@ -1,27 +1,42 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
+using Accessables;
+ using TMPro;
+ using System;
+ using System.Collections;
 
 
     public class HUDScript : MonoBehaviour
     {
-        public Text pointText;
-        public Slider hpSlider;
+       public TextMeshProUGUI pointText;
+
+        [SerializeField]
+        private Slider hpSlider, hpSliderBack;
         // Start is called before the first frame update
-        
-        public void SetHud(Unit unit)
+
+    public void Start()
+    {
+       
+    }
+       public void SetHud(Unit unit)
         {
-            pointText.text = "Lvl " + unit.point;
+            pointText.text=unit.maxHP.ToString();
             hpSlider.maxValue = unit.maxHP;
-            hpSlider.value = unit.currentHP;
-
+            hpSlider.value = unit.maxHP;
+           hpSliderBack.maxValue = unit.maxHP;
+           hpSliderBack.value = unit.maxHP;
+            
         }
-        
-        public void SetHp(int hp)
-        {
-      
-            hpSlider.value -= hp;
 
+       public IEnumerator SetHp(int hp)
+        {
+            
+            
+            hpSlider.value -=hp;
+            yield  return  new WaitForSeconds(.1f);
+             pointText.text=hpSlider.value.ToString();
+            yield  return  new WaitForSeconds(.2f);
+            hpSliderBack.value-=hp;          
+         
         }
     }

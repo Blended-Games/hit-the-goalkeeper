@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
@@ -14,37 +13,39 @@ public class Unit : MonoBehaviour
 
     #endregion
 
-    public string UnitName;
-    public int point;
 
     public int damage;
 
-    // değiştirilen değer
-    public int currentHP;
-    public int maxHP ;
-    
-    #region  SetHp
+    public int damageUpgrade;
+
+    public int maxHP;
+
     private void Start()
-     {
-     if (gameObject.tag == "goalkeeper" &&PlayerPrefs.GetInt("highlevel") ==0)
-     {
-         maxHP = 70;
-         PlayerPrefs.SetInt("maxHP",maxHP);
-     }
-      else if (gameObject.tag == "Player")
-     {
-         maxHP=100;
-     }
+    {
+        switch (gameObject.tag)
+        {
+            case "goalkeeper" when PlayerPrefs.GetInt("highlevel") == 0:
+                GameData.SetGoalkeepersHealth(0);
+                GameData.SetGoalkeepersDamage(0);
+                break;
+            case "Player" when PlayerPrefs.GetInt("healthUpgrade") == 0:
+                GameData.SetPlayersHealth(0);
+                break;
+            case "Player" when PlayerPrefs.GetInt("healthUpgrade") > 0:
+                maxHP = PlayerPrefs.GetInt("PlayerMaxHP");
+                break;
+        }
 
-    if (gameObject.tag == "goalkeeper" && PlayerPrefs.GetInt("highlevel") > 0)
-     {
-       maxHP =PlayerPrefs.GetInt("maxHP")+((PlayerPrefs.GetInt("maxHP") * 10) / 100);
-       
-        PlayerPrefs.SetInt("maxHP",maxHP);
-     }
+        if (gameObject.CompareTag("Player") && PlayerPrefs.GetInt("damageUpgrade") == 0)
+            GameData.SetPlayersDamage(0);
+        else if (gameObject.CompareTag("Player") && PlayerPrefs.GetInt("damageUpgrade") > 0)
+            GameData.SetPlayersDamage(1);
 
-   }
-   #endregion
+        if (!gameObject.CompareTag("goalkeeper") || PlayerPrefs.GetInt("highlevel") <= 0) return;
+        GameData.SetGoalkeepersHealth(1);
+        GameData.SetGoalkeepersDamage(1);
+    }
+
     public bool TakeDamage(int dmg)
     {
         maxHP -= dmg;

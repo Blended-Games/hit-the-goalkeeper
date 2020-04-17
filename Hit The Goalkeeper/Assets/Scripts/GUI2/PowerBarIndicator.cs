@@ -30,11 +30,11 @@ namespace GUI2
 
         private static readonly int
             Shoot = Animator.StringToHash("Shoot"); //This is temporary its just reaching the value inside animator.
-
+        
         private float shootValue;
 
         #endregion
-
+    
         #region RectAnim
 
         private void Start()
@@ -70,8 +70,14 @@ namespace GUI2
                 {
                     shootValue =
                         Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
+                        foreach (var button in GameManager.main.upgradeButtons)
+                    {
+                        button.SetActive(false);
+                    }
                 }
-                Vibrations.VibrationSoft();
+                 Vibrations.VibrationSoft();
+                // GameManager.main.point=(int)shootValue;
+                // Debug.Log(GameManager.main.point +" game point shot");;
                 CalculateShotValue(shootValue, GameManager.main.calculationID);
                 transform.DORestart(); //Restarting anim for the second time because of power value assignment
             }
@@ -198,30 +204,58 @@ namespace GUI2
 
                     #endregion
 
+                 
+                    if (ShootSystem.instance.state == PlayerState.PlayerTurn)
+                    { 
+                        ChangeFirstDanceAnimation();
+                    }
                     if (ShootSystem.instance.state == PlayerState.PlayerTurn)
                     {
-                        LevelSetter.main.playerAnim.SetBool(Shoot, true);
+                        GameManager.main.ballAttackValue =
+                            ((1 - shootValue) * 40f) +
+                            ((40 * 5) / 100 *
+                             ShootSystem.instance.unitPlayer.damageUpgrade
+                            ); //Setting the balls shooting value with a normalized range.
+                        Debug.Log(GameManager.main.ballAttackValue =
+                            ((1 - shootValue) * 40f) +
+                            ((40 * 5) / 100 * ShootSystem.instance.unitPlayer.damageUpgrade));
                     }
-                     if ((PlayerPrefs.GetFloat("highlevel") == 0 || PlayerPrefs.GetFloat("highlevel") == 1) && ShootSystem.instance.state == PlayerState.PlayerTurn && GameManager.main.ballsHitRoad != TransformPosition.Off)
-                    {
-                        GameManager.main.ballAttackValue = 55;
-                    }
-                    else
+                    else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
                     {
                         GameManager.main.ballAttackValue =
-                            ((1 - shootValue) * 40f); //Setting the balls shooting value with a normalized range.
+                            ((1 - shootValue) * 40f) + ((40 * 8) / 100 * ShootSystem.instance.unitPlayer.damageUpgrade);
+                        Debug.Log(GameManager.main.ballAttackValue =
+                            ((1 - shootValue) * 40f) +
+                            ((40 * 8) / 100 * ShootSystem.instance.unitPlayer.damageUpgrade));
                     }
-                    
-                //  GameManager.main.ballAttackValue =
-                 //     ((1 - shootValue) * 35f); //Setting the balls shooting value with a normalized range.
                     GameManager.main.powerBarIndicatorParent.SetActive(false);
                     GameManager.main.firstTouch = false;
                     LevelSetter.main.ActivateCam();
                     GameManager.main.calculationID = 0;
+
                     break;
             }
         }
 
         #endregion
+    int rand;
+
+        private void ChangeFirstDanceAnimation(){
+            if(GameManager.main.firstTouch==true) 
+                rand=Random.Range(0,1);
+             
+             if(rand==0) {
+             LevelSetter.main.playerAnim.SetBool("Capoeria",true);
+            
+             }
+             else if(rand==1){
+             LevelSetter.main.playerAnim.SetBool("FightIdle", true);
+             }
+              LevelSetter.main.playerAnim.SetBool(Shoot, true);
+            
+                      
+        }
     }
+
+    
 }

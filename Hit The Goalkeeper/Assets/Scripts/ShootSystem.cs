@@ -23,12 +23,7 @@ public class ShootSystem : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
+       
         instance = this;
     }
 
@@ -44,6 +39,7 @@ public class ShootSystem : MonoBehaviour
     void Start()
     {
         state = PlayerState.PlayerTurn;
+       
     }
 
     public void SetupShoot()
@@ -76,18 +72,19 @@ public class ShootSystem : MonoBehaviour
             LevelSetter.main.goalKeeperAnim.SetBool(Dead,true);
             PlayerWonAnimation();
           //LevelSetter.main.playerAnim.SetBool("Samba",true);
-           DoTweenController.FirstDelayThenMoveAndRotate(BallMove.main._camera.transform, new Vector3(-.5f, 2.08f, -4.55f),
-            new Vector3(11.355f, -194.25f, 0), 10, 2);
+           DoTweenController.FirstDelayThenMoveAndRotate(BallMove.main._camera.transform, new Vector3(0.4f, 1, -6),
+            new Vector3(10, 180, 0), 7, 2);
             DisplayMessage.main.ShowPowerBarText(7);
             Vibrations.VibrationSuccess();
+            GameData.GameCurrencySave((PlayerPrefs.GetInt("highlevel") + 1) * 50);
         }
         else if (state == PlayerState.Lost)
         {   
             LevelSetter.main.goalKeeperAnim.SetBool(Dead,true);
             LevelSetter.main.playerAnim.SetBool(Dead,true);
             PLayerLostAnimation();
-            DoTweenController.FirstDelayThenMoveAndRotate(BallMove.main._camera.transform, new Vector3(-.5f, 2.08f, -4.55f),
-            new Vector3(17.63f, -5.95f, 0), 10, 2);
+            DoTweenController.FirstDelayThenMoveAndRotate(BallMove.main._camera.transform, new Vector3(-.85f, 1, -4),
+            new Vector3(10f, 0f, 0), 7, 2);
             DisplayMessage.main.ShowPowerBarText(6);
             Vibrations.VibrationFail();
         }
@@ -95,12 +92,13 @@ public class ShootSystem : MonoBehaviour
 
     public void PanelHealthDisplayGoalkeeper()
     {
-        playerHUD.SetHp(unitGoalKeeper.damage);
+    
+     StartCoroutine(playerHUD.SetHp(unitGoalKeeper.damage));
     }
 
     public void PanelHealthDisplayPlayer()
     {
-        goalKeeperHUD.SetHp(unitPlayer.damage);
+       StartCoroutine (goalKeeperHUD.SetHp(unitPlayer.damage));
     }
 
     protected void PlayerWonAnimation(){
