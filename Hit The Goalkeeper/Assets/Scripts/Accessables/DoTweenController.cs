@@ -18,6 +18,7 @@ namespace Accessables
         {
             thisTransform.DOLocalMove(endValue, duration).SetEase(ease).SetLoops(-1, loop);
         }
+        
 
         internal static void SeqMoveRotateCallBack(Transform thisTransform, Vector3 endValue,
             Vector3 quaternion,
@@ -51,10 +52,10 @@ namespace Accessables
             var seq = DOTween.Sequence();
             seq.Append(thisTransform.DOLocalMove(endValue, duration))
                 .Join(thisTransform.DOLocalRotate(rotation, duration)).SetEase(Ease.OutExpo)
-                .Append(thisTransform.DOLocalMove(lastBackwardsEndValue,  duration - .25f));
+                .Append(thisTransform.DOLocalMove(lastBackwardsEndValue, duration - .25f));
             //Bunu outexpor yaptımız zaman zıbın diye yaklaşıyor
         }
-        
+
         internal static void SequenceMoveAndRotate(Transform thisTransform, Vector3 endValue,
             Vector3 rotation, float duration)
         {
@@ -63,13 +64,14 @@ namespace Accessables
                 .Join(thisTransform.DOLocalRotate(rotation, duration)).SetEase(Ease.OutExpo);
             //Bunu outexpor yaptımız zaman zıbın diye yaklaşıyor
         }
-        internal static void FirstDelayThenMoveAndRotate(Transform thisTransform, Vector3 endValue, Vector3 rotation,
-            float delayDuration, float duration)
-             {
-                 var seq = DOTween.Sequence();
-                 seq.SetDelay(delayDuration)
-                    .Append(thisTransform.DOLocalMove(endValue, duration))
-                    .Join(thisTransform.DOLocalRotate(rotation, duration));
+
+        internal static void FirstDelayThenMoveAndRotateAndCallback(Transform thisTransform, Vector3 endValue, Vector3 rotation,
+            float delayDuration, float duration, TweenCallback callback)
+        {
+            var seq = DOTween.Sequence();
+            seq.SetDelay(delayDuration)
+                .Append(thisTransform.DOLocalMove(endValue, duration))
+                .Join(thisTransform.DOLocalRotate(rotation, duration)).OnComplete(callback);
         }
     }
 }

@@ -57,7 +57,7 @@ public class LevelSetter : MonoBehaviour
     #endregion
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         SetPlayersFirstTexture();
         _camera = FindObjectOfType<CameraControls>();
@@ -72,6 +72,6 @@ public class LevelSetter : MonoBehaviour
     private void SetPlayersFirstTexture()
     {
         renderTextureMaterials[0].mainTexture = p1Textures[0];
-        renderTextureMaterials[1].mainTexture = p2Textures[1];
+        renderTextureMaterials[1].mainTexture = p2Textures[0];
     }
 }

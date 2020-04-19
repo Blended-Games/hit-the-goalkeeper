@@ -1,4 +1,5 @@
-﻿using Accessables;
+﻿using System;
+using Accessables;
 using DG.Tweening;
 using Managers;
 using UnityEngine;
@@ -30,18 +31,22 @@ namespace GUI2
 
         private static readonly int
             Shoot = Animator.StringToHash("Shoot"); //This is temporary its just reaching the value inside animator.
-        
-        private float shootValue;
+
+        private float _shootValue;
 
         #endregion
-    
+
         #region RectAnim
+
+        private void OnEnable()
+        {
+            transform.DOPlay();
+        }
 
         private void Start()
         {
             //Moving the indicator from corner to another corner.
-            var transform1 = transform;
-            DoTweenController.DoLocalMove3DWithLoop(transform1,
+            DoTweenController.DoLocalMove3DWithLoop(transform,
                 new Vector3(1, 0, 0), 2,
                 Ease.Linear, -1,
                 LoopType.Yoyo);
@@ -53,45 +58,52 @@ namespace GUI2
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && GameManager.main.firstTouch &&
-                !EventSystem.current.IsPointerOverGameObject() &&
-                ShootSystem.instance.state == PlayerState.PlayerTurn)
+            if (!Input.GetMouseButtonDown(0) || !GameManager.main.firstTouch ||
+                EventSystem.current.IsPointerOverGameObject() ||
+                ShootSystem.instance.state != PlayerState.PlayerTurn) return;
+            switch (GameManager.main.calculationID)
             {
                 //Detecting for the input.
-                if (GameManager.main.calculationID == 1)
+                case 1:
                 {
-                    shootValue =
-                        (transform.localPosition.x);
-                    GameManager.main.ballCurveValue = shootValue;
-                    shootValue =
-                        Mathf.Abs(transform.localPosition.x);
+                    var transform1 = transform;
+                    var localPosition = transform1.localPosition;
+                    _shootValue =
+                        (localPosition.x);
+                    GameManager.main.ballCurveValue = _shootValue;
+                    _shootValue =
+                        Mathf.Abs(localPosition.x);
+                    break;
                 }
-                else if (GameManager.main.calculationID == 0)
+                case 0:
                 {
-                    shootValue =
+                    _shootValue =
                         Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
-                        foreach (var button in GameManager.main.upgradeButtons)
+                    foreach (var button in GameManager.main.upgradeButtons)
                     {
                         button.SetActive(false);
                     }
+
+                    break;
                 }
-                 Vibrations.VibrationSoft();
-                // GameManager.main.point=(int)shootValue;
-                // Debug.Log(GameManager.main.point +" game point shot");;
-                CalculateShotValue(shootValue, GameManager.main.calculationID);
-                transform.DORestart(); //Restarting anim for the second time because of power value assignment
             }
+
+            Vibrations.VibrationSoft();
+            // GameManager.main.point=(int)shootValue;
+            // Debug.Log(GameManager.main.point +" game point shot");;
+            CalculateShotValue(_shootValue, GameManager.main.calculationID);
+            transform.DORestart(); //Restarting anim for the second time because of power value assignment
         }
 
 
-        public void CalculateShotValue(float shootValue, int id)
+        public void CalculateShotValue(float shootVal, int id)
         {
             //Calculating value of the power
             //Id is representing the current state(transform bar, power bar).
             //when we finalize the result we kill the animation.
             switch (id)
             {
-                case 0 when shootValue >= .8f:
+                case 0 when _shootValue >= .8f:
                     if (ShootSystem.instance.state == PlayerState.PlayerTurn)
                     {
                         DisplayMessage.main.ShowPowerBarText(Random.Range(0,
@@ -119,7 +131,7 @@ namespace GUI2
 
                     break;
 
-                case 0 when shootValue >= .5f && shootValue < .8f:
+                case 0 when _shootValue >= .5f && _shootValue < .8f:
                     if (ShootSystem.instance.state == PlayerState.PlayerTurn)
                     {
                         DisplayMessage.main.ShowPowerBarText(Random.Range(0,
@@ -139,11 +151,13 @@ namespace GUI2
                             break;
                     }
 
+                    _shootValue = Random.Range(.55f, .35f);
+
                     GameManager.main.ballsHitRoad = TransformPosition.Leg;
 
                     break;
 
-                case 0 when shootValue >= .135f && shootValue < .5f:
+                case 0 when _shootValue >= .135f && _shootValue < .5f:
                     if (ShootSystem.instance.state == PlayerState.PlayerTurn)
                     {
                         DisplayMessage.main.ShowPowerBarText(Random.Range(2, 4));
@@ -162,10 +176,11 @@ namespace GUI2
                             break;
                     }
 
+                    _shootValue = Random.Range(.35f, .25f);
                     GameManager.main.ballsHitRoad = TransformPosition.Spine;
 
                     break;
-                case 0 when shootValue < .135f:
+                case 0 when _shootValue < .135f:
                     if (ShootSystem.instance.state == PlayerState.PlayerTurn)
                     {
                         DisplayMessage.main.ShowPowerBarText(Random.Range(4, 6));
@@ -193,43 +208,43 @@ namespace GUI2
 
                     #region Display Message Conditions
 
-                    if (shootValue < .135f && ShootSystem.instance.state == PlayerState.PlayerTurn) 
+                    if (_shootValue < .135f && ShootSystem.instance.state == PlayerState.PlayerTurn)
                         DisplayMessage.main.ShowPowerBarText(Random.Range(4, 6));
-                    if (shootValue >= .135f && shootValue < .45f && ShootSystem.instance.state == PlayerState.PlayerTurn)
+                    if (_shootValue >= .135f && _shootValue < .45f &&
+                        ShootSystem.instance.state == PlayerState.PlayerTurn)
                         DisplayMessage.main.ShowPowerBarText(Random.Range(2, 4));
-                    if (shootValue >= .45f && shootValue < .7f && ShootSystem.instance.state == PlayerState.PlayerTurn)
+                    if (_shootValue >= .45f && _shootValue < .7f && ShootSystem.instance.state == PlayerState.PlayerTurn)
                         DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2));
-                    if (shootValue >= .71f && shootValue <= 1 && ShootSystem.instance.state == PlayerState.PlayerTurn) 
+                    if (_shootValue >= .71f && _shootValue <= 1 && ShootSystem.instance.state == PlayerState.PlayerTurn)
                         DisplayMessage.main.ShowPowerBarText(Random.Range(0, 2));
 
                     #endregion
 
-                 
+
                     if (ShootSystem.instance.state == PlayerState.PlayerTurn)
-                    { 
+                    {
                         ChangeFirstDanceAnimation();
                     }
+
                     if (ShootSystem.instance.state == PlayerState.PlayerTurn)
                     {
                         GameManager.main.ballAttackValue =
-                            ((1 - shootValue) * 40f) +
+                            ((1 - _shootValue) * 40f) +
                             ((40 * 5) / 100 *
                              ShootSystem.instance.unitPlayer.damageUpgrade
                             ); //Setting the balls shooting value with a normalized range.
-                        Debug.Log(GameManager.main.ballAttackValue =
-                            ((1 - shootValue) * 40f) +
-                            ((40 * 5) / 100 * ShootSystem.instance.unitPlayer.damageUpgrade));
+                        Unit.SetDamageAfterTurn();
                     }
                     else if (ShootSystem.instance.state == PlayerState.GoalKeeperTurn)
                     {
                         GameManager.main.ballAttackValue =
-                            ((1 - shootValue) * 40f) + ((40 * 8) / 100 * ShootSystem.instance.unitPlayer.damageUpgrade);
-                        Debug.Log(GameManager.main.ballAttackValue =
-                            ((1 - shootValue) * 40f) +
-                            ((40 * 8) / 100 * ShootSystem.instance.unitPlayer.damageUpgrade));
+                            ((1 - _shootValue) * 40f) +
+                            ((40 * 8) / 100 * ShootSystem.instance.unitGoalKeeper.damageUpgrade);
+                        Unit.SetMaxDamage();
                     }
-                    GameManager.main.powerBarIndicatorParent.SetActive(false);
                     GameManager.main.firstTouch = false;
+                    enabled = false;
+                    transform.DOPause();
                     LevelSetter.main.ActivateCam();
                     GameManager.main.calculationID = 0;
 
@@ -238,24 +253,27 @@ namespace GUI2
         }
 
         #endregion
-    int rand;
 
-        private void ChangeFirstDanceAnimation(){
-            if(GameManager.main.firstTouch==true) 
-                rand=Random.Range(0,1);
-             
-             if(rand==0) {
-             LevelSetter.main.playerAnim.SetBool("Capoeria",true);
-            
-             }
-             else if(rand==1){
-             LevelSetter.main.playerAnim.SetBool("FightIdle", true);
-             }
-              LevelSetter.main.playerAnim.SetBool(Shoot, true);
-            
-                      
+        int _rand;
+        private static readonly int FightIdle = Animator.StringToHash("FightIdle");
+        private static readonly int Capoeria = Animator.StringToHash("Capoeria");
+
+        private void ChangeFirstDanceAnimation()
+        {
+            if (GameManager.main.firstTouch)
+                _rand = Random.Range(0, 10);
+
+            switch (_rand % 2)
+            {
+                case 0:
+                    LevelSetter.main.playerAnim.SetBool(Capoeria, true);
+                    break;
+                case 1:
+                    LevelSetter.main.playerAnim.SetBool(FightIdle, true);
+                    break;
+            }
+
+            LevelSetter.main.playerAnim.SetBool(Shoot, true);
         }
     }
-
-    
 }

@@ -1,12 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Managers;
+﻿using Managers;
 using UnityEngine;
 
-public class SetTheGameState : StateMachineBehaviour
+namespace Animator_States
 {
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class SetTheGameState : StateMachineBehaviour
     {
-        GameManager.main.firstTouch = true;
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            GameManager.main.firstTouch = true;
+        }
     }
 }

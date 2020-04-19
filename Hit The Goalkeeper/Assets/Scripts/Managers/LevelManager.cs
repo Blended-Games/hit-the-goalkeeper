@@ -1,228 +1,219 @@
+using System;
+using System.Collections.Generic;
+using JetBrains.Annotations;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Managers
 {
-    public enum TransPoscontrol
-    {
-        NotTrans,
-        Trans
-    }
-
     public class LevelManager : MonoBehaviour
     {
-        public static int HighLevel;
-        public static int ThisScene;
-        public static int ThisLevel;
-        public static bool RestartControl;
-        public static bool NextLevelControl;
-        public GameObject[] ObjLevelManager;
+        public static LevelManager Main;
 
 
-        [Header("Gecis olup olmadığını seç!")] public TransPoscontrol TransPosControl;
+        [Header("Listeler"), SerializeField, NotNull]
+        private List<GameObject> levellar = new List<GameObject>();
 
-        [Header("Geçiş yapılacak pozisyonları ata!")]
-        public GameObject NextLevelTargetPos;
+        [SerializeField] [NotNull] private List<Color> planeColors = new List<Color>();
+        [SerializeField] [NotNull] private List<Color> lastPlaneColors = new List<Color>();
+        [SerializeField] [NotNull] private List<Color> capsuleColors = new List<Color>();
 
-        public GameObject NewLevelTargetPos;
+        [SerializeField] [NotNull] private List<Color> seaColors = new List<Color>();
 
-        [SerializeField] [Range(0, 50)] public float TransSpeed;
-        static bool LevelControl;
-        static int ThisObjLevelInt;
-        static int NewObjLevelInt;
-        public int newLevel;
+        //[SerializeField] private Dictionary<int, Color[,,,]> colors = new Dictionary<int, Color[,,,]>();
+        [SerializeField] [NotNull] private List<Material> objectsThatNeededToChangeColors = new List<Material>();
 
-        public int
-            levelÖlçer; //PlayerPrefteki değer eğer total level sayılarımızdan büyük random bir şekilde seviyelerden biri seçilip o tekrardan açılıyor. Böylece hata olmuyor.
+
+        //Seviye için gereken attributelar...
+        [NotNull] private static int currentLevel;
+        [NotNull] public int thisLevel; //Bu global erişim için;
+        [NotNull] private static int _nextLevel;
+        [NotNull] private static int _currentScene;
+        [NotNull] private static bool _restartLevelControl;
+        [NotNull] private static bool _nextLevelControl;
+        [NotNull] private static bool _randomizeLevelControl;
+        [NotNull] private int _newlevel;
+
+        //[SerializeField] private Animator levelLoadAnim;
+        [SerializeField] private TextMeshProUGUI levelText;
+
+        [NotNull]
+        public Color currentColor; //Bunu dotween üzerinde renk değiştirdiğimiz için yazdık böylece erişebiliyoruz.
+
+        public bool
+            levelRestarted; //This is the condition for checking the levels restart state. (If it is we will not increase the health & damage of goalkeeper.)
+
+
+        private static readonly int Color58E0201D = Shader.PropertyToID("Color_58E0201D");
+        private static readonly int StartAnim = Animator.StringToHash("Start");
+
+        #region Singleton
 
         private void Awake()
         {
-            //PlayerPrefs.SetInt("highlevel", 0);
-            //Debug.Log("NextLevelControl: " + NextLevelControl);
-            //Debug.Log("NewObjLevelInt: " + NewObjLevelInt);
-            levelÖlçer = PlayerPrefs.GetInt("highlevel");
-            if (NextLevelControl == true && !RestartControl)
+            if (Main != null && Main != this)
             {
-                ObjLevelManager[NewObjLevelInt - 1].SetActive(false);
-                ObjLevelManager[NewObjLevelInt].SetActive(true);
+                Destroy(gameObject);
+                return;
             }
-            else if (NextLevelControl == false && !RestartControl)
+
+            Main = this;
+
+            #endregion
+
+            
+            if (_restartLevelControl) levelRestarted = true;
+
+            if (_nextLevelControl && !_randomizeLevelControl)
             {
-                if (levelÖlçer + 1 < ObjLevelManager.Length)
-                    ObjLevelManager[PlayerPrefs.GetInt("highlevel")].SetActive(true);
-                else if (levelÖlçer + 1 >= ObjLevelManager.Length)
+                levellar[_nextLevel].SetActive(true);
+                _nextLevelControl = false;
+                //ChangeColors();
+                currentLevel = _nextLevel;
+                thisLevel = currentLevel;
+            }
+            else if (!_nextLevelControl)
+            {
+                if (PlayerPrefs.GetInt("highlevel") >= levellar.Count)
                 {
-                    newLevel = Random.Range(0, ObjLevelManager.Length);
-                    ObjLevelManager[newLevel].SetActive(true);
+                    var random = Random.Range(0, levellar.Count);
+                    levellar[random].SetActive(true);
+                    currentLevel = random;
+                    thisLevel = currentLevel;
+                    //ChangeColors();
+                }
+                else if (PlayerPrefs.GetInt("highlevel") < levellar.Count)
+                {
+                    levellar[PlayerPrefs.GetInt("highlevel")].SetActive(true);
+                    currentLevel = PlayerPrefs.GetInt("highlevel");
+                    thisLevel = currentLevel;
+                    //ChangeColors();
                 }
             }
-            else if (RestartControl)
+            else if (_nextLevelControl && _randomizeLevelControl)
             {
-                ObjLevelManager[ThisLevel].SetActive(true);
-            }
-
-            ThisScene = SceneManager.GetActiveScene().buildIndex;
-            //Debug.Log("highlevel=" + PlayerPrefs.GetInt("highlevel"));
-            for (int i = 0; i < ObjLevelManager.Length; i++)
-            {
-                if (ObjLevelManager[i].activeInHierarchy) ThisLevel = i;
-            }
-        }
-
-        private void LateUpdate()
-        {
-            if (LevelControl)
-            {
-                ObjLevelManager[NewObjLevelInt].SetActive(true);
-
-                ObjLevelManager[ThisObjLevelInt].transform.position = Vector3.MoveTowards(
-                    ObjLevelManager[ThisObjLevelInt].transform.position, NextLevelTargetPos.transform.position,
-                    Time.deltaTime * TransSpeed);
-                ObjLevelManager[NewObjLevelInt].transform.position = Vector3.MoveTowards(
-                    ObjLevelManager[NewObjLevelInt].transform.position, NewLevelTargetPos.transform.position,
-                    Time.deltaTime * TransSpeed);
-
-
-                if (ObjLevelManager[NewObjLevelInt].transform.position == NewLevelTargetPos.transform.position)
+                var newlevel = Random.Range(0, levellar.Count);
+                while (true)
                 {
-                    LevelControl = false;
-                    ObjLevelManager[NewObjLevelInt].SetActive(false);
-                }
-            }
-        }
-
-        public static void NextScene()
-        {
-            ThisScene += 1;
-            SceneManager.LoadScene(ThisScene);
-        }
-
-        public static void NextScene(int setLevel)
-        {
-            SceneManager.LoadScene(setLevel);
-        }
-
-        public void PreviousLevel()
-        {
-            var newLevel = NewObjLevelInt - 1;
-
-            for (var i = 0; i < ObjLevelManager.Length; i++)
-            {
-                if (ObjLevelManager[i].activeInHierarchy)
-                {
-                    ThisObjLevelInt = i;
-                    if (newLevel > 0)
+                    if (newlevel == currentLevel)
                     {
-                        NewObjLevelInt = i - 1;
-                    }
-
-                    if (TransPosControl.ToString() == "Trans")
-                    {
-                        LevelControl = true;
+                        Debug.LogError("Hala Aynıyım");
+                        newlevel = Random.Range(0, levellar.Count);
                     }
                     else
                     {
-                        ObjLevelManager[ThisObjLevelInt].SetActive(false);
-                        ObjLevelManager[NewObjLevelInt].SetActive(true);
+                        break;
                     }
-
-                    if (i > PlayerPrefs.GetInt("highlevel") && i != ObjLevelManager.Length)
-                    {
-                        PlayerPrefs.SetInt("highlevel", i);
-                    }
-
-
-                    break;
                 }
+
+                levellar[newlevel].SetActive(true);
+                currentLevel = _nextLevel;
+                _randomizeLevelControl = false;
+                //Debug.LogError("Değişmeyi başardım");
+                //ChangeColors();
             }
         }
+
+        private void Start()
+        {
+            if (!PlayerPrefs.HasKey("highlevel"))
+            {
+                levelText.text = "Level " + 1;
+                PlayerPrefs.SetInt("highlevel",1);
+            }
+            else
+            {
+                levelText.text = "Level " + PlayerPrefs.GetInt("highlevel");
+            }
+        }
+
+        private static void RandomizeLevel()
+        {
+            _randomizeLevelControl = true;
+            _restartLevelControl = false;
+            PlayerPrefs.SetInt("highlevel", PlayerPrefs.GetInt("highlevel") + 1);
+            //Debug.LogError("Randomize a girdim");
+            SceneManager.LoadScene(_currentScene);
+        }
+
+        public void NextLevelEarlyBird()
+        {
+            if (currentLevel + 1 < levellar.Count)
+            {
+                _nextLevelControl = true;
+                _nextLevel = currentLevel + 1;
+                levellar[_nextLevel].transform.position = new Vector3(levellar[currentLevel].transform.position.x,
+                    levellar[currentLevel].transform.position.y, levellar[currentLevel].transform.position.z + 198.02f);
+                levellar[_nextLevel].SetActive(true);
+            }
+            else if (currentLevel + 1 >= levellar.Count)
+            {
+                while (true)
+                {
+                    if (_newlevel == currentLevel)
+                    {
+                        _newlevel = Random.Range(0, levellar.Count);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                levellar[_newlevel].transform.position = new Vector3(levellar[currentLevel].transform.position.x,
+                    levellar[currentLevel].transform.position.y, levellar[currentLevel].transform.position.z + 198.02f);
+                levellar[_newlevel].SetActive(true);
+            }
+        }
+
+        public void NextLevel()
+        {
+            if (PlayerPrefs.GetInt("highlevel") + 1 < levellar.Count)
+            {
+                _nextLevelControl = true;
+                _restartLevelControl = false;
+                _nextLevel = currentLevel + 1;
+                PlayerPrefs.SetInt("highlevel", _nextLevel);
+                //Debug.LogError("Level: " + PlayerPrefs.GetInt("highlevel"));
+                SceneManager.LoadScene(_currentScene);
+            }
+            else if (PlayerPrefs.GetInt("highlevel") + 1 >= levellar.Count)
+            {
+                RandomizeLevel();
+            }
+        }
+
+        // public void NextLevelAnim()
+        // {
+        //     levelLoadAnim.SetTrigger(Start);
+        //
+        //     Invoke(nameof(NextLevel),1);
+        // }
 
 
         public void RestartLevel()
         {
-            for (int i = 0; i < ObjLevelManager.Length; i++)
+            for (var i = 0; i < levellar.Count; i++)
             {
-                if (ObjLevelManager[i].activeInHierarchy)
-                {
-                    RestartControl = false;
-                    ThisLevel = i;
-                    SceneManager.LoadScene(ThisScene);
-                    break;
-                }
+                if (!levellar[i].activeInHierarchy) continue;
+                _restartLevelControl = true;
+                currentLevel = i;
+                SceneManager.LoadScene(_currentScene);
+                break;
             }
         }
 
-        public void NextLevelErkenDoğur()
+        private void ChangeColors()
         {
-            if (PlayerPrefs.GetInt("highlevel") != 0)
-            {
-                newLevel = PlayerPrefs.GetInt("highlevel") + 1;
-            }
-            else if (levelÖlçer + 1 < ObjLevelManager.Length)
-            {
-                newLevel = NewObjLevelInt + 1;
-            }
-            else if (levelÖlçer + 1 >= ObjLevelManager.Length)
-            {
-                newLevel = Random.Range(0, ObjLevelManager.Length);
-                while (newLevel == ThisLevel) newLevel = Random.Range(0, ObjLevelManager.Length);
-            }
-
-            if (newLevel < ObjLevelManager.Length)
-            {
-                ObjLevelManager[newLevel].SetActive(true);
-                ObjLevelManager[newLevel].transform.position = new Vector3(ObjLevelManager[newLevel].transform.position.x,
-                    ObjLevelManager[newLevel].transform.position.y, 296.5f);
-            }
-            else if (newLevel + 1 >= ObjLevelManager.Length)
-            {
-                newLevel = Random.Range(0, ObjLevelManager.Length);
-                while (newLevel == ThisLevel) newLevel = Random.Range(0, ObjLevelManager.Length);
-                ObjLevelManager[newLevel].SetActive(true);
-                ObjLevelManager[newLevel].transform.position = new Vector3(ObjLevelManager[newLevel].transform.position.x,
-                    ObjLevelManager[newLevel].transform.position.y, 296.5f);
-            }
+            var randomSea = Random.Range(0, seaColors.Count);
+            var randomMat = Random.Range(0, planeColors.Count);
+            currentColor = planeColors[randomMat];
+            objectsThatNeededToChangeColors[0].color = planeColors[randomMat];
+            objectsThatNeededToChangeColors[1].color = lastPlaneColors[randomMat];
+            objectsThatNeededToChangeColors[2].color = capsuleColors[randomSea];
+            objectsThatNeededToChangeColors[3].SetColor(Color58E0201D, seaColors[randomSea]);
         }
-
-        public void NextObjLevel()
-        {
-            for (int i = 0; i < ObjLevelManager.Length; i++)
-            {
-                if (ObjLevelManager[i].activeInHierarchy)
-                {
-                    ThisObjLevelInt = i;
-                    if (newLevel < ObjLevelManager.Length)
-                    {
-                        NewObjLevelInt = i + 1;
-                    }
-                    else if (newLevel + 1 >= ObjLevelManager.Length)
-                    {
-                        NewObjLevelInt = Random.Range(0, ObjLevelManager.Length);
-                        while (newLevel == ThisLevel) NewObjLevelInt = Random.Range(0, ObjLevelManager.Length);
-                    }
-
-                    if (TransPosControl.ToString() == "Trans")
-                    {
-                        LevelControl = true;
-                    }
-                    else
-                    {
-                        ObjLevelManager[ThisObjLevelInt].SetActive(false);
-                        ObjLevelManager[NewObjLevelInt].SetActive(true);
-                    }
-
-                    NextLevelControl = true;
-                    //if (NewObjLevelInt > PlayerPrefs.GetInt("highlevel") && i!= ObjLevelManager.Length) { PlayerPrefs.SetInt("highlevel", PlayerPrefs.GetInt("highlevel")+1); }
-                    PlayerPrefs.SetInt("highlevel", PlayerPrefs.GetInt("highlevel") + 1);
-                    //Debug.Log("HighLevel: " + PlayerPrefs.GetInt("highlevel"));
-                    SceneManager.LoadScene(ThisScene);
-
-                    break;
-                }
-            }
-        }
-
-        [FormerlySerializedAs("Acıklama")] [SerializeField] [Multiline] private string acıklama;
     }
 }
