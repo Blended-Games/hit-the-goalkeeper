@@ -3,7 +3,22 @@ guid: bd208a04f77a54046af4753440938785
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RedMat
+    second: {fileID: 2100000, guid: e98778f19404a4f90a34c18253c830f3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: floorMat
+    second: {fileID: 2100000, guid: cbc9b500764a04631aeefa837c8a80bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: windowMat
+    second: {fileID: 2100000, guid: 63cf51000a9eb4ef39745e4e897399ef, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
