@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: teacher
+  m_Name: guard_mat
   m_Shader: {fileID: 4800000, guid: 26ac6b86cbebf834fb2ac55c14c9bb16, type: 3}
-  m_ShaderKeywords: TCP2_NONE TCP2_ZSMOOTH_ON
+  m_ShaderKeywords: TCP2_ZSMOOTH_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 6850e8a556b364bb39253b564817affc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0236fdc0de0d94e3ba7475d3f7c35794, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -77,7 +77,7 @@ Material:
     - _Offset2: 20
     - _Outline: 0
     - _Parallax: 0.02
-    - _RampSmooth: 1
+    - _RampSmooth: 0.1
     - _RampThreshold: 0.089
     - _RimMax: 1
     - _RimMin: 0.7
@@ -88,18 +88,18 @@ Material:
     - _SpecSmooth: 1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TexLod: 0
+    - _TexLod: 5
     - _UVSec: 0
     - _ZSmooth: 3
     - _ZWrite: 1
     - __dummy__: 0
     - __outline_gui_dummy__: 0
     m_Colors:
-    - _Color: {r: 0.94509804, g: 0.94509804, b: 0.94509804, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _HColor: {r: 1, g: 0.6745098, b: 0, a: 1}
+    - _HColor: {r: 0.38959596, g: 0.7183641, b: 0.8018868, a: 1}
     - _OutlineColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _RimColor: {r: 0.6600659, g: 0.7573329, b: 0.8584906, a: 1}
-    - _SColor: {r: 0.5568628, g: 0.08235294, b: 0.08235294, a: 1}
+    - _RimColor: {r: 0.11801351, g: 0.2278357, b: 0.49056602, a: 0.6}
+    - _SColor: {r: 0.16487184, g: 0.19306193, b: 0.6132076, a: 1}
     - _SketchColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

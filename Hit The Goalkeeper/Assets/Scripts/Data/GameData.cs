@@ -16,35 +16,34 @@ public static class GameData
         return PlayerPrefs.GetInt("currency") >= upgradeCost;
     }
 
-    public static void BuyUpgrade(string key, int upgradeCost)
-    {
-        if (CurrencyControl(upgradeCost))
+   public static void BuyUpgrade(string key, int upgradeCost)
         {
-            PlayerPrefs.SetInt("currency",
-                PlayerPrefs.GetInt("currency") - upgradeCost); //Decrease upgrade amount from the coin.
-            CoinText.main.SetCoinText(); //Set new coin amount to coin text
-            switch (key)
+            if (CurrencyControl(upgradeCost))
             {
-                case "damageUpgrade":
-                    SetPlayersDamage(1);
-                    Unit.SetMaxDamage();
-                    break;
-                case "healthUpgrade":
-                    SetPlayersHealth(1);
-                    break;
+                PlayerPrefs.SetInt("currency",
+                    PlayerPrefs.GetInt("currency") - upgradeCost); //Decrease upgrade amount from the coin.
+                CoinText.main.SetCoinText(); //Set new coin amount to coin text
+                switch (key)
+                {
+                    case "damageUpgrade":
+                        SetPlayersDamage(1);
+                        Unit.SetMaxDamage();
+                        UpgradePanel.main.damageUpgrade.IncreaseCurrency(key);
+                        break;
+                    case "healthUpgrade":
+                        SetPlayersHealth(1);
+                        UpgradePanel.main.healthUpgrade.IncreaseCurrency(key);
+                        break;
+                }
+
+                PlayerPrefs.SetInt(key, PlayerPrefs.GetInt(key) + 1); //Increased the level of this upgrade
             }
-
-            PlayerPrefs.SetInt(key, PlayerPrefs.GetInt(key) + 1); //Increased the level of this upgrade
-            Debug.Log( PlayerPrefs.GetInt(key));
-            UpgradeObjectsBehaviour.main.IncreaseCurrency();
+            else
+            {
+                //Debug.Log("Insufficient amounts" + " " + key);
+                //Display insufficient amounts or buy with advertisement message or something.
+            }
         }
-        else
-        {
-            //Debug.Log("Insufficient amounts" + " " + key);
-            //Display insufficient amounts or buy with advertisement message or something.
-        }
-    }
-
     public static void SetPlayersDamage(int id)
     {
         if (id == 0)

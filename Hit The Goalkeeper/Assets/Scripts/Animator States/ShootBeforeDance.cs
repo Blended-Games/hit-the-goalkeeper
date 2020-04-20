@@ -16,10 +16,5 @@ namespace Animator_States
             animator.SetBool(FightIdle, false);
         }
 
-        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex,
-            AnimatorControllerPlayable controller)
-        {
-            GameManager.main.powerBarIndicatorParent.SetActive(false);
-        }
     }
 }

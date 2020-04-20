@@ -243,7 +243,7 @@ namespace GUI2
                         Unit.SetMaxDamage();
                     }
                     GameManager.main.firstTouch = false;
-                    enabled = false;
+                    GameManager.main.powerBarIndicatorParent.SetActive(false);
                     transform.DOPause();
                     LevelSetter.main.ActivateCam();
                     GameManager.main.calculationID = 0;
