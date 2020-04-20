@@ -191,29 +191,6 @@ public class BallMove : MonoBehaviour
                 {
                     case TransformPosition.Head:
                         LevelSetter.main.goalKeeperAnim.SetBool(HeadHit, true);
-
-                        if (Unit.main.maxHP - GameManager.main.ballAttackValue <
-                            (Unit.main.firstHP * 70 / 100))
-
-                        {
-                            LevelSetter.main.goalKeeperAnim.SetLayerWeight(1, 1);
-                            LevelSetter.main.renderTextureMaterials[1].mainTexture = LevelSetter.main.p2Textures[1];
-                        }
-
-                        if (Unit.main.maxHP - GameManager.main.ballAttackValue <
-                            (Unit.main.firstHP * 50 / 100))
-                        {
-                            LevelSetter.main.goalKeeperAnim.SetLayerWeight(2, 1);
-                            LevelSetter.main.renderTextureMaterials[1].mainTexture = LevelSetter.main.p2Textures[2];
-                        }
-
-                        if (Unit.main.maxHP - GameManager.main.ballAttackValue <
-                            ((Unit.main.firstHP * 30) / 100))
-                        {
-                            LevelSetter.main.goalKeeperAnim.SetLayerWeight(3, 1);
-                            LevelSetter.main.renderTextureMaterials[1].mainTexture = LevelSetter.main.p2Textures[3];
-                        }
-
                         Vibrations.VibrationHeavy();
                         BallGetsSmaller();
                         break;
@@ -229,6 +206,27 @@ public class BallMove : MonoBehaviour
                         LevelSetter.main.goalKeeperAnim.SetBool(Laugh, true);
                         break;
                 }
+                if (ShootSystem.instance.unitGoalKeeper.maxHP - GameManager.main.ballAttackValue <
+                    ((ShootSystem.instance.unitGoalKeeper.firstHP * 70) / 100))
+
+                {
+                    LevelSetter.main.goalKeeperAnim.SetLayerWeight(1, 1);
+                    LevelSetter.main.renderTextureMaterials[1].mainTexture = LevelSetter.main.p2Textures[1];
+                }
+
+                if (ShootSystem.instance.unitGoalKeeper.maxHP - GameManager.main.ballAttackValue <
+                    ((ShootSystem.instance.unitGoalKeeper.firstHP * 50) / 100))
+                {
+                    LevelSetter.main.goalKeeperAnim.SetLayerWeight(2, 1);
+                    LevelSetter.main.renderTextureMaterials[1].mainTexture = LevelSetter.main.p2Textures[2];
+                }
+
+                if (ShootSystem.instance.unitGoalKeeper.maxHP - GameManager.main.ballAttackValue <
+                    ((ShootSystem.instance.unitGoalKeeper.firstHP * 30) / 100))
+                {
+                    LevelSetter.main.goalKeeperAnim.SetLayerWeight(3, 1);
+                    LevelSetter.main.renderTextureMaterials[1].mainTexture = LevelSetter.main.p2Textures[3];
+                }
             }
                 break;
             case PlayerState.GoalKeeperTurn:
@@ -237,27 +235,6 @@ public class BallMove : MonoBehaviour
                 {
                     case TransformPosition.Head:
                         LevelSetter.main.playerAnim.SetBool(HeadHit, true);
-                        if (Unit.main.maxHP - GameManager.main.ballAttackValue <
-                            ((Unit.main.firstHP * 70) / 100))
-                        {
-                            LevelSetter.main.playerAnim.SetLayerWeight(1, 1);
-                            LevelSetter.main.renderTextureMaterials[0].mainTexture = LevelSetter.main.p1Textures[1];
-                        }
-
-                        if (Unit.main.maxHP - GameManager.main.ballAttackValue <
-                            ((Unit.main.firstHP * 50) / 100))
-                        {
-                            LevelSetter.main.playerAnim.SetLayerWeight(2, 1);
-                            LevelSetter.main.renderTextureMaterials[0].mainTexture = LevelSetter.main.p1Textures[2];
-                        }
-
-                        if (Unit.main.maxHP - GameManager.main.ballAttackValue <
-                            ((Unit.main.firstHP * 30) / 100))
-                        {
-                            LevelSetter.main.playerAnim.SetLayerWeight(3, 1);
-                            LevelSetter.main.renderTextureMaterials[0].mainTexture = LevelSetter.main.p1Textures[3];
-                        }
-
                         Vibrations.VibrationHeavy();
                         BallGetsSmaller();
                         break;
@@ -272,6 +249,26 @@ public class BallMove : MonoBehaviour
                     case TransformPosition.Off:
                         LevelSetter.main.playerAnim.SetBool(Laugh, true);
                         break;
+                }
+                if (ShootSystem.instance.unitPlayer.maxHP - GameManager.main.ballAttackValue <
+                    ((ShootSystem.instance.unitPlayer.firstHP * 70) / 100))
+                {
+                    LevelSetter.main.playerAnim.SetLayerWeight(1, 1);
+                    LevelSetter.main.renderTextureMaterials[0].mainTexture = LevelSetter.main.p1Textures[1];
+                }
+
+                if (ShootSystem.instance.unitPlayer.maxHP - GameManager.main.ballAttackValue <
+                    ((ShootSystem.instance.unitPlayer.firstHP* 50) / 100))
+                {
+                    LevelSetter.main.playerAnim.SetLayerWeight(2, 1);
+                    LevelSetter.main.renderTextureMaterials[0].mainTexture = LevelSetter.main.p1Textures[2];
+                }
+
+                if (ShootSystem.instance.unitPlayer.maxHP - GameManager.main.ballAttackValue <
+                    ((ShootSystem.instance.unitPlayer.firstHP * 30) / 100))
+                {
+                    LevelSetter.main.playerAnim.SetLayerWeight(3, 1);
+                    LevelSetter.main.renderTextureMaterials[0].mainTexture = LevelSetter.main.p1Textures[3];
                 }
             }
                 break;

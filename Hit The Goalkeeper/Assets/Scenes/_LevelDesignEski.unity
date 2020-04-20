@@ -3400,7 +3400,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: healthUpgrade
   upgradeCost: 0
-  setCurrency: 0
   coinAmountText: {fileID: 1295153970}
 --- !u!114 &540988595
 MonoBehaviour:
@@ -8526,7 +8525,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: damageUpgrade
   upgradeCost: 0
-  setCurrency: 0
   coinAmountText: {fileID: 1455618039}
 --- !u!114 &1505075127
 MonoBehaviour:
