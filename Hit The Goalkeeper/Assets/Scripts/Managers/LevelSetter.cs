@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelSetter : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class LevelSetter : MonoBehaviour
 
     public static LevelSetter main;
     [SerializeField] private float motion;
+   // [SerializeField] private Image p1Avatar, p2Avatar; 
+      //  [SerializeField] private Sprite p1AvatarLevel, p2AvatarLevel;
 
     private void Awake()
     {

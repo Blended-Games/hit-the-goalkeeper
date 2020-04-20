@@ -66,6 +66,7 @@ namespace Managers
         private void Start()
         {
             Application.targetFrameRate = 30; //Setting the target frame rate for unexpected frame drop rates.
+           
         }
 
         #endregion
