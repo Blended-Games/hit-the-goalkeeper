@@ -33,6 +33,8 @@ namespace GUI2
             Shoot = Animator.StringToHash("Shoot"); //This is temporary its just reaching the value inside animator.
 
         private float _shootValue;
+        [SerializeField] private DOTweenAnimation circular, ballMove;
+        [SerializeField] private GameObject circularBar;
 
         #endregion
 
@@ -41,6 +43,10 @@ namespace GUI2
         private void OnEnable()
         {
             transform.DOPlay();
+            ballMove.DOPlay();
+            circular.DOPause();
+            circularBar.SetActive(false);
+            ColorChange.main.DoColorChange();
         }
 
         private void Start()
@@ -73,6 +79,7 @@ namespace GUI2
                     GameManager.main.ballCurveValue = _shootValue;
                     _shootValue =
                         Mathf.Abs(localPosition.x);
+                    circular.DOPause();
                     break;
                 }
                 case 0:
@@ -83,7 +90,10 @@ namespace GUI2
                     {
                         button.SetActive(false);
                     }
-
+                    transform.DORestart(); //Restarting anim for the second time because of power value assignment
+                    circularBar.SetActive(true);
+                    circular.DOPlay();
+                    ColorChange.main.DoColorChangeStop();
                     break;
                 }
             }
@@ -92,7 +102,6 @@ namespace GUI2
             // GameManager.main.point=(int)shootValue;
             // Debug.Log(GameManager.main.point +" game point shot");;
             CalculateShotValue(_shootValue, GameManager.main.calculationID);
-            transform.DORestart(); //Restarting anim for the second time because of power value assignment
         }
 
 

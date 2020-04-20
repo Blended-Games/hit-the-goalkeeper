@@ -113,13 +113,18 @@ public class BallMove : MonoBehaviour
         switch (ShootSystem.instance.state)
         {
             case PlayerState.PlayerTurn:
-                transform.position = LevelSetter.main.p2BallsTransform.localPosition;
+                var transform1 = transform;
+                transform1.position = LevelSetter.main.p2BallsTransform.localPosition;
+                transform1.rotation = LevelSetter.main.p2BallsTransform.localRotation;
+
                 LevelSetter.main.p1.transform.position = LevelSetter.main.p1Pos.position;
                 LevelSetter.main.p1.transform.rotation = LevelSetter.main.p1Pos.rotation;
                 BallGetsFixedSize();
                 break;
             case PlayerState.GoalKeeperTurn:
-                transform.position = LevelSetter.main.p1BallsTransform.localPosition;
+                var transform2 = transform;
+                transform2.position = LevelSetter.main.p1BallsTransform.localPosition;
+                transform2.rotation = LevelSetter.main.p1BallsTransform.localRotation;
                 LevelSetter.main.p2.transform.position = LevelSetter.main.p2Pos.position;
                 LevelSetter.main.p2.transform.rotation = LevelSetter.main.p2Pos.rotation;
                 BallGetsFixedSize();

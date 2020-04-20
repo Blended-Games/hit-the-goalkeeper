@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/_LevelDesignEski.unity
+    guid: 20832f09a8a697c47b40f02380a7c740
   m_configObjects: {}

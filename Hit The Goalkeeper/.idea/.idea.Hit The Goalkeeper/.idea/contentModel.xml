@@ -303,6 +303,7 @@
           </e>
           <e p="BallMove.cs" t="Include" />
           <e p="CameraControls.cs" t="Include" />
+          <e p="ColorChange.cs" t="Include" />
           <e p="Data" t="Include">
             <e p="CoinText.cs" t="Include" />
             <e p="FindCamera.cs" t="Include" />
@@ -322,6 +323,7 @@
             <e p="Vibrations.cs" t="Include" />
           </e>
           <e p="ShootSystem.cs" t="Include" />
+          <e p="UpgradePanel.cs" t="Include" />
         </e>
       </e>
       <e p="Hit The Goalkeeper.sln" t="IncludeFlat" />
