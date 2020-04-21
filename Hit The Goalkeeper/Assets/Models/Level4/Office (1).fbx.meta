@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: emissiveWhite
     second: {fileID: 2100000, guid: d08c09b1780da48359c9aaf8e456f42d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metalMat
+    second: {fileID: 2100000, guid: ca3cc049e2b8344ff993260e9fadd612, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

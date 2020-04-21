@@ -7,6 +7,7 @@ namespace Animator_States
         private const float MinTime = 0;
         private const float MaxTime = 3;
         float _timer = 0;
+private static readonly int GoalkeeperIdle = Animator.StringToHash("GoalkeeperIdle");
 
         private readonly string[] _playerTrigger = {"Laugh", "Looking", "Taunt"};
 
@@ -17,12 +18,12 @@ namespace Animator_States
             {
                 RandomPlayerMove(animator);
                 _timer = Random.Range(MinTime, MaxTime);
+                LevelSetter.main.goalKeeperAnim.SetBool(GoalkeeperIdle, true);
             }
             else
                 _timer -= Time.deltaTime;
         }
-
-        private void RandomPlayerMove(Animator animator)
+     private void RandomPlayerMove(Animator animator)
         {
             System.Random rand = new System.Random();
             var movePos = rand.Next(_playerTrigger.Length);

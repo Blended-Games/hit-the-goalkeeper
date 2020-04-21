@@ -17,6 +17,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: vaseMat
+    second: {fileID: 2100000, guid: 7e56ada42b3da4e58a261cb4f7a7ebad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: whiteMat
+    second: {fileID: 2100000, guid: 105607178c2a9410abe300686b987f2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: windowMat
     second: {fileID: 2100000, guid: 63cf51000a9eb4ef39745e4e897399ef, type: 2}
   materials:

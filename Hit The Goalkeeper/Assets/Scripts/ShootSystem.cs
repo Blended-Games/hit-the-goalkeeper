@@ -36,12 +36,6 @@ public class ShootSystem : MonoBehaviour
     public Unit unitGoalKeeper;
     public HUDScript playerHUD;
     public HUDScript goalKeeperHUD;
-    private static readonly int Dead = Animator.StringToHash("Dead");
-    private static readonly int Samba = Animator.StringToHash("Samba");
-    private static readonly int HipHop = Animator.StringToHash("HipHop");
-    private static readonly int Chicken = Animator.StringToHash("Chicken");
-    private static readonly int Victory = Animator.StringToHash("Victory");
-
     void Start()
     {
         state = PlayerState.PlayerTurn;
@@ -75,7 +69,7 @@ public class ShootSystem : MonoBehaviour
     {
         if (state == PlayerState.Won)
         {
-            LevelSetter.main.goalKeeperAnim.SetBool(Dead, true);
+            LevelSetter.main.goalKeeperAnim.SetBool("Dead", true);
             PlayerWonAnimation();
             //LevelSetter.main.playerAnim.SetBool("Samba",true);
             DoTweenController.FirstDelayThenMoveAndRotateAndCallback(BallMove.main._camera.transform,
@@ -87,7 +81,7 @@ public class ShootSystem : MonoBehaviour
         }
         else if (state == PlayerState.Lost)
         {
-            LevelSetter.main.playerAnim.SetBool(Dead, true);
+            LevelSetter.main.playerAnim.SetBool("Dead", true);
             PLayerLostAnimation();
             DoTweenController.FirstDelayThenMoveAndRotateAndCallback(BallMove.main._camera.transform,
                 new Vector3(-.85f, 1, -4),
@@ -129,16 +123,16 @@ public class ShootSystem : MonoBehaviour
         switch (rand)
         {
             case 1:
-                LevelSetter.main.playerAnim.SetBool(Samba, true);
+                LevelSetter.main.playerAnim.SetBool("Samba", true);
                 break;
             case 2:
-                LevelSetter.main.playerAnim.SetBool(HipHop, true);
+                LevelSetter.main.playerAnim.SetBool("HipHop", true);
                 break;
             case 3:
-                LevelSetter.main.playerAnim.SetBool(Chicken, true);
+                LevelSetter.main.playerAnim.SetBool("Chicken", true);
                 break;
             case 4:
-                LevelSetter.main.playerAnim.SetBool(Victory, true);
+                LevelSetter.main.playerAnim.SetBool("Victory", true);
                 break;
         }
     }
@@ -149,16 +143,16 @@ public class ShootSystem : MonoBehaviour
         switch (rand)
         {
             case 1:
-                LevelSetter.main.goalKeeperAnim.SetBool(Samba, true);
+                LevelSetter.main.goalKeeperAnim.SetBool("Samba", true);
                 break;
             case 2:
-                LevelSetter.main.goalKeeperAnim.SetBool(HipHop, true);
+                LevelSetter.main.goalKeeperAnim.SetBool("HipHop", true);
                 break;
             case 3:
-                LevelSetter.main.goalKeeperAnim.SetBool(Chicken, true);
+                LevelSetter.main.goalKeeperAnim.SetBool("Chicken", true);
                 break;
             case 4:
-                LevelSetter.main.goalKeeperAnim.SetBool(Victory, true);
+                LevelSetter.main.goalKeeperAnim.SetBool("Victory", true);
                 break;
         }
     }

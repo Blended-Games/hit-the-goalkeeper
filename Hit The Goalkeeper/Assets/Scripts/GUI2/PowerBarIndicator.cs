@@ -1,5 +1,4 @@
-﻿using System;
-using Accessables;
+﻿using Accessables;
 using DG.Tweening;
 using Managers;
 using UnityEngine;
@@ -29,8 +28,8 @@ namespace GUI2
 
         #region Variables
 
-        private static readonly int
-            Shoot = Animator.StringToHash("Shoot"); //This is temporary its just reaching the value inside animator.
+       // private static readonly int
+       //     Shoot = Animator.StringToHash("Shoot"); //This is temporary its just reaching the value inside animator.
 
         private float _shootValue;
         [SerializeField] private DOTweenAnimation circular, ballMove;
@@ -42,7 +41,9 @@ namespace GUI2
 
         private void OnEnable()
         {
+            transform.DORestart();
             transform.DOPlay();
+            ballMove.DORestart();
             ballMove.DOPlay();
             circular.DOPause();
             circularBar.SetActive(false);
@@ -92,6 +93,7 @@ namespace GUI2
                     }
                     transform.DORestart(); //Restarting anim for the second time because of power value assignment
                     circularBar.SetActive(true);
+                    circular.DORestart();
                     circular.DOPlay();
                     ColorChange.main.DoColorChangeStop();
                     break;
@@ -99,8 +101,6 @@ namespace GUI2
             }
 
             Vibrations.VibrationSoft();
-            // GameManager.main.point=(int)shootValue;
-            // Debug.Log(GameManager.main.point +" game point shot");;
             CalculateShotValue(_shootValue, GameManager.main.calculationID);
         }
 
@@ -263,26 +263,24 @@ namespace GUI2
 
         #endregion
 
-        int _rand;
-        private static readonly int FightIdle = Animator.StringToHash("FightIdle");
-        private static readonly int Capoeria = Animator.StringToHash("Capoeria");
+        int luck;
+    //private static readonly int Taunt = Animator.StringToHash("Taunt");
+   // private static readonly int FightIdle = Animator.StringToHash("FightIdle");
 
         private void ChangeFirstDanceAnimation()
         {
             if (GameManager.main.firstTouch)
-                _rand = Random.Range(0, 10);
+                luck = Random.Range(0,20);
+               if(luck<5)
+                  LevelSetter.main.playerAnim.SetBool("Taunt", true);
+               else if(luck>=5&&luck<10)
+                  LevelSetter.main.playerAnim.SetBool("FightIdle", true);
+                else if(luck>=10&&luck<15)
+                  LevelSetter.main.playerAnim.SetBool("Sweep", true);
+                else if(luck>=15)
+                  LevelSetter.main.playerAnim.SetBool("Plotting", true);
 
-            switch (_rand % 2)
-            {
-                case 0:
-                    LevelSetter.main.playerAnim.SetBool(Capoeria, true);
-                    break;
-                case 1:
-                    LevelSetter.main.playerAnim.SetBool(FightIdle, true);
-                    break;
-            }
-
-            LevelSetter.main.playerAnim.SetBool(Shoot, true);
-        }
+         LevelSetter.main.playerAnim.SetBool("Shoot", true);
+         }
     }
 }

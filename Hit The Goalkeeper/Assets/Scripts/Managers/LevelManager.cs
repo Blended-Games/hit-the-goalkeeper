@@ -32,6 +32,7 @@ namespace Managers
         [NotNull] private static int _nextLevel;
         [NotNull] private static int _currentScene;
         [NotNull] private static bool _restartLevelControl;
+        [NotNull] private static bool _firstRestartState;
         [NotNull] private static bool _nextLevelControl;
         [NotNull] private static bool _randomizeLevelControl;
         [NotNull] private int _newlevel;
@@ -47,7 +48,7 @@ namespace Managers
 
 
         private static readonly int Color58E0201D = Shader.PropertyToID("Color_58E0201D");
-        private static readonly int StartAnim = Animator.StringToHash("Start");
+        //private static readonly int StartAnim = Animator.StringToHash("Start");
 
         #region Singleton
 
@@ -63,7 +64,7 @@ namespace Managers
 
             #endregion
 
-            
+
             if (_restartLevelControl) levelRestarted = true;
 
             if (_nextLevelControl && !_randomizeLevelControl)
@@ -86,9 +87,18 @@ namespace Managers
                 }
                 else if (PlayerPrefs.GetInt("highlevel") < levellar.Count)
                 {
-                    levellar[PlayerPrefs.GetInt("highlevel")].SetActive(true);
+                    if (_firstRestartState)
+                    {
+                        levellar[PlayerPrefs.GetInt("highlevel") - 1].SetActive(true);
+                    }
+                    else
+                    {
+                        levellar[PlayerPrefs.GetInt("highlevel")].SetActive(true);
+                    }
                     currentLevel = PlayerPrefs.GetInt("highlevel");
                     thisLevel = currentLevel;
+
+
                     //ChangeColors();
                 }
             }
@@ -121,7 +131,8 @@ namespace Managers
             if (!PlayerPrefs.HasKey("highlevel"))
             {
                 levelText.text = "Level " + 1;
-                PlayerPrefs.SetInt("highlevel",1);
+                PlayerPrefs.SetInt("highlevel", 1);
+                _firstRestartState = true;
             }
             else
             {
@@ -134,7 +145,6 @@ namespace Managers
             _randomizeLevelControl = true;
             _restartLevelControl = false;
             PlayerPrefs.SetInt("highlevel", PlayerPrefs.GetInt("highlevel") + 1);
-            //Debug.LogError("Randomize a girdim");
             SceneManager.LoadScene(_currentScene);
         }
 
@@ -184,14 +194,6 @@ namespace Managers
                 RandomizeLevel();
             }
         }
-
-        // public void NextLevelAnim()
-        // {
-        //     levelLoadAnim.SetTrigger(Start);
-        //
-        //     Invoke(nameof(NextLevel),1);
-        // }
-
 
         public void RestartLevel()
         {

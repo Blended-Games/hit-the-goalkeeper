@@ -6,18 +6,15 @@ using UnityEngine;
 public class İdleBeforeHit : StateMachineBehaviour
 {
     
-    // string[] playerTrigger ={"FightIdleTrigger","CapoeriaTrigger"};
+    //     private const float MinTime = 0;
+    //     private const float MaxTime = 3;
+    //     float _timer = 0;
+
+    // string[] playerTrigger ={"FightTrigger","TauntTrigger"};
 
     // override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     // {   
-    //     if(timer<=0)
-    //     {
-    //         RandomPlayerMove(animator);
-    //         timer=Random.Range(minTime,maxTime);
-
-    //     }
-    //     else
-    //         timer-=Time.deltaTime;
+    //     RandomPlayerMove(animator);
 
     // }
     // void RandomPlayerMove(Animator animator){
