@@ -14,9 +14,6 @@ namespace Data
 
         [SerializeField] private bool setCurrency;
 
-        public int id;
-
-
         private void Start()
         {
             if (!GameData.UpgradeCurrencyControl(upgradeName))

@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: butcher_mat
-  m_Shader: {fileID: 4800000, guid: 26ac6b86cbebf834fb2ac55c14c9bb16, type: 3}
-  m_ShaderKeywords: TCP2_NONE TCP2_ZSMOOTH_ON
+  m_Name: Logo
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: aa8fa3fc40ef14b60a7fc998c9cafc80, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -55,51 +55,23 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SketchTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EnableConstSizeOutline: 0
-    - _EnableTexturedOutline: 0
-    - _EnableZSmooth: 1
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Offset1: 20
-    - _Offset2: 20
-    - _Outline: 0
     - _Parallax: 0.02
-    - _RampSmooth: 1
-    - _RampThreshold: 0.089
-    - _RimMax: 1
-    - _RimMin: 0.7
-    - _Shininess: 0.04
-    - _SketchHalftoneMax: 0.9
-    - _SketchHalftoneMin: 0.852
     - _SmoothnessTextureChannel: 0
-    - _SpecSmooth: 1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TexLod: 0
     - _UVSec: 0
-    - _ZSmooth: 3
     - _ZWrite: 1
-    - __dummy__: 0
-    - __outline_gui_dummy__: 0
     m_Colors:
-    - _Color: {r: 0.94509804, g: 0.94509804, b: 0.94509804, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _HColor: {r: 1, g: 0.6745098, b: 0, a: 1}
-    - _OutlineColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _RimColor: {r: 0.735849, g: 0.4302463, b: 0.3922214, a: 1}
-    - _SColor: {r: 0.5568628, g: 0.08235294, b: 0.08235294, a: 1}
-    - _SketchColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _Color: {r: 0.92156863, g: 1, b: 0, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

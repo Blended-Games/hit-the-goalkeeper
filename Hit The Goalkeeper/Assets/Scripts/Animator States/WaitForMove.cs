@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Managers;
 
 namespace Animator_States
 {
@@ -7,8 +8,6 @@ namespace Animator_States
         private const float MinTime = 0;
         private const float MaxTime = 3;
         float _timer = 0;
-private static readonly int GoalkeeperIdle = Animator.StringToHash("GoalkeeperIdle");
-
         private readonly string[] _playerTrigger = {"Laugh", "Looking", "Taunt"};
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -18,7 +17,7 @@ private static readonly int GoalkeeperIdle = Animator.StringToHash("GoalkeeperId
             {
                 RandomPlayerMove(animator);
                 _timer = Random.Range(MinTime, MaxTime);
-                LevelSetter.main.goalKeeperAnim.SetBool(GoalkeeperIdle, true);
+                LevelSetter.main.goalKeeperAnim.SetBool("GoalkeeperIdle", true);
             }
             else
                 _timer -= Time.deltaTime;

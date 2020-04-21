@@ -48,7 +48,7 @@ namespace Managers
 
 
         private static readonly int Color58E0201D = Shader.PropertyToID("Color_58E0201D");
-        //private static readonly int StartAnim = Animator.StringToHash("Start");
+        private static readonly int StartAnim = Animator.StringToHash("Start");
 
         #region Singleton
 
@@ -121,8 +121,6 @@ namespace Managers
                 levellar[newlevel].SetActive(true);
                 currentLevel = _nextLevel;
                 _randomizeLevelControl = false;
-                //Debug.LogError("Değişmeyi başardım");
-                //ChangeColors();
             }
         }
 
@@ -130,13 +128,13 @@ namespace Managers
         {
             if (!PlayerPrefs.HasKey("highlevel"))
             {
-                levelText.text = "Level " + 1;
+                levelText.text = "LEVEL " + 1;
                 PlayerPrefs.SetInt("highlevel", 1);
                 _firstRestartState = true;
             }
             else
             {
-                levelText.text = "Level " + PlayerPrefs.GetInt("highlevel");
+                levelText.text = "LEVEL " + PlayerPrefs.GetInt("highlevel");
             }
         }
 

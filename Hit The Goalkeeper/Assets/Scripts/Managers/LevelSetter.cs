@@ -1,80 +1,94 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelSetter : MonoBehaviour
+namespace Managers
 {
-    #region Singleton
-
-    public static LevelSetter main;
-    [SerializeField] private float motion;
-   // [SerializeField] private Image p1Avatar, p2Avatar; 
-      //  [SerializeField] private Sprite p1AvatarLevel, p2AvatarLevel;
-
-    private void Awake()
+    public class LevelSetter : MonoBehaviour
     {
-        if (main != null && main != this)
+        #region Singleton
+
+        public static LevelSetter main;
+        [SerializeField] private float motion;
+        // [SerializeField] private Image p1Avatar, p2Avatar; 
+        //  [SerializeField] private Sprite p1AvatarLevel, p2AvatarLevel;
+
+        private void Awake()
         {
-            Destroy(gameObject);
-            return;
+            if (main != null && main != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            main = this;
         }
 
-        main = this;
-    }
+        #endregion
 
-    #endregion
-
-    #region Variables
+        #region Variables
     
-    [Header("Hit Point")]
-    public UnityEngine.Vector3 transformPositionToShoot; //This will be the position that we are shooting.
-    [Header("Animators")]
-    public Animator playerAnim; //This trigger is enabling blendTrees trigger controller for next anim.
-    public Animator goalKeeperAnim; //This will be animator for goalkeeper's animation triggers.
+        [Header("Hit Point")]
+        public UnityEngine.Vector3 transformPositionToShoot; //This will be the position that we are shooting.
+        [Header("Animators")]
+        public Animator playerAnim; //This trigger is enabling blendTrees trigger controller for next anim.
+        public Animator goalKeeperAnim; //This will be animator for goalkeeper's animation triggers.
     
-    [Header("Transform Positions")]
-    public Transform[]
-        goalKeeperShootPositions,
-        playerShootPositions; //The transforms of the keepers should start from the worst scenario,
-    //(0 - legs, 1 - spine, etc.)
-     public Transform
+        [Header("Transform Positions")]
+        public Transform[]
+            goalKeeperShootPositions,
+            playerShootPositions; //The transforms of the keepers should start from the worst scenario,
+        //(0 - legs, 1 - spine, etc.)
+        public Transform
             p1sCameraPosition, p2sCameraPosition; //These are the positions for the cameras to move on different states.
-    [Header("Ball and Char Transform Points")]
-    public Transform p1BallsTransform, p2BallsTransform; //These will be the positions for the balls.
+        [Header("Ball and Char Transform Points")]
+        public Transform p1BallsTransform, p2BallsTransform; //These will be the positions for the balls.
 
-    public Transform
-        p1Pos,
-        p2Pos; //These are the positions for the characters. We need these because animation states are changing characters positions.
+        public Transform
+            p1Pos,
+            p2Pos; //These are the positions for the characters. We need these because animation states are changing characters positions.
 
-    [Header("Characters")]
-    public GameObject p1, p2;
+        [Header("Characters")]
+        public GameObject p1, p2;
 
-    [Header("Materials and Textures")]
-    public Material[] renderTextureMaterials; //These are variables of the players.
+        [Header("Materials and Textures")]
+        public Material[] renderTextureMaterials; //These are variables of the players.
     
-    public Texture[] p1Textures; //These will be textures for the char. It will change its deformation.
-    public Texture[] p2Textures; //These will be textures for the char. It will change its deformation.
+        public Texture[] p1Textures; //These will be textures for the char. It will change its deformation.
+        public Texture[] p2Textures; //These will be textures for the char. It will change its deformation.
 
-    private CameraControls _camera;
+        private CameraControls _camera;
 
+        [SerializeField] private Image p1Avatar, p2Avatar;
 
-    #endregion
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        SetPlayersFirstTexture();
-        _camera = FindObjectOfType<CameraControls>();
-    }
+        [SerializeField] private Sprite p1AvatarSprite, p2AvatarSprite;
 
 
-    public void ActivateCam()
-    {
-        _camera.enabled = true;
-    }
+        #endregion
 
-    private void SetPlayersFirstTexture()
-    {
-        renderTextureMaterials[0].mainTexture = p1Textures[0];
-        renderTextureMaterials[1].mainTexture = p2Textures[0];
+        // Start is called before the first frame update
+        private void Start()
+        {
+            SetPlayersFirstTexture();
+            SetPlayersAvatar();
+            _camera = FindObjectOfType<CameraControls>();
+        }
+
+
+        public void ActivateCam()
+        {
+            _camera.enabled = true;
+        }
+
+        private void SetPlayersFirstTexture()
+        {
+            renderTextureMaterials[0].mainTexture = p1Textures[0];
+            renderTextureMaterials[1].mainTexture = p2Textures[0];
+        }
+
+        private void SetPlayersAvatar()
+        {
+            p1Avatar.sprite = p1AvatarSprite;
+            p2Avatar.sprite = p2AvatarSprite;
+        }
     }
 }
