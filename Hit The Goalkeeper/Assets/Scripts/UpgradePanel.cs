@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Security.Cryptography;
-using Data;
 using UnityEngine;
 
 namespace GUI2

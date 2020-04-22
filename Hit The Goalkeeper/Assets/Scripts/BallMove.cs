@@ -67,6 +67,7 @@ public class BallMove : MonoBehaviour
         BallParabollaMove(_gameManagerPos,
             randomPos: new Vector3(GameManager.main.ballCurveValue, Random.Range(.35f, 1.26f), -5));
         GameManager.main.shootParticleObj.SetActive(true);
+        DisplayMessage.main.powerBarText.enabled = false;
     }
 
     private void BallParabollaMove(Vector3 endValue, Vector3 randomPos)
@@ -204,7 +205,7 @@ public class BallMove : MonoBehaviour
                         LevelSetter.main.goalKeeperAnim.SetBool("LegHit", true);
                         break;
                     case TransformPosition.Off:
-                        LevelSetter.main.goalKeeperAnim.SetBool("Laugh", true);
+                        LevelSetter.main.goalKeeperAnim.SetBool("Off", true);
                         break;
                 }
                 if (ShootSystem.instance.unitGoalKeeper.maxHP - GameManager.main.ballAttackValue <
@@ -285,10 +286,8 @@ public class BallMove : MonoBehaviour
     public static void ChangeKeeper()
     {
         var random = Random.Range(0, .99f);
-        var calculationID = 0;
-        PowerBarIndicator.main.CalculateShotValue(random, calculationID);
-        calculationID++;
-        PowerBarIndicator.main.CalculateShotValue(random, calculationID);
+       
+        PowerBarIndicator.main.CalculateShotValue(random);
         LevelSetter.main.goalKeeperAnim.SetBool("Shoot", true);
         LevelSetter.main.ActivateCam();
     }

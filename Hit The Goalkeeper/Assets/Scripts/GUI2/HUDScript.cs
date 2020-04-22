@@ -33,7 +33,7 @@ namespace GUI2
         {
             hpSlider.value -= hp;
             pointText.text = hpSlider.value.ToString();
-            DOTween.To(() => hpSliderBack.value, newValue => hpSliderBack.value = newValue, hpSliderBack.value - hp, 1);
+            DOTween.To(() => hpSliderBack.value, newValue => hpSliderBack.value = newValue, hpSliderBack.value - hp, 1.75f);
         }
 
         public void SetDamage(int damage)

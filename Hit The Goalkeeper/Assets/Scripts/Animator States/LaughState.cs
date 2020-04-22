@@ -12,7 +12,7 @@ namespace Animator_States
             switch (ShootSystem.instance.state)
             {
                 case PlayerState.GoalKeeperTurn:
-                    animator.SetBool("Laugh", false);
+                    animator.SetBool("Laugh",false);
                     break;
                 case PlayerState.PlayerTurn: animator. SetBool("Off", false);
                     break;

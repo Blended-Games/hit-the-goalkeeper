@@ -49,15 +49,12 @@ public class ShootSystem : MonoBehaviour
 
     public void PlayerAttack()
     {
-        //CameraControls.main.CameraFixOffset();
-        DisplayMessage.main.powerBarText.enabled = false;
         state = PlayerState.GoalKeeperTurn;
         BallMove.ChangeKeeper();
     }
 
     public void GoalKeeperAttack()
     {
-        //CameraControls.main.CameraFixOffset();
         GameManager.main.powerBarIndicatorParent.SetActive(true);
         DisplayMessage.main.powerBarText.text = null;
         DisplayMessage.main.powerBarText.enabled = true;
@@ -71,11 +68,9 @@ public class ShootSystem : MonoBehaviour
         {
             LevelSetter.main.goalKeeperAnim.SetBool("Dead", true);
             PlayerWonAnimation();
-            //LevelSetter.main.playerAnim.SetBool("Samba",true);
             DoTweenController.FirstDelayThenMoveAndRotateAndCallback(BallMove.main._camera.transform,
                 new Vector3(0.4f, 1, -6),
                 new Vector3(10, 180, 0), 3, 1.15f, LevelAfterPanel);
-            DisplayMessage.main.ShowPowerBarText(7);
             Vibrations.VibrationSuccess();
             GameData.GameCurrencySave((PlayerPrefs.GetInt("highlevel") + 1) * 50);
         }
@@ -86,7 +81,6 @@ public class ShootSystem : MonoBehaviour
             DoTweenController.FirstDelayThenMoveAndRotateAndCallback(BallMove.main._camera.transform,
                 new Vector3(-.85f, 1, -4),
                 new Vector3(10f, 0f, 0), 3, 1.15f, LevelAfterPanel);
-            DisplayMessage.main.ShowPowerBarText(6);
             Vibrations.VibrationFail();
             GameData.GameCurrencySave(PlayerPrefs.GetInt("currency") + 50);
         }
