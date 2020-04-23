@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Hit The Goalkeeper/Assets/Downloads/iOSHapticFeedback/Scripts/iOSHapticFeedback.cs.meta
 guid: 29801b9d195f443dd855b8ff3ace5aac
 timeCreated: 1476096054
+=======
+guid: 4b0b1b6c25c6f4927811e32375a898f6
+timeCreated: 1476100673
+>>>>>>> master:Hit The Goalkeeper/Assets/Downloads/iOSHapticFeedback/Scripts/iOSHapticFeedbackExample.cs.meta
 licenseType: Store
 MonoImporter:
   serializedVersion: 2
