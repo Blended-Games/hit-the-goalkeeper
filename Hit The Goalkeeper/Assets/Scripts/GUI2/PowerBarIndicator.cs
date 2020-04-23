@@ -76,7 +76,7 @@ namespace GUI2
             transform.DOPause(); //Pausing anim for the second time because of power value assignment
             circular.DOPause();
 
-            Vibrations.VibrationSoft();
+            Vibrations.VibrationLight();
             CalculateShotValue(_shootValue);
         }
 

@@ -4,6 +4,13 @@ using UnityEngine;
 
     public static class GameData
     {
+
+        public static bool Vibration
+        {
+            get => PlayerPrefs.GetInt("Vibration", 1) == 1;
+            set => PlayerPrefs.SetInt("Vibration", value ? 1 : 0);
+
+        }
         public static bool UpgradeCurrencyControl(string key)
         {
             return
