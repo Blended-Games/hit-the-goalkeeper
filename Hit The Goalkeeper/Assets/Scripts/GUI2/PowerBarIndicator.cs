@@ -76,7 +76,7 @@ namespace GUI2
             transform.DOPause(); //Pausing anim for the second time because of power value assignment
             circular.DOPause();
 
-            Vibrations.VibrationSoft();
+            Vibrations.VibrationLight();
             CalculateShotValue(_shootValue);
         }
 
@@ -208,7 +208,7 @@ namespace GUI2
             }
 
             GameManager.main.firstTouch = false;
-            GameManager.main.powerBarIndicatorParent.SetActive(false);
+           // GameManager.main.powerBarIndicatorParent.SetActive(false);
             transform.DOPause();
             circular.DOPause();
             LevelSetter.main.ActivateCam();

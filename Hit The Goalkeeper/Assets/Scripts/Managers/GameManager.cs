@@ -1,8 +1,8 @@
 ﻿using TMPro;
 using UnityEngine;
+using System.Collections;
 
-namespace Managers
-{
+
     #region TransformPositionsEnum
 
     public enum TransformPosition
@@ -70,5 +70,13 @@ namespace Managers
         }
 
         #endregion
+        #region FirstTouchEnable
+
+        public IEnumerator FirstTouchEnable()
+        {
+            yield return new WaitForSeconds(1);
+            firstTouch = true;
+        }
+
+        #endregion
     }
-}

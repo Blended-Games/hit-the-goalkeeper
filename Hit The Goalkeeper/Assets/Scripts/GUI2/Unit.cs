@@ -1,9 +1,6 @@
 ﻿using Managers;
 using UnityEngine;
-
-namespace GUI2
-{
-    public class Unit : MonoBehaviour
+public class Unit : MonoBehaviour
     {
         #region Singleton
 
@@ -53,30 +50,33 @@ namespace GUI2
                         GameData.SetGoalkeepersHealth(2);
                         GameData.SetGoalkeepersDamage(2);
                     }
-                    else
+                    else if(LevelManager.Main.nextLevelTrigger)
                     {
                         GameData.SetGoalkeepersHealth(1);
                         GameData.SetGoalkeepersDamage(1);
                     }
-
+                    else if(!LevelManager.Main.nextLevelTrigger)
+                    {
+                        GameData.SetGoalkeepersHealth(2);
+                        GameData.SetGoalkeepersDamage(2);
+                    }
                     break;
-                case "Player" when PlayerPrefs.GetInt("healthUpgrade") == 0:
+                case "Player" when PlayerPrefs.GetInt("HEALTH") == 0:
                     GameData.SetPlayersHealth(0);
                     break;
-                case "Player" when PlayerPrefs.GetInt("healthUpgrade") > 0:
+                case "Player" when PlayerPrefs.GetInt("HEALTH") > 0:
                     maxHP = PlayerPrefs.GetInt("PlayerMaxHP");
-                    GameData.SetPlayersHealth(1);
+                    GameData.SetPlayersHealth(2);
 
                     break;
             }
 
-            if (gameObject.CompareTag("Player") && PlayerPrefs.GetInt("damageUpgrade") == 0)
+            if (gameObject.CompareTag("Player") && PlayerPrefs.GetInt("POWER") == 0)
                 GameData.SetPlayersDamage(0);
-            else if (gameObject.CompareTag("Player") && PlayerPrefs.GetInt("damageUpgrade") > 0)
-                GameData.SetPlayersDamage(1);
+            else if (gameObject.CompareTag("Player") && PlayerPrefs.GetInt("POWER") > 0)
+                GameData.SetPlayersDamage(2);
         }
 
         public static void SetMaxDamage() => GameManager.main.maxDamageText.text = (40 + (40 * 8) / 100 * ShootSystem.instance.unitPlayer.damageUpgrade).ToString();
         public static void SetDamageAfterTurn() => GameManager.main.maxDamageText.text = ((int) GameManager.main.ballAttackValue).ToString();
     }
-}

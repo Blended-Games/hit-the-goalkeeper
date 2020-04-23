@@ -6,8 +6,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-namespace Managers
-{
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager Main;
@@ -46,6 +44,8 @@ namespace Managers
         public bool
             levelRestarted; //This is the condition for checking the levels restart state. (If it is we will not increase the health & damage of goalkeeper.)
 
+        public bool
+            nextLevelTrigger; //This is the condition for the checking the next level state. (If it is we will increase the health & damage of goalkeeper.)
 
         private static readonly int Color58E0201D = Shader.PropertyToID("Color_58E0201D");
         private static readonly int StartAnim = Animator.StringToHash("Start");
@@ -65,10 +65,16 @@ namespace Managers
             #endregion
 
 
-            if (_restartLevelControl) levelRestarted = true;
-
-            if (_nextLevelControl && !_randomizeLevelControl)
+            if (_restartLevelControl)
             {
+                levelRestarted = true;
+                levellar[currentLevel].SetActive(true);
+                _restartLevelControl = false;
+            }
+
+            else if (_nextLevelControl && !_randomizeLevelControl)
+            {
+                nextLevelTrigger = true;
                 levellar[_nextLevel].SetActive(true);
                 _nextLevelControl = false;
                 //ChangeColors();
@@ -79,6 +85,7 @@ namespace Managers
             {
                 if (PlayerPrefs.GetInt("highlevel") >= levellar.Count)
                 {
+                   if(_randomizeLevelControl) nextLevelTrigger = true;
                     var random = Random.Range(0, levellar.Count);
                     levellar[random].SetActive(true);
                     currentLevel = random;
@@ -95,22 +102,21 @@ namespace Managers
                     {
                         levellar[PlayerPrefs.GetInt("highlevel")].SetActive(true);
                     }
+
                     currentLevel = PlayerPrefs.GetInt("highlevel");
                     thisLevel = currentLevel;
-
-
                     //ChangeColors();
                 }
             }
-            else if (_nextLevelControl && _randomizeLevelControl)
+            if (_nextLevelControl && _randomizeLevelControl)
             {
-                var newlevel = Random.Range(0, levellar.Count);
+                nextLevelTrigger = true;
+                var newLevel = Random.Range(0, levellar.Count);
                 while (true)
                 {
-                    if (newlevel == currentLevel)
+                    if (newLevel == currentLevel)
                     {
-                        Debug.LogError("Hala Aynıyım");
-                        newlevel = Random.Range(0, levellar.Count);
+                        newLevel = Random.Range(0, levellar.Count);
                     }
                     else
                     {
@@ -118,7 +124,8 @@ namespace Managers
                     }
                 }
 
-                levellar[newlevel].SetActive(true);
+                _nextLevelControl = false;
+                levellar[newLevel].SetActive(true);
                 currentLevel = _nextLevel;
                 _randomizeLevelControl = false;
             }
@@ -184,7 +191,6 @@ namespace Managers
                 _restartLevelControl = false;
                 _nextLevel = currentLevel + 1;
                 PlayerPrefs.SetInt("highlevel", _nextLevel);
-                //Debug.LogError("Level: " + PlayerPrefs.GetInt("highlevel"));
                 SceneManager.LoadScene(_currentScene);
             }
             else if (PlayerPrefs.GetInt("highlevel") + 1 >= levellar.Count)
@@ -197,7 +203,12 @@ namespace Managers
         {
             for (var i = 0; i < levellar.Count; i++)
             {
-                if (!levellar[i].activeInHierarchy) continue;
+                if (!levellar[i].activeInHierarchy)
+                {
+                    Debug.Log(levellar[i]);
+                    continue;
+                }
+
                 _restartLevelControl = true;
                 currentLevel = i;
                 SceneManager.LoadScene(_currentScene);
@@ -216,4 +227,3 @@ namespace Managers
             objectsThatNeededToChangeColors[3].SetColor(Color58E0201D, seaColors[randomSea]);
         }
     }
-}

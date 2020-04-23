@@ -68,6 +68,7 @@ public class BallMove : MonoBehaviour
             randomPos: new Vector3(GameManager.main.ballCurveValue, Random.Range(.35f, 1.26f), -5));
         GameManager.main.shootParticleObj.SetActive(true);
         DisplayMessage.main.powerBarText.enabled = false;
+        GameManager.main.powerBarIndicatorParent.SetActive(false);
     }
 
     private void BallParabollaMove(Vector3 endValue, Vector3 randomPos)

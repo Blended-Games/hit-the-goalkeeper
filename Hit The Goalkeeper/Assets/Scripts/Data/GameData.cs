@@ -4,6 +4,13 @@ using UnityEngine;
 
     public static class GameData
     {
+
+        public static bool Vibration
+        {
+            get => PlayerPrefs.GetInt("Vibration", 1) == 1;
+            set => PlayerPrefs.SetInt("Vibration", value ? 1 : 0);
+
+        }
         public static bool UpgradeCurrencyControl(string key)
         {
             return
@@ -59,6 +66,10 @@ using UnityEngine;
                     PlayerPrefs.GetInt("PlayerDamage") + 1;
                 PlayerPrefs.SetInt("PlayerDamage", ShootSystem.instance.unitPlayer.damageUpgrade);
             }
+            else if (id == 2)
+            {
+                ShootSystem.instance.unitPlayer.damageUpgrade = PlayerPrefs.GetInt("PlayerDamage");
+            }
         }
 
         public static void SetPlayersHealth(int id)
@@ -75,6 +86,11 @@ using UnityEngine;
                 ShootSystem.instance.unitPlayer.maxHP =
                     PlayerPrefs.GetInt("PlayerMaxHP") + ((PlayerPrefs.GetInt("PlayerMaxHP") * 7) / 100);
                 PlayerPrefs.SetInt("PlayerMaxHP", ShootSystem.instance.unitPlayer.maxHP);
+                ShootSystem.instance.playerHUD.SetHud(ShootSystem.instance.unitPlayer);
+            }
+            else if (id == 2)
+            {
+                ShootSystem.instance.unitPlayer.maxHP = PlayerPrefs.GetInt("PlayerMaxHP");
                 ShootSystem.instance.playerHUD.SetHud(ShootSystem.instance.unitPlayer);
             }
         }
