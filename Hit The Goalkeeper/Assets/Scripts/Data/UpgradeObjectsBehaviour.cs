@@ -22,7 +22,7 @@ using DG.Tweening;
             }
             else if (GameData.UpgradeCurrencyControl(upgradeName))
             {
-                upgradeCost = 50 * (PlayerPrefs.GetInt(upgradeName) + 1);
+                upgradeCost = 50 * (PlayerPrefs.GetInt(upgradeName));
             }
             
             upgradeLevelText.text = upgradeName.ToUpper() +"("+ PlayerPrefs.GetInt(upgradeName)+ ")";
