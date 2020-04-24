@@ -68,10 +68,10 @@ namespace GUI2
 
             _shootValue =
                 Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
-            foreach (var button in GameManager.main.upgradeButtons)
-            {
-                button.SetActive(false);
-            }
+            // foreach (var button in GameManager.main.upgradeButtons)
+            // {
+            //     button.SetActive(false);
+            // }
 
             transform.DOPause(); //Pausing anim for the second time because of power value assignment
             circular.DOPause();
@@ -86,7 +86,8 @@ namespace GUI2
             //Calculating value of the power
             //Id is representing the current state(transform bar, power bar).
             //when we finalize the result we kill the animation.
-
+            transform.DOPause();
+            circular.DOPause();
             if (shootVal >= .8f)
             {
                 if (ShootSystem.instance.state == PlayerState.PlayerTurn)
@@ -209,8 +210,7 @@ namespace GUI2
 
             GameManager.main.firstTouch = false;
            // GameManager.main.powerBarIndicatorParent.SetActive(false);
-            transform.DOPause();
-            circular.DOPause();
+            
             LevelSetter.main.ActivateCam();
             shootVal=0;
         }

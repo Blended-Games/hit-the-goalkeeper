@@ -190,7 +190,7 @@ using Random = UnityEngine.Random;
                 _nextLevelControl = true;
                 _restartLevelControl = false;
                 _nextLevel = currentLevel + 1;
-                PlayerPrefs.SetInt("highlevel", _nextLevel);
+                PlayerPrefs.SetInt("highlevel", _nextLevel+1);
                 SceneManager.LoadScene(_currentScene);
             }
             else if (PlayerPrefs.GetInt("highlevel") + 1 >= levellar.Count)

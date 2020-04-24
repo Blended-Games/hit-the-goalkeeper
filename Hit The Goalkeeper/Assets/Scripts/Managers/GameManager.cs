@@ -57,7 +57,10 @@ using System.Collections;
 
         public TextMeshProUGUI maxDamageText; //This is the text file that will show the players max potential damage to screen.
 
-        public GameObject levelSuccessPanel, levelFailedPanel; //These are the after level panels.
+        public GameObject levelSuccessPanel, levelFailedPanel;
+        
+        [SerializeField]
+       private GameObject startPanel; //These are the after level panels.
         
         #endregion
 
@@ -72,10 +75,14 @@ using System.Collections;
         #endregion
         #region FirstTouchEnable
 
-        public IEnumerator FirstTouchEnable()
+        public void FirstTouchEnable()
         {
-            yield return new WaitForSeconds(1);
+           // yield return new WaitForSeconds(1);
             firstTouch = true;
+            startPanel.SetActive(false);
+            upgradeButtons[0].gameObject.SetActive(false);
+            upgradeButtons[1].gameObject.SetActive(false);
+
         }
 
         #endregion

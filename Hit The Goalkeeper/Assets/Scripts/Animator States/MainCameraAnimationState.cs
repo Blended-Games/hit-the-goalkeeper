@@ -13,7 +13,7 @@ public class MainCameraAnimationState : StateMachineBehaviour
         Debug.Assert(Camera.main != null, "Camera.main != null");
         Camera.main.GetComponent<Animator>().SetBool("CamAnimStop", true);
         Camera.main.GetComponent<Animator>().enabled = false;
-        GameManager.main.StartCoroutine(GameManager.main.FirstTouchEnable());
+       // GameManager.main.StartCoroutine(GameManager.main.FirstTouchEnable());
     }
    
 }
