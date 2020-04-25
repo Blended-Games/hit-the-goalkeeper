@@ -205,7 +205,6 @@ using Random = UnityEngine.Random;
             {
                 if (!levellar[i].activeInHierarchy)
                 {
-                    Debug.Log(levellar[i]);
                     continue;
                 }
 

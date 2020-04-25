@@ -1,9 +1,8 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-using DG.Tweening;
-
-    public class UpgradeObjectsBehaviour : MonoBehaviour
+    public class UpgradeObjectsBehaviour : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private string
             upgradeName; //If this is health then set this name to healthUpgrade, else set it to damageUpgrade.
@@ -49,5 +48,10 @@ using DG.Tweening;
             upgradeCost = 50 * (PlayerPrefs.GetInt(key) + 1);
             coinAmountText.text = upgradeCost.ToString();
             upgradeLevelText.text = upgradeName.ToUpper() +"("+ (PlayerPrefs.GetInt(key)+1)+ ")";
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            Upgrade();
         }
     }

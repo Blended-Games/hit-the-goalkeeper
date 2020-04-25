@@ -193,20 +193,20 @@ public class BallMove : MonoBehaviour
                 switch (GameManager.main.ballsHitRoad)
                 {
                     case TransformPosition.Head:
-                        LevelSetter.main.goalKeeperAnim.SetBool("HeadHit", true);
+                        LevelSetter.main.goalKeeperAnim.SetTrigger("HeadHit");
                         Vibrations.VibrationHeavy();
                         BallGetsSmaller();
                         break;
                     case TransformPosition.Spine:
                         Vibrations.VibrationLight();
-                        LevelSetter.main.goalKeeperAnim.SetBool("MidHit", true);
+                        LevelSetter.main.goalKeeperAnim.SetTrigger("MidHit");
                         break;
                     case TransformPosition.Leg:
                         Vibrations.VibrationLight();
-                        LevelSetter.main.goalKeeperAnim.SetBool("LegHit", true);
+                        LevelSetter.main.goalKeeperAnim.SetTrigger("LegHit");
                         break;
                     case TransformPosition.Off:
-                        LevelSetter.main.goalKeeperAnim.SetBool("Off", true);
+                        LevelSetter.main.goalKeeperAnim.SetTrigger("Off");
                         break;
                 }
                 if (ShootSystem.instance.unitGoalKeeper.maxHP - GameManager.main.ballAttackValue <
@@ -237,20 +237,20 @@ public class BallMove : MonoBehaviour
                 switch (GameManager.main.ballsHitRoad)
                 {
                     case TransformPosition.Head:
-                        LevelSetter.main.playerAnim.SetBool("HeadHit", true);
+                        LevelSetter.main.playerAnim.SetTrigger("HeadHit");
                         Vibrations.VibrationHeavy();
                         BallGetsSmaller();
                         break;
                     case TransformPosition.Spine:
                         Vibrations.VibrationLight();
-                        LevelSetter.main.playerAnim.SetBool("MidHit", true);
+                        LevelSetter.main.playerAnim.SetTrigger("MidHit");
                         break;
                     case TransformPosition.Leg:
                         Vibrations.VibrationLight();
-                        LevelSetter.main.playerAnim.SetBool("LegHit", true);
+                        LevelSetter.main.playerAnim.SetTrigger("LegHit");
                         break;
                     case TransformPosition.Off:
-                        LevelSetter.main.playerAnim.SetBool("Laugh", true);
+                        LevelSetter.main.playerAnim.SetTrigger("Laugh");
                         break;
                 }
                 if (ShootSystem.instance.unitPlayer.maxHP - GameManager.main.ballAttackValue <
@@ -289,7 +289,7 @@ public class BallMove : MonoBehaviour
         var random = Random.Range(0, .99f);
        
         PowerBarIndicator.main.CalculateShotValue(random);
-        LevelSetter.main.goalKeeperAnim.SetBool("Shoot", true);
+        LevelSetter.main.goalKeeperAnim.SetTrigger("Shoot");
         LevelSetter.main.ActivateCam();
     }
 

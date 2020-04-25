@@ -68,10 +68,10 @@ namespace GUI2
 
             _shootValue =
                 Mathf.Abs(transform.localPosition.x); //Setting indicators current x value to a variable.
-            // foreach (var button in GameManager.main.upgradeButtons)
-            // {
-            //     button.SetActive(false);
-            // }
+            foreach (var button in GameManager.main.upgradeButtons)
+            {
+                button.SetActive(false);
+            }
 
             transform.DOPause(); //Pausing anim for the second time because of power value assignment
             circular.DOPause();
@@ -135,7 +135,7 @@ namespace GUI2
                         break;
                 }
 
-                shootVal = Random.Range(.55f, .35f);
+                //shootVal = Random.Range(.55f, .35f);
 
                 GameManager.main.ballsHitRoad = TransformPosition.Leg;
             }
@@ -159,7 +159,7 @@ namespace GUI2
                         break;
                 }
 
-                shootVal = Random.Range(.35f, .25f);
+                //shootVal = Random.Range(.35f, .25f);
                 GameManager.main.ballsHitRoad = TransformPosition.Spine;
             }
 
@@ -225,15 +225,15 @@ namespace GUI2
             if (GameManager.main.firstTouch)
                 luck = Random.Range(0, 20);
             if (luck < 5)
-                LevelSetter.main.playerAnim.SetBool("Taunt", true);
+                LevelSetter.main.playerAnim.SetTrigger("Taunt");
             else if (luck >= 5 && luck < 10)
-                LevelSetter.main.playerAnim.SetBool("FightIdle", true);
+                LevelSetter.main.playerAnim.SetTrigger("FightIdle");
             else if (luck >= 10 && luck < 15)
-                LevelSetter.main.playerAnim.SetBool("Sweep", true);
+                LevelSetter.main.playerAnim.SetTrigger("Sweep");
             else if (luck >= 15)
-                LevelSetter.main.playerAnim.SetBool("Plotting", true);
+                LevelSetter.main.playerAnim.SetTrigger("Plotting");
 
-            LevelSetter.main.playerAnim.SetBool("Shoot", true);
+            LevelSetter.main.playerAnim.SetTrigger("Shoot");
         }
     }
 }

@@ -75,14 +75,13 @@ using System.Collections;
         #endregion
         #region FirstTouchEnable
 
-        public void FirstTouchEnable()
+        public IEnumerator FirstTouchEnable()
         {
-           // yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1);
             firstTouch = true;
             startPanel.SetActive(false);
-            upgradeButtons[0].gameObject.SetActive(false);
-            upgradeButtons[1].gameObject.SetActive(false);
-
+            // upgradeButtons[0].gameObject.SetActive(false);
+            // upgradeButtons[1].gameObject.SetActive(false);
         }
 
         #endregion
