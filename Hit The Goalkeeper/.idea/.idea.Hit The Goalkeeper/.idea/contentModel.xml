@@ -250,13 +250,8 @@
           </e>
           <e p="Animator States" t="Include">
             <e p="HacıOsmanOgullari.cs" t="Include" />
-            <e p="HeadHitState.cs" t="Include" />
             <e p="İdleBeforeHit.cs" t="Include" />
-            <e p="LaughState.cs" t="Include" />
-            <e p="LegHitState.cs" t="Include" />
             <e p="MainCameraAnimationState.cs" t="Include" />
-            <e p="MidHitState.cs" t="Include" />
-            <e p="ShootBeforeDance.cs" t="Include" />
             <e p="waitForMove.cs" t="Include" />
           </e>
           <e p="BallMove.cs" t="Include" />
