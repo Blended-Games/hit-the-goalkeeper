@@ -1,0 +1,679 @@
+fileFormatVersion: 2
+guid: c22d10fd0320c2745a3a04786261d8d5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8986005736219354500
+    second: upCoin
+  - first:
+      213: 2609243549226547287
+    second: upBase
+  - first:
+      213: 9029151494308793320
+    second: avatarPunk
+  - first:
+      213: -4020388047777470127
+    second: avatarButcher
+  - first:
+      213: 8418681843150438453
+    second: avatarBossv2
+  - first:
+      213: -8856950350462610247
+    second: avatarTeacherv2
+  - first:
+      213: 5472979646256610540
+    second: avatarPlayer
+  - first:
+      213: -7598602608599704473
+    second: avatarPunkv2
+  - first:
+      213: 2106078065215915914
+    second: avatarSportGirl
+  - first:
+      213: 4396576696712409370
+    second: avatarTeacher
+  - first:
+      213: -4459267309989536288
+    second: avatarBoss
+  - first:
+      213: -8416471693522218781
+    second: avatarGuard
+  - first:
+      213: 3214954534155515361
+    second: avatarGoalkeeper
+  - first:
+      213: -3322164499562041067
+    second: HealthFill
+  - first:
+      213: 8684347804337910064
+    second: youWin
+  - first:
+      213: 9168566243599890571
+    second: HealthFillRed
+  - first:
+      213: 8458960395250326721
+    second: HealthFillBase
+  - first:
+      213: -7902819659805859691
+    second: UI_Complete_17
+  - first:
+      213: -2716343053543436658
+    second: healthIcon
+  - first:
+      213: -655133629900999671
+    second: button
+  - first:
+      213: 4187888994119000917
+    second: powerIcon
+  - first:
+      213: 8128739884683631712
+    second: healthUp_Left
+  - first:
+      213: 5802732269546273807
+    second: powerUp_Right
+  - first:
+      213: 2609243549226547287
+    second: UI_Complete_1
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: upCoin
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 1275
+        width: 121
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40b27068d6e74f741b60b0aaa829f345
+      internalID: 8986005736219354500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upBase
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1120
+        width: 736
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e461e69b3472e3448c40b8e911c1438
+      internalID: 2609243549226547287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avatarPunk
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 972
+        width: 119
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cab0da4baf55c984b9244f3c8945eb69
+      internalID: 9029151494308793320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avatarButcher
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 971
+        width: 118
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54ae1bcecc337d24f9da51921e602258
+      internalID: -4020388047777470127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avatarBossv2
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 968
+        width: 118
+        height: 117
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7670cd88a73d65c48af67e8aa1985539
+      internalID: 8418681843150438453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avatarTeacherv2
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 968
+        width: 118
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d4349e5e30e4fe44bde1898f519a147
+      internalID: -8856950350462610247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avatarPlayer
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 969
+        width: 116
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8c7722883702b24a8ec56d68a44ebf9
+      internalID: 5472979646256610540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avatarPunkv2
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 824
+        width: 119
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9ac4a1d46ae7c8489022cd1dcd1f5fa
+      internalID: -7598602608599704473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avatarSportGirl
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 824
+        width: 118
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a7b1392cd3a26c48a10868f7d3f0f4a
+      internalID: 2106078065215915914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avatarTeacher
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 824
+        width: 118
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4b038e2f78a0404e85dcd12710df8bd
+      internalID: 4396576696712409370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avatarBoss
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 824
+        width: 118
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1453639f4ddba6747930b291a96c3f44
+      internalID: -4459267309989536288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avatarGuard
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 826
+        width: 118
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97d38daf759257543990ee245258a900
+      internalID: -8416471693522218781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avatarGoalkeeper
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 676
+        width: 118
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b835c113e0d46d479631057234a8a27
+      internalID: 3214954534155515361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthFill
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 761
+        width: 209
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3107a1df9f945ef4aa7a2d670d97d234
+      internalID: -3322164499562041067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: youWin
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 585
+        width: 206
+        height: 209
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a090e5578b008454f8d89dc7d937d7ac
+      internalID: 8684347804337910064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthFillRed
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 729
+        width: 209
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b149a08591ae3714ea0b50b4f07fa2d3
+      internalID: 9168566243599890571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthFillBase
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 692
+        width: 209
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f423f66ddd467b478226e6d94415c05
+      internalID: 8458960395250326721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Complete_17
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 705
+        width: 4
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 459ce851828228542832abc08943dfc6
+      internalID: -7902819659805859691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healthIcon
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 372
+        width: 76
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1064b321dac9b8d44aaf82784f7ab303
+      internalID: -2716343053543436658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 435
+        width: 342
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aba4a7c220c09dd45bd302c3a215e8b0
+      internalID: -655133629900999671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: powerIcon
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 360
+        width: 54
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f5e93764c0290d4086b6c8fbe5e55a0
+      internalID: 4187888994119000917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healthUp_Left
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 190
+        width: 352
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f96f3dcc1f5c20f46abe23f25ef18361
+      internalID: 8128739884683631712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: powerUp_Right
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 188
+        width: 352
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b38b1580928f0f429ee281c4aba620a
+      internalID: 5802732269546273807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Complete_1
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 401
+        width: 111
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cd167049cc5f6a4eab3b77617eb3fdb
+      internalID: 2609243549226547287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 93936288fe108f84e9b61b30aaa4439a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
