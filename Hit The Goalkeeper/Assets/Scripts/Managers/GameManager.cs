@@ -62,6 +62,7 @@ using System.Collections;
         [SerializeField]
        private GameObject startPanel; //These are the after level panels.
        [SerializeField] private Animator cameraMainAnim; //Accessing main cameras animator component for game start animation.
+       public GameObject powerBar; //This will be activated after main cam anim finishes.
         
         #endregion
 

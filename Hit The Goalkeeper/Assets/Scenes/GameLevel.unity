@@ -12051,7 +12051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1280509289
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14183,6 +14183,7 @@ MonoBehaviour:
   levelFailedPanel: {fileID: 798122624}
   startPanel: {fileID: 60383445}
   cameraMainAnim: {fileID: 40465152}
+  powerBar: {fileID: 1280509288}
 --- !u!4 &1577940864
 Transform:
   m_ObjectHideFlags: 0

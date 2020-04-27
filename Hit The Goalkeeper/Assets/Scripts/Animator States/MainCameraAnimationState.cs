@@ -15,6 +15,7 @@ public class MainCameraAnimationState : StateMachineBehaviour
         Debug.Assert(Camera.main != null, "Camera.main != null");
         Camera.main.GetComponent<Animator>().enabled = false;
         GameManager.main.firstTouch = true;
+        GameManager.main.powerBar.SetActive(true);
     }
 
 }
