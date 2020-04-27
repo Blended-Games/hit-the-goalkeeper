@@ -216,24 +216,29 @@ namespace GUI2
         }
         #endregion
 
-        int luck;
+        int luck=0;
         //private static readonly int Taunt = Animator.StringToHash("Taunt");
         // private static readonly int FightIdle = Animator.StringToHash("FightIdle");
 
         private void ChangeFirstDanceAnimation()
         {
-            if (GameManager.main.firstTouch)
-                luck = Random.Range(0, 20);
-            if (luck < 5)
-                LevelSetter.main.playerAnim.SetTrigger("Taunt");
-            else if (luck >= 5 && luck < 10)
-                LevelSetter.main.playerAnim.SetTrigger("FightIdle");
-            else if (luck >= 10 && luck < 15)
-                LevelSetter.main.playerAnim.SetTrigger("Sweep");
-            else if (luck >= 15)
-                LevelSetter.main.playerAnim.SetTrigger("Plotting");
+               luck +=1;
 
+            if (luck==1)  
+                LevelSetter.main.playerAnim.SetTrigger("Taunt");
+            else if (luck==2)
+                LevelSetter.main.playerAnim.SetTrigger("FightIdle");
+            else if (luck ==3)
+                LevelSetter.main.playerAnim.SetTrigger("Sweep");
+            else if (luck>=4)
+             {  LevelSetter.main.playerAnim.SetTrigger("Plotting");
+                luck=0;
+             }
+
+         
             LevelSetter.main.playerAnim.SetTrigger("Shoot");
         }
+
+
     }
 }

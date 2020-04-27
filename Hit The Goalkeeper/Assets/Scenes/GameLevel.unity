@@ -458,6 +458,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4841173340249790258, guid: 570e17206f8cf492f9aee5ea8c4eaa12,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841173340249790258, guid: 570e17206f8cf492f9aee5ea8c4eaa12,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4841173340249790260, guid: 570e17206f8cf492f9aee5ea8c4eaa12,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3770,6 +3780,16 @@ PrefabInstance:
     - target: {fileID: 4875791548776759532, guid: 9f8497b8766144a37a7efeeca6ad0098,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043947859568526297, guid: 9f8497b8766144a37a7efeeca6ad0098,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043947860102190893, guid: 9f8497b8766144a37a7efeeca6ad0098,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8498595190844830463, guid: 9f8497b8766144a37a7efeeca6ad0098,
@@ -7907,6 +7927,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841173340249790258, guid: 570e17206f8cf492f9aee5ea8c4eaa12,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841173340249790258, guid: 570e17206f8cf492f9aee5ea8c4eaa12,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4841173340249790260, guid: 570e17206f8cf492f9aee5ea8c4eaa12,
         type: 3}
@@ -13571,6 +13601,7 @@ MonoBehaviour:
   levelSuccessPanel: {fileID: 1011501961}
   levelFailedPanel: {fileID: 798122624}
   startPanel: {fileID: 60383445}
+  cameraMainAnim: {fileID: 40465152}
 --- !u!4 &1577940864
 Transform:
   m_ObjectHideFlags: 0
@@ -13861,7 +13892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1598536700
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16337,6 +16368,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: FotballField (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3306951316713385039, guid: 28d78afe706634dcb8c6b2efb4af3448,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306951316713385039, guid: 28d78afe706634dcb8c6b2efb4af3448,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4509735463829324979, guid: 28d78afe706634dcb8c6b2efb4af3448,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17117,6 +17158,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fad56a7671bc8412495c981dd04ea8af, type: 2}
+    - target: {fileID: -8048788099626726359, guid: d6d2e90f792a39044b0907570f28dbf4,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8048788099626726359, guid: d6d2e90f792a39044b0907570f28dbf4,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7999350355769943670, guid: d6d2e90f792a39044b0907570f28dbf4,
         type: 3}
       propertyPath: m_LocalRotation.x

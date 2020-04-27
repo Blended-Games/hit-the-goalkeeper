@@ -61,6 +61,7 @@ using System.Collections;
         
         [SerializeField]
        private GameObject startPanel; //These are the after level panels.
+       [SerializeField] private Animator cameraMainAnim; //Accessing main cameras animator component for game start animation.
         
         #endregion
 
@@ -75,14 +76,12 @@ using System.Collections;
         #endregion
         #region FirstTouchEnable
 
-        public IEnumerator FirstTouchEnable()
+        public void FirstTouchEnable()
         {
-            yield return new WaitForSeconds(1);
-            firstTouch = true;
             startPanel.SetActive(false);
-            // upgradeButtons[0].gameObject.SetActive(false);
-            // upgradeButtons[1].gameObject.SetActive(false);
+            upgradeButtons[0].gameObject.SetActive(false); 
+            upgradeButtons[1].gameObject.SetActive(false);
+            cameraMainAnim.SetTrigger("CamAnimStop");
         }
-
         #endregion
     }
