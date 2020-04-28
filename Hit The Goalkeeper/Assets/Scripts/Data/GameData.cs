@@ -141,6 +141,9 @@ using UnityEngine;
 
         public static void GameCurrencySave(int value)
         {
-            PlayerPrefs.SetInt("currency", value);
+            //  PlayerPrefs.SetInt("currency", value);
+            PlayerPrefs.SetInt("currency", PlayerPrefs.GetInt("currency") + value);
         }
+
+
     }

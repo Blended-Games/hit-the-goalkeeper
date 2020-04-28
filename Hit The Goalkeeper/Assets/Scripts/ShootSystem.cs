@@ -82,8 +82,8 @@ public class ShootSystem : MonoBehaviour
                 new Vector3(-.85f, 1, -4),
                 new Vector3(10f, 0f, 0), 3, 1.15f, LevelAfterPanel);
             Vibrations.VibrationFail();
-            GameData.GameCurrencySave(PlayerPrefs.GetInt("currency") + 50);
-        }
+              GameData.GameCurrencySave(((PlayerPrefs.GetInt("highlevel") + 1) * 50)/2);
+           }
     }
 
     private void LevelAfterPanel()
