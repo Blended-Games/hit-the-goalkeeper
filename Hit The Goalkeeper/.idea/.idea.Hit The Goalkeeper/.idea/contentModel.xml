@@ -3,6 +3,7 @@
   <component name="ContentModelStore">
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Downloads" t="Include">
@@ -39,6 +40,15 @@
               <e p="readme.txt" t="Include" />
             </e>
             <e p="readme_DOTweenPro.txt" t="Include" />
+          </e>
+          <e p="Font" t="Include">
+            <e p="Mada-Black" t="Include">
+              <e p="ffonts.net.txt" t="Include" />
+              <e p="install-a-new-font.txt" t="Include" />
+              <e p="mada" t="Include">
+                <e p="OFL.txt" t="Include" />
+              </e>
+            </e>
           </e>
           <e p="iOSHapticFeedback" t="Include">
             <e p="Scripts" t="Include">
@@ -232,12 +242,28 @@
             </e>
           </e>
         </e>
-        <e p="Font" t="Include">
-          <e p="Mada-Black" t="Include">
-            <e p="ffonts.net.txt" t="Include" />
-            <e p="install-a-new-font.txt" t="Include" />
-            <e p="mada" t="Include">
-              <e p="OFL.txt" t="Include" />
+        <e p="FacebookSDK" t="Include">
+          <e p="Examples" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="ConsoleBase.cs" t="Include" />
+              <e p="LogView.cs" t="Include" />
+              <e p="MenuBase.cs" t="Include" />
+              <e p="SubMenus" t="Include">
+                <e p="AccessTokenMenu.cs" t="Include" />
+                <e p="AppEvents.cs" t="Include" />
+                <e p="AppLinks.cs" t="Include" />
+                <e p="AppRequests.cs" t="Include" />
+                <e p="DialogShare.cs" t="Include" />
+                <e p="GraphRequest.cs" t="Include" />
+                <e p="MainMenu.cs" t="Include" />
+                <e p="Pay.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="link.xml" t="Include" />
+          <e p="Plugins" t="Include">
+            <e p="Editor" t="Include">
+              <e p="Dependencies.xml" t="Include" />
             </e>
           </e>
         </e>
@@ -312,6 +338,25 @@
           </e>
           <e p="readme.txt" t="Include" />
         </e>
+        <e p="PlayServicesResolver" t="Include">
+          <e p="Editor" t="Include">
+            <e p="play-services-resolver_v1.2.135.0.txt" t="Include" />
+          </e>
+        </e>
+        <e p="Plugins" t="Include">
+          <e p="AFInAppEvents.cs" t="Include" />
+          <e p="Android" t="Include">
+            <e p="AndroidManifest.xml" t="Include" />
+          </e>
+          <e p="AppsFlyer.cs" t="Include" />
+          <e p="AppsFlyerTrackerCallbacks.cs" t="Include" />
+          <e p="FlurrySDK" t="Include">
+            <e p="Flurry.cs" t="Include" />
+            <e p="FlurryAgent.cs" t="Include" />
+            <e p="FlurryAgentAndroid.cs" t="Include" />
+            <e p="FlurryAgentIOS.cs" t="Include" />
+          </e>
+        </e>
         <e p="Resources" t="Include">
           <e p="Display Text.txt" t="Include" />
         </e>
@@ -319,6 +364,7 @@
           <e p="Accessables" t="Include">
             <e p="DoTweenController.cs" t="Include" />
           </e>
+          <e p="AnalyticsHTGK.cs" t="Include" />
           <e p="Animator States" t="Include">
             <e p="HacıOsmanOgullari.cs" t="Include" />
             <e p="İdleBeforeHit.cs" t="Include" />
@@ -334,7 +380,6 @@
             <e p="UpgradeObjectsBehaviour.cs" t="Include" />
           </e>
           <e p="DirectionalLightScript.cs" t="Include" />
-          <e p="GameAnalyticsInitialize.cs" t="Include" />
           <e p="GUI2" t="Include">
             <e p="DisplayMessage.cs" t="Include" />
             <e p="HUDScript.cs" t="Include" />
@@ -346,6 +391,12 @@
             <e p="LevelManager.cs" t="Include" />
             <e p="LevelSetter.cs" t="Include" />
             <e p="Vibrations.cs" t="Include" />
+          </e>
+          <e p="SDKs" t="Include">
+            <e p="AppsFlyerObject.cs" t="Include" />
+            <e p="FacebookAnalyticsInit.cs" t="Include" />
+            <e p="FlurryStart.cs" t="Include" />
+            <e p="GameAnalyticsInitialize.cs" t="Include" />
           </e>
           <e p="ShootSystem.cs" t="Include" />
           <e p="UpgradePanel.cs" t="Include" />

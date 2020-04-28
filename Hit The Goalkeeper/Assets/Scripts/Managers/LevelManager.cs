@@ -144,8 +144,7 @@ using GameAnalyticsSDK;
                 levelText.text = "LEVEL " + PlayerPrefs.GetInt("highlevel");
             }
             
-            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start,string.Format("Level{0}Index{1}",
-                PlayerPrefs.GetInt("highlevel").ToString(), thisLevel.ToString()));
+            AnalyticsHTGK.AnalyticsLevelStart(PlayerPrefs.GetInt("highlevel").ToString(), thisLevel.ToString());
         }
 
         private static void RandomizeLevel()
