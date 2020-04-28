@@ -1,4 +1,5 @@
 ﻿using Accessables;
+using GameAnalyticsSDK;
 using GUI2;
 using Managers;
 using UnityEngine;
@@ -36,6 +37,7 @@ public class ShootSystem : MonoBehaviour
     public Unit unitGoalKeeper;
     public HUDScript playerHUD;
     public HUDScript goalKeeperHUD;
+
     void Start()
     {
         state = PlayerState.PlayerTurn;
@@ -73,6 +75,8 @@ public class ShootSystem : MonoBehaviour
                 new Vector3(10, 180, 0), 3, 1.15f, LevelAfterPanel);
             Vibrations.VibrationSuccess();
             GameData.GameCurrencySave((PlayerPrefs.GetInt("highlevel") + 1) * 50);
+            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete,string.Format("Level{0}Index{1}",
+                PlayerPrefs.GetInt("highlevel").ToString(), LevelManager.Main.thisLevel.ToString()));
         }
         else if (state == PlayerState.Lost)
         {
@@ -82,8 +86,10 @@ public class ShootSystem : MonoBehaviour
                 new Vector3(-.85f, 1, -4),
                 new Vector3(10f, 0f, 0), 3, 1.15f, LevelAfterPanel);
             Vibrations.VibrationFail();
-              GameData.GameCurrencySave(((PlayerPrefs.GetInt("highlevel") + 1) * 50)/2);
-           }
+            GameData.GameCurrencySave(((PlayerPrefs.GetInt("highlevel") + 1) * 50) / 2);
+            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail,string.Format("Level{0}Index{1}",
+                PlayerPrefs.GetInt("highlevel").ToString(), LevelManager.Main.thisLevel.ToString()));
+        }
     }
 
     private void LevelAfterPanel()

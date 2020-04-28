@@ -1,9 +1,8 @@
 ﻿using TMPro;
 using UnityEngine;
-using System.Collections;
 
 
-    #region TransformPositionsEnum
+#region TransformPositionsEnum
 
     public enum TransformPosition
     {
@@ -71,7 +70,6 @@ using System.Collections;
         private void Start()
         {
             Application.targetFrameRate = 30; //Setting the target frame rate for unexpected frame drop rates.
-           
         }
 
         #endregion

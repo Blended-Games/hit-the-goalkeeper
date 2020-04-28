@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+using GameAnalyticsSDK;
 
     public class LevelManager : MonoBehaviour
     {
@@ -143,6 +143,9 @@ using Random = UnityEngine.Random;
             {
                 levelText.text = "LEVEL " + PlayerPrefs.GetInt("highlevel");
             }
+            
+            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start,string.Format("Level{0}Index{1}",
+                PlayerPrefs.GetInt("highlevel").ToString(), thisLevel.ToString()));
         }
 
         private static void RandomizeLevel()
