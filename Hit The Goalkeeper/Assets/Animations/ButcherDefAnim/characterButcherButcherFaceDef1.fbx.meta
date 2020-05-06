@@ -493,12 +493,12 @@ ModelImporter:
     - name: Character4_Neck
       parentName: Character4_Spine2
       position: {x: 0, y: 0.30399987, z: 0}
-      rotation: {x: -0.09387546, y: -0, z: -0, w: 0.99558395}
+      rotation: {x: -0.19439831, y: -0, z: -0, w: 0.9809227}
       scale: {x: 1, y: 1, z: 1}
     - name: Character4_Head
       parentName: Character4_Neck
-      position: {x: -0, y: 0.19363494, z: 0}
-      rotation: {x: -0, y: -0, z: -0, w: 1}
+      position: {x: 0, y: 0.19363487, z: -0.000000029802322}
+      rotation: {x: -0.041008588, y: -0, z: -0, w: 0.99915886}
       scale: {x: 1, y: 1, z: 1}
     - name: faceRig_Jaw
       parentName: Character4_Head
