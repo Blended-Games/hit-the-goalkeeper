@@ -789,8 +789,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Character4_Head
       parentName: Character4_Neck
-      position: {x: -0, y: 0.19933684, z: 0}
-      rotation: {x: -0.12110391, y: -0, z: -0, w: 0.99263984}
+      position: {x: 0, y: 0.19933677, z: 0}
+      rotation: {x: -0.13873672, y: -0, z: -0, w: 0.9903293}
       scale: {x: 1, y: 1, z: 1}
     - name: faceRig_Jaw
       parentName: Character4_Head

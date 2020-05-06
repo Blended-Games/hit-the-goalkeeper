@@ -75,13 +75,11 @@ public class ShootSystem : MonoBehaviour
                 new Vector3(0.4f, 1, -6),
                 new Vector3(10, 180, 0), 3, 1.15f, LevelAfterPanel);
             Vibrations.VibrationSuccess();
-            
-            GameData.GameCurrencySave((PlayerPrefs.GetInt("highlevel") + 1) * 50);
-            
-            AnalyticsHTGK.AnalyticsLevelSuccess(PlayerPrefs.GetInt("highlevel").ToString(), LevelManager.Main.thisLevel.ToString());
 
-            Flurry.LogEvent(string.Format("Level{0}Index{1}",
-                PlayerPrefs.GetInt("highlevel").ToString(), LevelManager.Main.thisLevel.ToString()));
+            GameData.GameCurrencySave((PlayerPrefs.GetInt("highlevel") + 1) * 50);
+
+            AnalyticsHTGK.AnalyticsLevelSuccess(PlayerPrefs.GetInt("highlevel").ToString(),
+                LevelManager.Main.thisLevel.ToString());
         }
         else if (state == PlayerState.Lost)
         {
@@ -92,12 +90,9 @@ public class ShootSystem : MonoBehaviour
                 new Vector3(10f, 0f, 0), 3, 1.15f, LevelAfterPanel);
             Vibrations.VibrationFail();
             GameData.GameCurrencySave(((PlayerPrefs.GetInt("highlevel") + 1) * 50) / 2);
-            
-            AnalyticsHTGK.AnalyticsLevelFail(PlayerPrefs.GetInt("highlevel").ToString(), LevelManager.Main.thisLevel.ToString());
-            
-            Flurry.LogEvent(string.Format("Level{0}Index{1}",
-                PlayerPrefs.GetInt("highlevel").ToString(), LevelManager.Main.thisLevel.ToString()));
-            
+
+            AnalyticsHTGK.AnalyticsLevelFail(PlayerPrefs.GetInt("highlevel").ToString(),
+                LevelManager.Main.thisLevel.ToString());
         }
     }
 
