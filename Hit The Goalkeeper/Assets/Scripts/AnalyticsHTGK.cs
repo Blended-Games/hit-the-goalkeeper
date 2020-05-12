@@ -14,10 +14,11 @@ public static class AnalyticsHTGK
         dictionary.Add("Level", level);
         dictionary.Add("Index", index);
 
-        Flurry.LogEvent("LevelSuccess", dictionary);
         Flurry.LogEvent("LevelSuccessTimed", dictionary, true);
-        Debug.Log(Flurry.LogEvent("LevelSuccess", dictionary).ToString());
-        Debug.Log(Flurry.LogEvent("LevelSuccessTimed", dictionary, true).ToString());
+        Flurry.EventRecordStatus status = Flurry.LogEvent("LevelSuccessTimed", dictionary, true);
+        Debug.Log(status);
+        Flurry.EndTimedEvent("LevelSuccess Timed" , dictionary);
+
     }
 
     public static void AnalyticsLevelFail(string level, string index)
@@ -28,10 +29,10 @@ public static class AnalyticsHTGK
 
         dictionary.Add("Level", level);
         dictionary.Add("Index", index);
-        Flurry.LogEvent("LevelFailed", dictionary);
         Flurry.LogEvent("LevelFailedTimed", dictionary, true);
-        Debug.Log(Flurry.LogEvent("LevelFailed", dictionary).ToString());
-        Debug.Log(Flurry.LogEvent("LevelFailedTimed", dictionary, true).ToString());
+        Flurry.EventRecordStatus status = Flurry.LogEvent("LevelFailedTimed", dictionary, true);
+        Debug.Log(status);
+        Flurry.EndTimedEvent("LevelFailed Timed" , dictionary);
     }
 
     public static void AnalyticsLevelStart(string level, string index)
@@ -44,8 +45,8 @@ public static class AnalyticsHTGK
         dictionary.Add("Index", index);
 
         Flurry.LogEvent("GameStartTimed", dictionary, true);
-        Flurry.LogEvent("GameStart", dictionary);
-        Debug.Log(Flurry.LogEvent("GameStart", dictionary).ToString());
-        Debug.Log(Flurry.LogEvent("GameStartTimed", dictionary, true).ToString());
+        Flurry.EventRecordStatus status = Flurry.LogEvent("GameStartTimed", dictionary, true);
+        Debug.Log(status);
+        Flurry.EndTimedEvent("GameStart Timed" , dictionary);
     }
 }
