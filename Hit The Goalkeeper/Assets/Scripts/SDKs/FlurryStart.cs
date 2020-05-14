@@ -21,6 +21,7 @@ public class FlurryStart : MonoBehaviour
         }
 
         main = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -29,10 +30,15 @@ public class FlurryStart : MonoBehaviour
         new Flurry.Builder()
             .WithCrashReporting(true)
             .WithLogEnabled(true)
-            .WithLogLevel(Flurry.LogLevel.LogVERBOSE)
+            .WithLogLevel(Flurry.LogLevel.VERBOSE)
             .WithAppVersion("1.0")
             .Build(FLURRY_API_KEY);
 
-        DontDestroyOnLoad(gameObject);
+
+        Debug.Log("AgentVersion: " + Flurry.GetAgentVersion());
+        Debug.Log("ReleaseVersion: " + Flurry.GetReleaseVersion());
+         
+        Flurry.EventRecordStatus status = Flurry.LogEvent("Flurry Opened Event");
+        Debug.Log("Log Unity Event status: " + status);
     }
 }
